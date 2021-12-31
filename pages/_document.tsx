@@ -29,7 +29,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
+        <Head>
+          <link rel='preload' href='/fonts/GowunDodum/GowunDodum-Regular.ttf' as='font' crossOrigin='' />
+          <link rel='preload' href='/fonts/Aggro/Aggro-B.ttf' as='font' crossOrigin='' />
+          <link rel='preload' href='/fonts/Aggro/Aggro-L.ttf' as='font' crossOrigin='' />
+          <link rel='preload' href='/fonts/Aggro/Aggro-M.ttf' as='font' crossOrigin='' />
+        </Head>
         <body>
           <Main />
           <NextScript />
