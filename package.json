@@ -10,11 +10,13 @@
   "dependencies": {
     "next": "12.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/node": "17.0.5",
     "@types/react": "17.0.38",
+    "@types/styled-components": "^5.1.19",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
     "typescript": "4.5.4"
