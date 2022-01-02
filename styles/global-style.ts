@@ -59,7 +59,9 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
-        font-family: GowunDodum;
+        font-family: GowunDodum, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: #2F3135;
+        color: white;
     }
     ol, ul {
         list-style: none;
