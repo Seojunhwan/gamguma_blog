@@ -52,7 +52,9 @@ export const GlobalStyle = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
     }
-    /* HTML5 display-role reset for older browsers */
+    html {
+        font-size: 62.5%;
+    }
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
         display: block;
@@ -63,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: #2F3135;
         color: white;
     }
-    ol, ul {
+    ol, ul, li {
         list-style: none;
     }
     blockquote, q {
@@ -82,5 +84,4 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit;
     }
-    
 `;

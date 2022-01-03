@@ -1,7 +1,9 @@
-import type { NextPage } from 'next';
+import Posts from '../components/Posts';
 
-const Home: NextPage = () => {
-  return <span>home</span>;
-};
-
-export default Home;
+export default function Home() {
+  return (
+    <>
+      <Posts />
+    </>
+  );
+}
