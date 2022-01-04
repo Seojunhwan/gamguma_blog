@@ -5,13 +5,17 @@ import { useRouter } from 'next/router';
 
 const Wrapper = styled.header`
   background-color: #121212;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top: 0;
 `;
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 90rem;
+  max-width: 100rem;
   padding: 2.5rem 1rem;
   margin: 0 auto;
   & > div span {
@@ -76,7 +80,7 @@ export default function Header() {
 
           <Link href='/post'>
             <a>
-              <span>Post{router.pathname === '/post/*' && <Indicator layoutId='indicator' />}</span>
+              <span>Post{router.asPath === '/post' && <Indicator layoutId='indicator' />}</span>
             </a>
           </Link>
         </Nav>

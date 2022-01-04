@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import Footer from './Footer';
 import Header from './Header';
 
 const Container = styled.div`
-  max-width: 900px;
+  max-width: 100rem;
   margin: 0 auto;
-  padding: 0px 10px;
+  padding: 10rem 1rem 5rem 1rem;
 `;
 
 export default function Layout({ children }: any) {
@@ -14,6 +15,7 @@ export default function Layout({ children }: any) {
       <main>
         <Container>{children}</Container>
       </main>
+      <Footer />
     </>
   );
 }
