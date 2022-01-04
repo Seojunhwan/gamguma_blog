@@ -14,7 +14,7 @@ interface IPost {
 
 const posts: IPost[] = [
   {
-    title: '감자의 테스트',
+    title: "Gamja's test",
     id: 1,
     date: '2021-01-03 19:24',
     hashTags: ['감자', '요크셔테리어', '9살'],
@@ -189,14 +189,19 @@ const PostInfoContainer = styled.div`
 
 export default function Home() {
   const router = useRouter();
-  const onClick = (id: number) => {
-    router.push(`/post/${id}`);
+  const onClick = (id: number, title: string) => {
+    router.push({
+      pathname: `/post/${id}`,
+      query: {
+        title,
+      },
+    });
   };
   return (
     <Container>
       <Posts>
         {posts.slice(0, 6).map((article) => (
-          <Post onClick={() => onClick(article.id)} key={article.id}>
+          <Post onClick={() => onClick(article.id, article.title)} key={article.id}>
             <ImageWrapper>
               <Image
                 src={'/구마.jpeg'}

@@ -71,16 +71,14 @@ export default function Header() {
               <span>About{router.asPath === '/about' && <Indicator layoutId='indicator' />}</span>
             </a>
           </Link>
-
           <Link href='/dev'>
             <a>
               <span>Dev{router.asPath === '/dev' && <Indicator layoutId='indicator' />}</span>
             </a>
           </Link>
-
           <Link href='/post'>
             <a>
-              <span>Post{router.asPath === '/post' && <Indicator layoutId='indicator' />}</span>
+              <span>Post{router.asPath.startsWith('/post') && <Indicator layoutId='indicator' />}</span>
             </a>
           </Link>
         </Nav>
