@@ -22,15 +22,14 @@ const HashTagItem = styled.li`
 
 interface IType {
   hashTags: string[];
-  id: number;
+  articleId: string;
 }
 
-export default function HashTag({ hashTags, id }: IType) {
-  console.log(id);
+export default function HashTag({ hashTags, articleId }: IType) {
   return (
     <Wrapper>
       {hashTags.map((hashTag) => (
-        <HashTagItem key={`${id}${hashTag}`}>
+        <HashTagItem key={`${articleId}${hashTag}`}>
           <span>{hashTag}</span>
         </HashTagItem>
       ))}

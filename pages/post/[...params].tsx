@@ -4,12 +4,12 @@ import Seo from '../../components/Seo';
 export default function Blog() {
   const router = useRouter();
   const {
-    query: { title },
+    query: { title, hashTags },
   } = router;
 
   return (
     <>
-      <Seo title={title} />
+      <Seo title={title as string} keywords={hashTags as string[]} />
       <span>hihi</span>
     </>
   );
