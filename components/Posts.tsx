@@ -77,20 +77,14 @@ const PostInfoContainer = styled.div`
 
 export default function Home({ posts }: { posts: IPost[] }) {
   const router = useRouter();
-  const onClick = (id: number, title: string, hashTags: string[]) => {
-    router.push({
-      pathname: `/post/${id}`,
-      query: {
-        title,
-        hashTags,
-      },
-    });
+  const onClick = (slug: string) => {
+    router.push(`/post/${slug.replace(/\.mdx?$/, '')}`);
   };
   return (
     <Container>
       <Posts>
         {posts.slice(0, 6).map((article) => (
-          <Post key={article.filePath}>
+          <Post onClick={() => onClick(article.filePath)} key={article.filePath}>
             <ImageWrapper>
               <Image
                 src={'/구마.jpeg'}

@@ -4,6 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import Layout from '../components/Layout';
 import { GlobalStyle } from '../styles/global-style';
 import { lightTheme } from '../styles/theme';
+import { MDXProvider } from '@mdx-js/react';
+import Code from '../components/mdx/Code';
+
+const components = {
+  code: Code,
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,9 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={lightTheme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <MDXProvider components={components}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </MDXProvider>
       </ThemeProvider>
     </>
   );

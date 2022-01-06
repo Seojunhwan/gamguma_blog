@@ -6,4 +6,26 @@ description: 구마의 하루 고구마 냠냠냠냠냠 굿!
 createAt: 2022.01.05 16:16
 ---
 
-I **love** Goguma!!
+ # I **love** Goguma!!!!!!!!!!!!!!!!!!! 
+
+```js
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+function Page() {
+  const router = useRouter()
+
+  useEffect(() => {
+    // Always do navigations after the first render
+    router.push('/?counter=10', undefined, { shallow: true }) router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })
+  }, [])
+
+  useEffect(() => {
+    // The counter changed!
+  }, [router.query.counter])
+}
+
+export default Page
+```
+
+`hihi`
