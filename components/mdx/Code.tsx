@@ -18,7 +18,6 @@ const CodeInfoBar = styled.div`
   user-select: none;
   background-color: #15151599;
   span {
-    font-size: 1.5rem;
     text-transform: uppercase;
     color: #ff8a64;
     font-family: Aggro;
@@ -67,29 +66,14 @@ const Table = styled.table`
   display: table;
   width: 100%;
   vertical-align: middle;
-  font-size: 0.5rem;
-  line-height: 1.2rem;
-  ${media.small} {
-    font-size: 1.6rem;
-    line-height: 2rem;
-  }
-  ${media.large} {
-    font-size: 1.8rem;
-    line-height: 3rem;
-  }
-`;
-
-const CodeWrapper = styled.tbody`
-  display: table-row-group;
-  vertical-align: middle;
 `;
 
 const LineNo = styled.td`
-  text-align: center;
-  padding-right: 0.5rem;
-  color: #4a545c;
-  transition: all 0.05s ease;
   user-select: none;
+  color: #4a545c;
+  text-align: center;
+  transition: all 0.05s ease;
+  padding-right: 0.5rem;
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
   & + td {
@@ -100,8 +84,6 @@ const LineNo = styled.td`
 `;
 
 const Line = styled.tr`
-  display: table-row;
-  vertical-align: inherit;
   transition: all 0.05s ease;
   &:hover {
     background-color: #20202099;
@@ -127,7 +109,7 @@ export default function Code({ children, className }: { children: string; classN
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <TableWrapper>
             <Table>
-              <CodeWrapper className={className}>
+              <tbody>
                 {tokens.map((line, i) => (
                   <Line key={i} {...getLineProps({ line, key: i })}>
                     <LineNo>{language ? i + 1 : ''}</LineNo>
@@ -138,7 +120,7 @@ export default function Code({ children, className }: { children: string; classN
                     </td>
                   </Line>
                 ))}
-              </CodeWrapper>
+              </tbody>
             </Table>
           </TableWrapper>
         )}

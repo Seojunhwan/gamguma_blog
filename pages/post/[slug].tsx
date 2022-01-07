@@ -27,30 +27,23 @@ const PostContainer = styled.div`
     }
     th,
     td {
-      /* word-break: break-word; */
       padding: 0.5rem;
     }
     td + td,
     th + th {
       border-left: 1px solid ${openColor.gray7};
     }
-    tr:nth-of-type(even) {
-      /* background: ${openColor.gray1}; */
-    }
-    tr:nth-of-type(odd) {
-      /* background: ${openColor.white}; */
-    }
   }
   p {
     line-height: 2.5rem;
     word-wrap: break-word;
     color: #bcbcbc;
-    code {
-      background-color: ${openColor.gray7};
-      color: ${openColor.red7};
-      border-radius: 0.5rem;
-      padding: 0 0.5rem;
-    }
+  }
+  code {
+    background-color: ${openColor.gray7};
+    color: ${openColor.red7};
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
   }
   a {
     color: ${openColor.blue7};
@@ -106,18 +99,17 @@ const PostContainer = styled.div`
       font-size: 1.3rem;
     }
     p {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       margin-bottom: 2rem;
     }
     li {
       font-size: 1.6rem;
     }
     pre {
-      font-size: 1.3rem;
-      code {
-        &.language-null {
-          font-size: 1.3rem;
-        }
+      font-size: 1.5rem;
+      table {
+        font-size: 1.4rem;
+        line-height: 2rem;
       }
     }
   }
@@ -155,11 +147,10 @@ const PostContainer = styled.div`
       font-size: 1.8rem;
     }
     pre {
-      font-size: 1.5rem;
-      code {
-        &.language-null {
-          font-size: 1.5rem;
-        }
+      font-size: 1.7rem;
+      table {
+        font-size: 1.6rem;
+        line-height: 2rem;
       }
     }
   }
@@ -195,12 +186,11 @@ const PostContainer = styled.div`
     li {
       font-size: 1.6rem;
     }
-  }
-  pre {
-    font-size: 1.5rem;
-    code {
-      &.language-null {
-        font-size: 1.5rem;
+    pre {
+      font-size: 1.9rem;
+      table {
+        font-size: 1.8rem;
+        line-height: 3rem;
       }
     }
   }
