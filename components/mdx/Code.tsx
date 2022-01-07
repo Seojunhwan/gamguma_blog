@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
+import media from '../../styles/media';
 
 const Container = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin: 2rem 0;
 `;
 
 const CodeInfoBar = styled.div`
@@ -54,7 +56,7 @@ const TableWrapper = styled.div`
     background-color: grey;
     border-radius: 1rem;
   }
-  @media screen and (max-width: 768px) {
+  ${media.small} {
     &::-webkit-scrollbar {
       height: 1rem;
     }
@@ -64,16 +66,16 @@ const TableWrapper = styled.div`
 const Table = styled.table`
   display: table;
   width: 100%;
-  font-size: 1.8rem;
-  line-height: 3rem;
   vertical-align: middle;
-  @media screen and (max-width: 1000px) {
+  font-size: 0.5rem;
+  line-height: 1.2rem;
+  ${media.small} {
     font-size: 1.6rem;
     line-height: 2rem;
   }
-  @media screen and (max-width: 768px) {
-    font-size: 0.5rem;
-    line-height: 1.2rem;
+  ${media.large} {
+    font-size: 1.8rem;
+    line-height: 3rem;
   }
 `;
 
@@ -110,7 +112,7 @@ const Line = styled.tr`
 `;
 
 export default function Code({ children, className }: { children: string; className: string }) {
-  const language = className.replace(/language-/, '');
+  const language = className ? className.replace(/language-/, '') : '';
   return (
     <Container>
       <CodeInfoBar>
@@ -128,7 +130,7 @@ export default function Code({ children, className }: { children: string; classN
               <CodeWrapper className={className}>
                 {tokens.map((line, i) => (
                   <Line key={i} {...getLineProps({ line, key: i })}>
-                    <LineNo>{i + 1}</LineNo>
+                    <LineNo>{language ? i + 1 : ''}</LineNo>
                     <td>
                       {line.map((token, key) => (
                         <span key={key} {...getTokenProps({ token, key })} />

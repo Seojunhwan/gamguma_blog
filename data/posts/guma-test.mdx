@@ -3,10 +3,21 @@ title: 구마의 이야기
 author: Junhwan Seo
 hashTags: [고구마, 3살]
 description: 구마의 하루 고구마 냠냠냠냠냠 굿!
-createAt: 2022.01.05 16:16
+createAt: 2022-01-05 16:16
 ---
 
- # I **love** Goguma!!!!!!!!!!!!!!!!!!! 
+# Test H1!!!
+## Test H2!!!
+### Test H3!!!
+#### Test H4!!!
+##### Test H5!!!
+###### Test H6!!!
+
+안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  
+
+안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용 안녕하세요 지금 이거 테스트 입니다!!! 홀홀 재미가 있네용  
+
+nextjs를 본격적으로 쓴 것은 2~3년 전부터이지만, 이 정도로 대규모 프로젝트에 써본 것은 처음이었다. 이전까지는 nextjs에 대해 어느정도 알고 있다고 자부했었지만, 본격적으로 쓰고 보니 굉장히 모르는 사실들이 많았다는 것을 꺠달았다. 다시는 시행착오를 겪지 않기 위해 nextjs를 쓰면서 배운 것들을 몇가지 정리해두려고 한다.
 
 ```js
 import { useEffect } from 'react'
@@ -17,7 +28,7 @@ function Page() {
 
   useEffect(() => {
     // Always do navigations after the first render
-    router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })router.push('/?counter=10', undefined, { shallow: true })
+    router.push('/?counter=10', undefined, { shallow: true })
   }, [])
 
   useEffect(() => {
@@ -29,3 +40,14 @@ export default Page
 ```
 
 `hihi`
+
+## 환경변수 쓰기 전에 잘 점검하기
+
+| Method              | Set at    | Available in Next.js client side rendered code (browser) | Available in Next.js server side rendered code | Available in Node.js               | Notes                                                       |
+| ------------------- | --------- | -------------------------------------------------------- | ---------------------------------------------- | ---------------------------------- | ----------------------------------------------------------- |
+| .env                | both      |                                                          | ✔️                                              | `process.env`를 구조분해할당하거나      | `process.env`를 구조분해할당하거나 동적으로 접근할 수 없음.            |
+| NEXT*PUBLIC* .env   | buildtime | ✔️                                                        | ✔️                                              |                                    | `process.env`를 구조분해할당하거나 동적으로 접근할 수 없음.             |
+| env next.config.js  | buildtime | ✔️                                                        | ✔️                                              |                                    | `process.env`를 구조분해할당하거나 동적으로 접근할 수 없음.            |
+| publicRuntimeConfig | runtime   | ✔️                                                        | ✔️                                              |                                    | `SSR`을 사용하는 페이지에 필요                              |
+| serverRuntimeConfig | runtime   |                                                          | ✔️                                              |                                    |                                                             |
+| process.env         | runtime   |                                                          |                                                | ✔️                                  |                                                             |

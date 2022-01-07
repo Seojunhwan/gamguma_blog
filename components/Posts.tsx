@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import media from '../styles/media';
 import styled from 'styled-components';
 import HashTag from './HashTag';
 
@@ -23,16 +24,16 @@ const Container = styled.div`
 const Posts = styled.div`
   width: 100%;
   margin: 1rem 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  @media screen and (max-width: 1000px) {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  ${media.small} {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
+  ${media.medium} {
+    grid-template-columns: repeat(3, 1fr);
   }
-  gap: 1.5rem;
 `;
 
 const Post = styled.article`

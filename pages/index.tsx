@@ -1,8 +1,5 @@
 import Posts from '../components/Posts';
-import path from 'path';
-import fs from 'fs';
-import matter from 'gray-matter';
-import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
+import { loadAllPost } from '../utils/mdxUtils';
 
 //TODO: MDX 관련 interface 정리하기
 
@@ -29,14 +26,6 @@ export default function Home({ posts }: IProps) {
 }
 
 export async function getStaticProps() {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
-    const { content, data } = matter(source);
-    return {
-      content,
-      data,
-      filePath,
-    };
-  });
+  const posts = loadAllPost();
   return { props: { posts } };
 }
