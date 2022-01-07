@@ -22,7 +22,7 @@ const HashTagItem = styled.li`
 
 interface IType {
   hashTags: string[];
-  articleId: string;
+  articleId?: string;
 }
 
 export default function HashTag({ hashTags, articleId }: IType) {

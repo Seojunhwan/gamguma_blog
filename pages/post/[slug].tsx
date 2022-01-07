@@ -5,6 +5,8 @@ import { loadPost, postFilePaths } from '../../utils/mdxUtils';
 import styled from 'styled-components';
 import { openColor } from '../../styles/open-color';
 import media from '../../styles/media';
+import HashTag from '../../components/HashTag';
+import { dateFormatter } from '../../utils/utils';
 
 interface IMdxProps {
   mdxSource: MDXRemoteSerializeResult;
@@ -44,6 +46,10 @@ const PostContainer = styled.div`
     color: ${openColor.red7};
     border-radius: 0.5rem;
     padding: 0 0.5rem;
+  }
+  h1 {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid black;
   }
   a {
     color: ${openColor.blue7};
@@ -202,15 +208,15 @@ const PostHeader = styled.header`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 1rem 0rem;
-    border-bottom: 1px solid black;
     h1 {
       font-size: 3.5rem;
+      margin-bottom: 4rem;
     }
     time {
-      margin-bottom: 1rem;
       font-size: 1.5rem;
+      margin-bottom: 2rem;
     }
   }
 `;
@@ -225,8 +231,9 @@ export default function Blog({
       <article>
         <PostHeader>
           <div>
-            <time dateTime={createAt}>{createAt}</time>
             <h1>{title}</h1>
+            <time dateTime={createAt}>{dateFormatter(createAt)}</time>
+            <HashTag hashTags={hashTags} />
           </div>
         </PostHeader>
         <PostContainer>
