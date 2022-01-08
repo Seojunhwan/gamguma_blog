@@ -30,5 +30,5 @@ export const loadPost = async (slug: string) => {
       rehypePlugins: [],
     },
   });
-  return { mdxSource, data };
+  return { mdxSource, data, content };
 };

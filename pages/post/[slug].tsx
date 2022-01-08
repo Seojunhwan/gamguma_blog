@@ -7,10 +7,12 @@ import { openColor } from '../../styles/open-color';
 import media from '../../styles/media';
 import HashTag from '../../components/HashTag';
 import { dateFormatter } from '../../utils/utils';
+import Toc from '../../components/Toc';
 
 interface IMdxProps {
   mdxSource: MDXRemoteSerializeResult;
   frontMatter: IFrontMatter;
+  content: string;
 }
 
 const PostContainer = styled.div`
@@ -224,11 +226,13 @@ const PostHeader = styled.header`
 export default function Blog({
   mdxSource,
   frontMatter: { title, description, hashTags, createAt },
+  content,
 }: IMdxProps) {
   return (
     <>
       <Seo title={title} description={description} keywords={hashTags} />
       <article>
+        <Toc content={content} />
         <PostHeader>
           <div>
             <h1>{title}</h1>
@@ -246,12 +250,19 @@ export default function Blog({
   );
 }
 
-export async function getStaticProps({ params: { slug } }: { params: { slug: string } }) {
-  const { mdxSource, data } = await loadPost(slug);
+interface IParams {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticProps({ params }: IParams) {
+  const { mdxSource, data, content } = await loadPost(params.slug);
   return {
     props: {
       mdxSource,
       frontMatter: data,
+      content,
     },
   };
 }
