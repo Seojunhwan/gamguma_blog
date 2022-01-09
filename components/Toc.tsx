@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useIntersectionObserver } from '../hooks/\bhooks';
 
 interface ITocProps {
   content: string;
@@ -34,6 +36,8 @@ const Item = styled.li<IItemProps>`
 `;
 
 export default function Toc({ content }: ITocProps) {
+  const [activeId, setActiveId] = useState('');
+  useIntersectionObserver(setActiveId, content);
   const titles = content.split('\n').filter((t) => t.startsWith('#'));
   const result = titles.map((item) => {
     const depth = item.match(/#/g)?.length;
@@ -42,19 +46,17 @@ export default function Toc({ content }: ITocProps) {
       depth,
     };
   });
-  const [isSelected, setIsSelected] = useState('');
   return (
     <Container>
       <ul>
-        {result.map((item) => (
-          <Item
-            onClick={() => setIsSelected(item.title)}
-            isSelected={isSelected === item.title}
-            depth={item.depth ?? 0}
-            key={item.title}
-          >
-            {item.title}
-          </Item>
+        {result.map((item, index) => (
+          <Link href={`#${item.title}`} key={item.title + index}>
+            <a>
+              <Item isSelected={true} depth={item.depth ?? 0}>
+                {item.title}
+              </Item>
+            </a>
+          </Link>
         ))}
       </ul>
     </Container>

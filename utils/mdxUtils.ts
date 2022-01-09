@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+import rehypeSlug from 'rehype-slug';
+import remarkToc from 'remark-toc';
 
 export const POSTS_PATH = path.join(process.cwd(), 'data/posts');
 
@@ -26,8 +28,8 @@ export const loadPost = async (slug: string) => {
   const { content, data } = matter(source);
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
+      remarkPlugins: [[remarkToc, {}]],
+      rehypePlugins: [[rehypeSlug, {}]],
     },
   });
   return { mdxSource, data, content };
