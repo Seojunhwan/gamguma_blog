@@ -7,6 +7,8 @@ import { lightTheme } from '../styles/theme';
 import { MDXProvider } from '@mdx-js/react';
 import Code from '../components/mdx/Code';
 
+interface Iprops {}
+
 const components = {
   code: Code,
 };

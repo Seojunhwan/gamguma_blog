@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useIntersectionObserver } from '../hooks/\bhooks';
 
@@ -38,7 +37,6 @@ const Item = styled.li<IItemProps>`
 export default function Toc({ content }: ITocProps) {
   const [activeId, setActiveId] = useState('');
   useIntersectionObserver(setActiveId, content);
-  console.log(activeId);
   const titles = content.split('\n').filter((t) => t.startsWith('#'));
   const result = titles.map((item) => {
     const depth = item.match(/#/g)?.length;
@@ -47,17 +45,24 @@ export default function Toc({ content }: ITocProps) {
       depth,
     };
   });
+  const convertTextToId = (title: string) => {
+    return title.toLowerCase().replace(/[?.]/gi, '').replace(/\s/g, '-');
+  };
+  const onValid = (title: string) => {
+    if (convertTextToId(title) === activeId) {
+      return true;
+    }
+    return false;
+  };
   return (
     <Container>
       <ul>
         {result.map((item, index) => (
-          <Link href={`#${item.title}`} key={item.title + index}>
-            <a>
-              <Item isSelected={true} depth={item.depth ?? 0}>
-                {item.title}
-              </Item>
-            </a>
-          </Link>
+          <a key={item.title} href={`#${convertTextToId(item.title)}`}>
+            <Item isSelected={onValid(item.title)} depth={item.depth ?? 0}>
+              {item.title}
+            </Item>
+          </a>
         ))}
       </ul>
     </Container>
