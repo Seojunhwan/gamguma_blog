@@ -58,7 +58,7 @@ export default function Toc({ content }: ITocProps) {
     <Container>
       <ul>
         {result.map((item, index) => (
-          <a key={item.title} href={`#${convertTextToId(item.title)}`}>
+          <a key={item.title + index} href={`#${convertTextToId(item.title)}`}>
             <Item isSelected={onValid(item.title)} depth={item.depth ?? 0}>
               {item.title}
             </Item>

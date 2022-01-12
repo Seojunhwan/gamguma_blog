@@ -6,6 +6,7 @@ import { GlobalStyle } from '../styles/global-style';
 import { lightTheme } from '../styles/theme';
 import { MDXProvider } from '@mdx-js/react';
 import Code from '../components/mdx/Code';
+import '../styles/fonts.css';
 
 interface Iprops {}
 

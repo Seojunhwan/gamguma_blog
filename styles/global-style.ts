@@ -1,34 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-    @font-face {
-        font-family: "GowunDodum";
-        src: url("/fonts/GowunDodum/GowunDodum-Regular.ttf");
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Aggro";
-        src: url("/fonts/Aggro/Aggro-B.ttf");
-        font-style: normal;
-        font-weight: 800;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Aggro";
-        src: url("/fonts/Aggro/Aggro-M.ttf");
-        font-style: normal;
-        font-weight: 600;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Aggro";
-        src: url("/fonts/Aggro/Aggro-L.ttf");
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-    }
     * {
         box-sizing: border-box;
     }

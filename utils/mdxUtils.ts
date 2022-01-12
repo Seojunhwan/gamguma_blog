@@ -9,7 +9,7 @@ export const POSTS_PATH = path.join(process.cwd(), 'data/posts');
 
 export const postFilePaths = fs.readdirSync(POSTS_PATH).filter((path) => /\.mdx?$/.test(path));
 
-export const loadAllPost = () => {
+export const getAllPost = () => {
   const posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
     const { content, data } = matter(source);
@@ -22,13 +22,15 @@ export const loadAllPost = () => {
   return posts;
 };
 
-export const loadPost = async (slug: string) => {
+export const getPost = async (slug: string) => {
   const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
   const { content, data } = matter(source);
   const mdxSource = await serialize(content, {
     mdxOptions: {
+      // @ts-ignore: Unreachable code error
       remarkPlugins: [[remarkToc, {}]],
+      // @ts-ignore: Unreachable code error
       rehypePlugins: [[rehypeSlug, {}]],
     },
   });

@@ -1,7 +1,7 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Seo from '../../components/Seo';
 import { IFrontMatter } from '..';
-import { loadPost, postFilePaths } from '../../utils/mdxUtils';
+import { getPost, postFilePaths } from '../../utils/mdxUtils';
 import styled from 'styled-components';
 import { openColor } from '../../styles/open-color';
 import media from '../../styles/media';
@@ -257,7 +257,7 @@ interface IParams {
 }
 
 export async function getStaticProps({ params }: IParams) {
-  const { mdxSource, data, content } = await loadPost(params.slug);
+  const { mdxSource, data, content } = await getPost(params.slug);
   return {
     props: {
       mdxSource,

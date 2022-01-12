@@ -1,5 +1,5 @@
 import Posts from '../components/Posts';
-import { loadAllPost } from '../utils/mdxUtils';
+import { getAllPost } from '../utils/mdxUtils';
 
 //TODO: MDX 관련 interface 정리하기
 
@@ -26,6 +26,6 @@ export default function Home({ posts }: IProps) {
 }
 
 export async function getStaticProps() {
-  const posts = loadAllPost();
+  const posts = getAllPost();
   return { props: { posts } };
 }
