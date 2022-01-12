@@ -7,7 +7,7 @@ import { openColor } from '../../styles/open-color';
 import media from '../../styles/media';
 import HashTag from '../../components/HashTag';
 import { dateFormatter } from '../../utils/utils';
-import Toc from '../../components/Toc';
+import Toc from '../../components/post/Toc';
 
 interface IMdxProps {
   mdxSource: MDXRemoteSerializeResult;
