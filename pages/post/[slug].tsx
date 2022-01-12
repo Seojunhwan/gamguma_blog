@@ -241,7 +241,7 @@ export default function Blog({
           </div>
         </PostHeader>
         <PostContainer>
-          <div className='markdown-body'>
+          <div>
             <MDXRemote {...mdxSource} />
           </div>
         </PostContainer>

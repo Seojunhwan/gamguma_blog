@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useIntersectionObserver } from '../hooks/\bhooks';
+import media from '../styles/media';
 
 interface ITocProps {
   content: string;
@@ -12,14 +13,22 @@ interface IItemProps {
 }
 
 const Container = styled.div`
+  display: none;
   position: fixed;
   right: 0;
   border-left: 1px solid white;
   max-width: 24rem;
-  margin-right: 2rem;
+  margin-top: 20vh;
+  margin-right: 0.5rem;
   ul {
     display: flex;
     flex-direction: column;
+  }
+  ${media.xlarge} {
+    display: block;
+  }
+  ${media.xxlarge} {
+    margin-right: 20rem;
   }
 `;
 
@@ -27,7 +36,7 @@ const Item = styled.li<IItemProps>`
   cursor: pointer;
   font-size: 1.4rem;
   padding: 0.5rem;
-  padding-left: ${(props) => `${props.depth}rem`};
+  padding-left: ${(props) => (props.depth ? `${props.depth}rem` : '0rem')};
   color: ${(props) => (props.isSelected ? '#FAF7FF' : '#BCBCBC')};
   transform: ${(props) => props.isSelected && 'scale(1.05)'};
   transform-origin: left;
