@@ -16,8 +16,8 @@ export const useIntersectionObserver = (
   useEffect(() => {
     headingElementsRef.current = {};
     const observerCallback = (elements: IntersectionObserverEntry[]) => {
-      headingElementsRef.current = elements.reduce((map, headingElements) => {
-        map[headingElements.target.id] = headingElements;
+      headingElementsRef.current = elements.reduce((map, headingElement) => {
+        map[headingElement.target.id] = headingElement;
         return map;
       }, headingElementsRef.current);
 
@@ -30,7 +30,7 @@ export const useIntersectionObserver = (
         }
       });
 
-      const findIndexFromId = (id: string) => {
+      const getIndexFromId = (id: string) => {
         return visibleHeadings.findIndex((element) => element.target.id === id);
       };
 
@@ -38,7 +38,7 @@ export const useIntersectionObserver = (
         setActiveId(visibleHeadings[0].target.id);
       } else if (visibleHeadings.length > 1) {
         visibleHeadings.sort((a, b) => {
-          return findIndexFromId(a.target.id) - findIndexFromId(b.target.id);
+          return getIndexFromId(a.target.id) - getIndexFromId(b.target.id);
         });
         setActiveId(visibleHeadings[0].target.id);
       }
