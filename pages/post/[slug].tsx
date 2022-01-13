@@ -8,6 +8,7 @@ import media from '../../styles/media';
 import HashTag from '../../components/HashTag';
 import { dateFormatter } from '../../utils/utils';
 import Toc from '../../components/post/Toc';
+import Comments from '../../components/comment/Comments';
 
 interface IMdxProps {
   mdxSource: MDXRemoteSerializeResult;
@@ -246,6 +247,7 @@ export default function Blog({
           </div>
         </PostContainer>
       </article>
+      <Comments />
     </>
   );
 }
