@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { dateFormatter } from '../../utils/utils';
 import CommentEditModal from './CommentEditModal';
@@ -57,30 +57,50 @@ interface CommentCardsProps {
   comments: IComment[];
 }
 
+interface IHandleSetVisible {
+  (author?: string, id?: number, content?: string): void;
+}
+
+interface Itest {
+  author: string;
+  id: number;
+  content: string;
+}
+
 export default function CommentCards({ comments }: CommentCardsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleSetVisible = () => {
+  const [modalInfo, setModalInfo] = useState<Itest>({ author: '', id: 0, content: '' });
+  const handleSetVisible: IHandleSetVisible = (author, id, content) => {
+    if (author && id && content) {
+      setModalInfo({ author, content, id });
+    }
     setIsModalOpen((prev) => !prev);
   };
-
   return (
     <Container>
       {comments &&
         comments.map((item) => (
-          <Comment key={item.createAt}>
+          <Comment key={item.id}>
             <CommentHeader>
               <CommentHeaderInfo>
                 <span>{item.author}</span>
                 <time dateTime={item.createAt}>{dateFormatter(item.createAt)}</time>
               </CommentHeaderInfo>
-              <CommentEditButton onClick={handleSetVisible}>수정 / 삭제</CommentEditButton>
+              <CommentEditButton onClick={() => handleSetVisible(item.author, item.id, item.content)}>
+                수정 / 삭제
+              </CommentEditButton>
             </CommentHeader>
             <p>{item.content}</p>
           </Comment>
         ))}
       {/* TODO: 이름, Content, ID */}
-      {isModalOpen && <CommentEditModal handleSetVisible={handleSetVisible} />}
+      {isModalOpen && (
+        <CommentEditModal
+          name={modalInfo.author}
+          content={modalInfo.content}
+          handleSetVisible={handleSetVisible}
+        />
+      )}
     </Container>
   );
 }

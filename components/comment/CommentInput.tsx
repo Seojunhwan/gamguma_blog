@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 import { onChange } from './hooks/onChangeHook';
+import { useInput } from './hooks/useInput';
 
 const Form = styled.form`
   display: flex;
@@ -12,6 +14,8 @@ const InputContainer = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
 `;
 
 const Input = styled.input`
@@ -19,6 +23,13 @@ const Input = styled.input`
   padding: 0.5rem;
   border-radius: 0.3rem;
   outline: none;
+  ${media.xsmall} {
+    width: 100%;
+  }
+  ${media.small} {
+    min-width: 20rem;
+    width: 20%;
+  }
 `;
 
 const TextareaContainer = styled.div`
@@ -65,41 +76,23 @@ const SubmmitBtn = styled.button`
 
 interface CommentInputProps {
   onSubmit: (event: React.FormEvent<HTMLFormElement>, name: string, content: string) => void;
-  namea?: string;
-  contenta?: string;
+  initialName?: string;
+  initialContent?: string;
 }
-export default function CommentInput({ onSubmit, namea, contenta }: CommentInputProps) {
-  const [name, setName] = useState(namea ?? '');
-  const [password, setPassword] = useState('');
-  const [content, setContent] = useState(contenta ?? '');
-
+export default function CommentInput({ onSubmit, initialName, initialContent }: CommentInputProps) {
+  const nameValidator = (value: string) => value.length < 3;
+  const passwordValidator = (value: string) => value.length < 6;
+  const name = useInput(initialName ?? '', nameValidator);
+  const password = useInput('', passwordValidator);
+  const content = useInput(initialContent ?? '');
   return (
-    <Form onSubmit={(event) => onSubmit(event, name, content)}>
+    <Form onSubmit={(event) => onSubmit(event, name.value, content.value)}>
       <InputContainer>
-        <Input
-          name='name'
-          value={name}
-          onChange={(event) => onChange(event, setName)}
-          placeholder='이름'
-          type='text'
-          maxLength={15}
-        />
-        <Input
-          name='password'
-          value={password}
-          onChange={(event) => onChange(event, setPassword)}
-          placeholder='비밀번호'
-          type='password'
-          minLength={4}
-        />
+        <Input name='name' {...name} placeholder='이름' type='text' maxLength={15} />
+        <Input name='password' {...password} placeholder='비밀번호' type='password' minLength={4} />
       </InputContainer>
       <TextareaContainer>
-        <textarea
-          value={content}
-          onChange={(event) => onChange(event, setContent)}
-          minLength={10}
-          placeholder='내용을 입력해주세요!'
-        />
+        <textarea {...content} minLength={10} placeholder='내용을 입력해주세요!' />
         <SubmmitBtn>제출</SubmmitBtn>
       </TextareaContainer>
     </Form>

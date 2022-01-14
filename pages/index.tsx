@@ -10,6 +10,7 @@ export interface IFrontMatter {
   hashTags: string[];
   description: string;
   createAt: string;
+  isPublish: boolean;
 }
 interface IPost {
   content: string;

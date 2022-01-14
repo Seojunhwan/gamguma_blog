@@ -1,7 +1,5 @@
-import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import media from '../../styles/media';
 import CommentInput from './CommentInput';
 
 const Overlay = styled.div`
@@ -20,36 +18,74 @@ const Overlay = styled.div`
 `;
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
+  max-width: 100rem;
   padding: 3rem;
-  ${media.small} {
-    width: 70%;
-    padding: 5rem;
-  }
   background-color: #2e3135;
   border-radius: 1rem;
+  z-index: 1;
+  overflow: hidden;
+  animation: modal-bg-slow 0.3s ease-in-out;
+  @keyframes modal-bg-slow {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0rem);
+    }
+  }
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  div {
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      width: 2rem;
+      height: 0.2rem;
+      position: absolute;
+      border-radius: 4px;
+      background-color: black;
+    }
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+`;
 
 interface CommentEditModalProps {
   handleSetVisible: () => void;
+  name: string;
+  content: string;
 }
-interface onSubmitProps {
+interface IOnSubmit {
   (event: React.FormEvent<HTMLFormElement>, name: string, content: string): void;
 }
 
-export default function CommentEditModal({ handleSetVisible }: CommentEditModalProps) {
-  const onSubmit: onSubmitProps = (event, name, content) => {
-    // 아이디, 비밀번호 검증
-    // 해당 코멘트 아이디 확인 후 코멘트 콘텐츠 수정
+export default function CommentEditModal({ handleSetVisible, name, content }: CommentEditModalProps) {
+  const onSubmit: IOnSubmit = (event, name, content) => {
+    event.preventDefault();
   };
-  const router = useRouter();
   return (
-    <Overlay>
-      <Container>
-        <CommentInput onSubmit={onSubmit} />
-        <Button onClick={handleSetVisible}>취소</Button>
+    <Overlay onClick={handleSetVisible}>
+      <Container onClick={(event) => event.stopPropagation()}>
+        <CommentInput onSubmit={onSubmit} initialContent={content} initialName={name} />
+        <Button onClick={handleSetVisible}>X</Button>
       </Container>
     </Overlay>
   );
