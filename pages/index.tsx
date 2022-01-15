@@ -1,4 +1,4 @@
-import Posts from '../components/Posts';
+import Posts from '../components/post/Posts';
 import { getAllPost } from '../utils/mdxUtils';
 
 //TODO: MDX 관련 interface 정리하기
@@ -10,6 +10,7 @@ export interface IFrontMatter {
   hashTags: string[];
   description: string;
   createAt: string;
+  isPublish: boolean;
 }
 interface IPost {
   content: string;

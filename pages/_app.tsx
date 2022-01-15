@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import { GlobalStyle } from '../styles/global-style';
 import { lightTheme } from '../styles/theme';
 import { MDXProvider } from '@mdx-js/react';
-import Code from '../components/mdx/Code';
+import Code from '../components/post/Code';
 import '../styles/fonts.css';
 
 interface Iprops {}
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta charSet='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='viewport' content='width=device-width, initial-scale=1 user-scalable=no' />
         <title>개발 블로그</title>
       </Head>
       <GlobalStyle />

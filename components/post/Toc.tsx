@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useIntersectionObserver } from '../hooks/\bhooks';
-import media from '../styles/media';
+import { useIntersectionObserver } from './hooks/useIntersectionObserver';
+import media from '../../styles/media';
 
 interface ITocProps {
   content: string;
