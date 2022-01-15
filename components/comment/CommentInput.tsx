@@ -1,13 +1,87 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import media from '../../styles/media';
-import { onChange } from './hooks/onChangeHook';
 import { useInput } from './hooks/useInput';
+
+interface CommentInputProps {
+  onSubmit: (commentInfo: { name: string; content: string; password: string }) => void;
+  initialName?: string;
+  initialContent?: string;
+  isModalOpen?: boolean;
+  deleteComment?: (password: string) => void;
+  setIsModalOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function CommentInput({
+  onSubmit,
+  initialName,
+  initialContent,
+  isModalOpen,
+  deleteComment,
+  setIsModalOpen,
+}: CommentInputProps) {
+  const nameValidator = (value: string) => value.length < 3;
+  const passwordValidator = (value: string) => value.length < 6;
+  const name = useInput(initialName ?? '', nameValidator);
+  const password = useInput('', passwordValidator);
+  const content = useInput(initialContent ?? '');
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //TODO: input validation 후  문제 있을 시 setError 로 error 메시지 설정 후 input button 에 넣어주기
+    event.preventDefault();
+    if (name.value.length < 3 || password.value.length < 6 || content.value.length < 10) {
+      return;
+    }
+    const commentInfo = {
+      name: name.value,
+      content: content.value,
+      password: password.value,
+    };
+    if (!isModalOpen) {
+      name.setValue('');
+      content.setValue('');
+      password.setValue('');
+    }
+    onSubmit(commentInfo);
+  };
+
+  const handleEditClick = () => {
+    if (deleteComment) {
+      deleteComment(password.value);
+    }
+  };
+
+  const handleCancelClick = () => {
+    if (setIsModalOpen) {
+      setIsModalOpen(false);
+    }
+  };
+
+  return (
+    <Form onSubmit={(event) => handleSubmit(event)}>
+      <InputContainer>
+        <Input name='name' {...name} placeholder='이름' type='text' maxLength={15} />
+        <Input name='password' {...password} placeholder='비밀번호' type='password' minLength={4} />
+      </InputContainer>
+      <TextareaWrapper>
+        <textarea {...content} minLength={10} placeholder='내용을 입력해주세요!' />
+      </TextareaWrapper>
+      <ButtonContainer>
+        <SubmmitButton>{isModalOpen ? '수정' : '딸깍'}</SubmmitButton>
+        {isModalOpen && (
+          <>
+            <DeleteButton onClick={handleEditClick}>삭제</DeleteButton>
+            <CancelButton onClick={handleCancelClick}>취소</CancelButton>
+          </>
+        )}
+      </ButtonContainer>
+    </Form>
+  );
+}
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.5rem;
 `;
 
 const InputContainer = styled.div`
@@ -32,8 +106,7 @@ const Input = styled.input`
   }
 `;
 
-const TextareaContainer = styled.div`
-  display: flex;
+const TextareaWrapper = styled.div`
   textarea {
     width: 100%;
     resize: none;
@@ -41,31 +114,37 @@ const TextareaContainer = styled.div`
     outline: none;
     padding: 1rem;
     border: none;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-radius: 0.5rem;
   }
 `;
 
-const SubmmitBtn = styled.button`
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+`;
+
+const Button = styled.button`
   position: relative;
   border: none;
   outline: none;
   cursor: pointer;
   background-color: white;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  width: 10%;
+  border-radius: 0.5rem;
   transition: all 0.2s ease-in;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 10rem;
-    border-left: 1px solid #808e9b;
+  padding: 0.5rem;
+  width: 10rem;
+  ${media.xsmall} {
+    width: 100%;
   }
+  ${media.small} {
+    min-width: 10rem;
+    width: 15%;
+  }
+`;
+
+const SubmmitButton = styled(Button)`
   &:hover {
     background-color: #0be881;
   }
@@ -74,27 +153,20 @@ const SubmmitBtn = styled.button`
   }
 `;
 
-interface CommentInputProps {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>, name: string, content: string) => void;
-  initialName?: string;
-  initialContent?: string;
-}
-export default function CommentInput({ onSubmit, initialName, initialContent }: CommentInputProps) {
-  const nameValidator = (value: string) => value.length < 3;
-  const passwordValidator = (value: string) => value.length < 6;
-  const name = useInput(initialName ?? '', nameValidator);
-  const password = useInput('', passwordValidator);
-  const content = useInput(initialContent ?? '');
-  return (
-    <Form onSubmit={(event) => onSubmit(event, name.value, content.value)}>
-      <InputContainer>
-        <Input name='name' {...name} placeholder='이름' type='text' maxLength={15} />
-        <Input name='password' {...password} placeholder='비밀번호' type='password' minLength={4} />
-      </InputContainer>
-      <TextareaContainer>
-        <textarea {...content} minLength={10} placeholder='내용을 입력해주세요!' />
-        <SubmmitBtn>제출</SubmmitBtn>
-      </TextareaContainer>
-    </Form>
-  );
-}
+const DeleteButton = styled(Button)`
+  &:hover {
+    background-color: #ff9999;
+  }
+  &:active {
+    background-color: #ffcbcb;
+  }
+`;
+
+const CancelButton = styled(Button)`
+  &:hover {
+    background-color: #c9c9c9;
+  }
+  &:hover {
+    background-color: #a9a9a9;
+  }
+`;

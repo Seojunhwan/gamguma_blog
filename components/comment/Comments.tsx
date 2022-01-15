@@ -2,46 +2,27 @@ import { useEffect, useState } from 'react';
 import CommentCards from './CommentCards';
 import CommentWrite from './CommentWrite';
 
-const testComments = [
-  {
-    id: 0,
-    author: 'junhwan',
-    createAt: '2022-01-05 16:16',
-    content: '안녕하세요 정말 배고프네요! 죽겠습니다~~',
-  },
-  {
-    id: 1,
-    author: 'Gamja',
-    createAt: '2022-01-06 16:16',
-    content: '안녕하세요 정말 배고프네요! 죽겠습니다~~ 배고파 아아아',
-  },
-  {
-    id: 2,
-    author: 'Guma',
-    createAt: '2022-01-08 12:16',
-    content:
-      '안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!안녕하세요 정말 배고프네요! 죽겠습니다~~ 얼른 밥줘!!',
-  },
-];
-
-interface IComment {
+export interface IComment {
   id: number;
   author: string;
   createAt: string;
   content: string;
+  password: string;
 }
 
 export default function Comments() {
   const [comments, setComments] = useState<IComment[]>([]);
-
+  console.log('Comments Render!');
   useEffect(() => {
-    setComments(testComments);
+    //TODO: postId or postSlug 받아서 백엔드에 해당 포스트의 댓글 받아오기
+    //TODO: 정상 status code 면 setComments, 비정상이면 error message 출력
+    // setComments(serverData);
   }, []);
 
   return (
     <div>
       <CommentWrite setComments={setComments} />
-      <CommentCards comments={comments} />
+      {comments && <CommentCards comments={comments} setComments={setComments} />}
     </div>
   );
 }
