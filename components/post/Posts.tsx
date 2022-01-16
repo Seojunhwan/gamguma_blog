@@ -19,9 +19,6 @@ interface IPost {
 
 const Container = styled.div`
   width: 100%;
-`;
-
-const Posts = styled.div`
   width: 100%;
   margin: 1rem 0;
   display: flex;
@@ -76,35 +73,32 @@ const PostInfoContainer = styled.div`
   padding: 1.5rem;
 `;
 
-export default function Home({ posts }: { posts: IPost[] }) {
+export default function Posts({ posts }: { posts: IPost[] }) {
   const router = useRouter();
   const onClick = (slug: string) => {
     router.push(`/post/${slug.replace(/\.mdx?$/, '')}`);
   };
   return (
     <Container>
-      <Posts>
-        {posts.slice(0, 6).map((article) => (
-          <Post onClick={() => onClick(article.filePath)} key={article.filePath}>
-            <ImageWrapper>
-              <Image
-                src={'/구마.jpeg'}
-                layout='fill'
-                alt={article.data.title}
-                objectFit='cover'
-                objectPosition='center center'
-              />
-            </ImageWrapper>
-            <PostInfoContainer>
-              <Title>{article.data.title}</Title>
-              <Description>{article.data.description}</Description>
-              {/* TODO: HashTag 필터 연결하기 */}
-              <CreateAt>{article.data.createAt}</CreateAt>
-              <HashTag hashTags={article.data.hashTags} articleId={article.filePath} />
-            </PostInfoContainer>
-          </Post>
-        ))}
-      </Posts>
+      {posts.slice(0, 6).map((article) => (
+        <Post onClick={() => onClick(article.filePath)} key={article.filePath}>
+          <ImageWrapper>
+            <Image
+              src={'/guma.jpeg'}
+              layout='fill'
+              alt={article.data.title}
+              objectFit='cover'
+              objectPosition='center center'
+            />
+          </ImageWrapper>
+          <PostInfoContainer>
+            <Title>{article.data.title}</Title>
+            <Description>{article.data.description}</Description>
+            <CreateAt>{article.data.createAt}</CreateAt>
+            <HashTag hashTags={article.data.hashTags} articleId={article.filePath} />
+          </PostInfoContainer>
+        </Post>
+      ))}
     </Container>
   );
 }

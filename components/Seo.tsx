@@ -9,7 +9,7 @@ interface ISeo {
 export default function Seo({ title, description, keywords }: ISeo) {
   return (
     <Head>
-      <title>{title}</title>
+      <title>{title} | Guma-dev</title>
       <meta name='description' content={description} />
       {keywords && <meta name='keywords' content={keywords.join(', ')}></meta>}
     </Head>
