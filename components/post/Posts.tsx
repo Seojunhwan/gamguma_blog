@@ -95,7 +95,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
             <Title>{article.data.title}</Title>
             <Description>{article.data.description}</Description>
             <CreateAt>{article.data.createAt}</CreateAt>
-            <HashTag hashTags={article.data.hashTags} articleId={article.filePath} />
+            <HashTag hashTags={article.data.hashTags} articleId={article.filePath} isHashTagMenu={false} />
           </PostInfoContainer>
         </Post>
       ))}

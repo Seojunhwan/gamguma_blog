@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
@@ -11,40 +10,43 @@ const Wrapper = styled.ul`
   flex-wrap: wrap;
 `;
 
-const HashTagItem = styled.li<{ isSelected: boolean }>`
+interface IHashTagItem {
+  isHashTagMenu: boolean;
+  isSelected: boolean;
+}
+
+const HashTagItem = styled.li<IHashTagItem>`
   font-size: 1.3rem;
   padding: 0.5rem;
   min-width: 5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   text-align: center;
-  /* background-color: #ff8a6599; */
-  background-color: ${(props) => (props.isSelected ? '#ff9999' : '#ff8a6599')};
+  color: black;
+  background-color: ${(props) =>
+    props.isHashTagMenu ? (props.isSelected ? '#7b9acc' : '#FCF6F5') : '#FCF6F5'};
   cursor: pointer;
   &:hover {
-    background-color: #ff8a65;
+    background-color: #7b9acc;
   }
 `;
 
 interface IType {
   hashTags: string[];
   articleId?: string;
+  isHashTagMenu: boolean;
 }
 
-export default function HashTag({ hashTags, articleId }: IType) {
+export default function HashTag({ hashTags, articleId, isHashTagMenu }: IType) {
   const router = useRouter();
   const {
-    query: { hashTag },
+    query: { hashTag: selectHashTag },
   } = router;
-  const [tag, setTag] = useState(hashTag ?? '');
-  useEffect(() => {
-    setTag(hashTag ?? '');
-  }, [hashTag]);
   return (
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
         <Link href={{ pathname: '/post', query: { hashTag } }} key={`${articleId}${hashTag}`}>
           <a>
-            <HashTagItem isSelected={hashTag === tag}>
+            <HashTagItem isHashTagMenu={isHashTagMenu} isSelected={hashTag === selectHashTag}>
               <span>{hashTag}</span>
             </HashTagItem>
           </a>
