@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1 user-scalable=no' />
+        <meta name='google-site-verification' content='7sKg11gheMwgKUWF1yFO_cq8gx8jiPXacgwa7OSzhPY' />
         <title>개발 블로그</title>
       </Head>
       <GlobalStyle />
