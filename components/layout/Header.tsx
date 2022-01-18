@@ -78,7 +78,7 @@ export default function Header() {
           </Link>
           <Link href='/post'>
             <a>
-              <span>Post{router.asPath.startsWith('/post') && <Indicator layoutId='indicator' />}</span>
+              <span>Tags{router.asPath.startsWith('/post') && <Indicator layoutId='indicator' />}</span>
             </a>
           </Link>
         </Nav>

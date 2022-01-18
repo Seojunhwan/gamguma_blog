@@ -9,5 +9,5 @@ export const useInput = (initialValue: string, validator?: (value: string) => bo
     } = event;
     setValue(value);
   };
-  return { value, onChange, setValue };
+  return { value, onChange };
 };

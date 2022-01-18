@@ -238,7 +238,7 @@ export default function Blog({
           <div>
             <h1>{title}</h1>
             <time dateTime={createAt}>{dateFormatter(createAt)}</time>
-            <HashTag hashTags={hashTags} />
+            <HashTag isHashTagMenu={false} hashTags={hashTags} />
           </div>
         </PostHeader>
         <PostContainer>

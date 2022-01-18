@@ -36,11 +36,6 @@ export default function CommentInput({
       content: content.value,
       password: password.value,
     };
-    if (!isModalOpen) {
-      name.setValue('');
-      content.setValue('');
-      password.setValue('');
-    }
     onSubmit(commentInfo);
   };
 
