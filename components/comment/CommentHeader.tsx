@@ -46,6 +46,6 @@ const CommentHeaderInfo = styled.div`
 const CommentEditButton = styled.button`
   border: none;
   background-color: inherit;
-  color: white;
+  color: ${(props) => props.theme.fontColor.contentColor};
   cursor: pointer;
 `;

@@ -27,7 +27,6 @@ const PostContainer = styled.div`
     font-size: 1.5rem;
     overflow: auto;
     thead > tr > th {
-      /* text-align: left; */
       border-bottom: 1px solid ${openColor.white};
     }
     th,
@@ -42,11 +41,22 @@ const PostContainer = styled.div`
   p {
     line-height: 2.5rem;
     word-wrap: break-word;
-    color: #bcbcbc;
+    color: ${(props) => props.theme.fontColor.contentColor};
+  }
+  blockquote {
+    background-color: ${(props) => props.theme.blockquoteColor};
+    border-left: 0.5rem solid ${(props) => props.theme.accentColor};
+    padding: 0.8rem;
+    p {
+      margin: 0rem;
+    }
+  }
+  strong {
+    font-weight: bold;
   }
   code {
-    background-color: ${openColor.gray7};
-    color: ${openColor.red7};
+    background-color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.fontColor.contentColor};
     border-radius: 0.5rem;
     padding: 0 0.5rem;
   }
@@ -54,31 +64,36 @@ const PostContainer = styled.div`
     padding-bottom: 2rem;
     border-bottom: 1px solid black;
   }
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+  }
   a {
     color: ${openColor.blue7};
     text-decoration: underline;
   }
-  ul {
+  ul,
+  ol {
     margin: 2rem 0rem;
     font-size: 1.6rem;
-  }
-  li {
-    color: #bcbcbc;
-    margin: 0.8rem 0rem;
-    padding-left: 1rem;
-    position: relative;
-    line-height: 2.5rem;
-    &::before {
-      content: ' ';
-      width: 0.4rem;
-      height: 0.4rem;
-      border-radius: 0.25rem;
-      background-color: #bcbcbf99;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0.25rem;
-      margin: auto 0;
+    li {
+      margin: 0.8rem 0rem;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 2.5rem;
+      &::before {
+        content: ' ';
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 0.25rem;
+        background-color: #bcbcbf99;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0.25rem;
+        margin: auto 0;
+      }
     }
   }
   ${media.xsmall} {
@@ -111,8 +126,9 @@ const PostContainer = styled.div`
       font-size: 1.4rem;
       margin-bottom: 2rem;
     }
-    li {
-      font-size: 1.6rem;
+    li,
+    li p {
+      font-size: 1.4rem;
     }
     pre {
       font-size: 1.5rem;
@@ -152,8 +168,9 @@ const PostContainer = styled.div`
       font-size: 1.6rem;
       margin-bottom: 2rem;
     }
-    li {
-      font-size: 1.8rem;
+    li,
+    li p {
+      font-size: 1.6rem;
     }
     pre {
       font-size: 1.7rem;
@@ -192,7 +209,8 @@ const PostContainer = styled.div`
     p {
       font-size: 1.8rem;
     }
-    li {
+    li,
+    li p {
       font-size: 1.6rem;
     }
     pre {
@@ -206,7 +224,7 @@ const PostContainer = styled.div`
 `;
 
 const PostHeader = styled.header`
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   div {
     display: flex;
     flex-direction: column;
@@ -215,7 +233,7 @@ const PostHeader = styled.header`
     padding: 1rem 0rem;
     h1 {
       font-size: 3.5rem;
-      margin-bottom: 4rem;
+      margin-bottom: 2.5rem;
     }
     time {
       font-size: 1.5rem;

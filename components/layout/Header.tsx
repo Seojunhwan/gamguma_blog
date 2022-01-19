@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 const Wrapper = styled.header`
-  background-color: #121212;
+  background-color: ${(props) => props.theme.headerColor};
   position: fixed;
   width: 100%;
   z-index: 99;
@@ -16,16 +16,18 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 100rem;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
   margin: 0 auto;
   & > div span {
     font-size: 3rem;
     color: white;
     font-family: Aggro;
     font-weight: 600;
+  }
+  span {
     transition: color 0.3s ease-in-out;
     &:hover {
-      color: #ff8a65;
+      color: ${(props) => props.theme.accentColor};
     }
   }
 `;
@@ -46,7 +48,7 @@ const Indicator = styled(motion.span)`
   position: absolute;
   width: 100%;
   height: 0.1rem;
-  background-color: #ff8a65;
+  background-color: ${(props) => props.theme.accentColor};
   left: 0;
   right: 0;
   margin: 0 auto;

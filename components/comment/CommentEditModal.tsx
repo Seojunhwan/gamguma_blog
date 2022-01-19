@@ -91,8 +91,9 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   max-width: 100rem;
-  padding: 3rem;
-  background-color: #2e3135;
+  padding: 2rem;
+  background-color: ${(props) => props.theme.bgColor};
+  box-shadow: ${(props) => props.theme.defaultShadow};
   border-radius: 1rem;
   z-index: 1;
   overflow: hidden;

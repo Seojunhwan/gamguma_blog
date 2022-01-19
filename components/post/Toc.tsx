@@ -16,7 +16,6 @@ const Container = styled.div`
   display: none;
   position: fixed;
   right: 0;
-  border-left: 1px solid white;
   max-width: 24rem;
   margin-top: 20vh;
   margin-right: 0.5rem;
@@ -37,7 +36,8 @@ const Item = styled.li<IItemProps>`
   font-size: 1.4rem;
   padding: 0.5rem;
   padding-left: ${(props) => (props.depth ? `${props.depth}rem` : '0rem')};
-  color: ${(props) => (props.isSelected ? '#FAF7FF' : '#BCBCBC')};
+  background-color: ${(props) => (props.isSelected ? props.theme.accentColor : 'inherit')};
+  border-radius: 0.5rem;
   transform: ${(props) => props.isSelected && 'scale(1.05)'};
   transform-origin: left;
   transition: all 0.3s;
