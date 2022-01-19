@@ -92,6 +92,7 @@ const Input = styled.input`
   padding: 0.5rem;
   border-radius: 0.3rem;
   outline: none;
+  box-shadow: ${(props) => props.theme.defaultShadow};
   ${media.xsmall} {
     width: 100%;
   }
@@ -110,6 +111,7 @@ const TextareaWrapper = styled.div`
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;
+    box-shadow: ${(props) => props.theme.defaultShadow};
   }
 `;
 
@@ -126,10 +128,12 @@ const Button = styled.button`
   outline: none;
   cursor: pointer;
   background-color: white;
+  border: 1px solid white;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in;
   padding: 0.5rem;
   width: 10rem;
+  box-shadow: ${(props) => props.theme.defaultShadow};
   ${media.xsmall} {
     width: 100%;
   }

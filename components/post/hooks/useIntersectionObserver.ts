@@ -5,7 +5,7 @@ interface IObserverRef {
 }
 
 const observerOption = {
-  rootMargin: '-80px 0px -60% 0px',
+  rootMargin: '-70px 0px -60% 0px',
 };
 
 export const useIntersectionObserver = (

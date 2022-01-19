@@ -35,10 +35,7 @@ export default function CommentWrite({ setComments }: IProps) {
 
   return (
     <Container>
-      <CommentInput
-        onSubmit={onClickCreate}
-        initialContent='앗 아직 서버를 연결하지 않았어요ㅠㅠ 도움 주실 분 sjunhwan0901@gmail.com  으로 연락 부탁드립니다!'
-      />
+      <CommentInput onSubmit={onClickCreate} initialContent='앗 아직 서버를 연결하지 않았습니다!' />
     </Container>
   );
 }

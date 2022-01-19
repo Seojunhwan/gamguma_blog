@@ -22,11 +22,15 @@ const HashTagItem = styled.li<IHashTagItem>`
   border-radius: 0.5rem;
   text-align: center;
   color: black;
-  background-color: ${(props) =>
-    props.isHashTagMenu ? (props.isSelected ? '#7b9acc' : '#FCF6F5') : '#FCF6F5'};
   cursor: pointer;
+  box-shadow: ${(props) => props.theme.defaultShadow};
+  transition: background-color 0.3s ease-out;
+  border: 1px solid
+    ${(props) => (props.isHashTagMenu ? (props.isSelected ? '#FCF6F5' : props.theme.accentColor) : '#FCF6F5')};
+  background-color: ${(props) =>
+    props.isHashTagMenu ? (props.isSelected ? props.theme.accentColor : '#FCF6F5') : '#FCF6F5'};
   &:hover {
-    background-color: #7b9acc;
+    background-color: ${(props) => props.theme.accentColor};
   }
 `;
 
