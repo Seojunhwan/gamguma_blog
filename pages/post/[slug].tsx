@@ -47,6 +47,7 @@ const PostContainer = styled.div`
     background-color: ${(props) => props.theme.blockquoteColor};
     border-left: 0.5rem solid ${(props) => props.theme.accentColor};
     padding: 0.8rem;
+    margin-bottom: 1rem;
     p {
       margin: 0rem;
     }
