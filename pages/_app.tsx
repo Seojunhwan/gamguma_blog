@@ -13,7 +13,7 @@ const components = {
   code: Code,
 };
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const [isDark, setIsDark] = useState(false);
   return (
     <>
@@ -37,4 +37,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default App;

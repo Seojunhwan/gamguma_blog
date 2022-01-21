@@ -28,7 +28,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang='ko'>
         <Head>
           <link rel='preload' href='/fonts/GowunDodum/GowunDodum-Regular.ttf' as='font' crossOrigin='' />
           <link rel='preload' href='/fonts/Aggro/Aggro-B.ttf' as='font' crossOrigin='' />

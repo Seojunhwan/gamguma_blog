@@ -5,7 +5,7 @@
 3. [x] 태그필터
 4. [ ] 댓글
 5. [ ] SEO
-6. [ ] 사이트맵
+6. [x] 사이트맵
 7. [ ] 통계?
 8. [ ] About
 9. [ ] Dev
@@ -16,10 +16,6 @@
 2. Next-remote-mdx
 3. framer-motion
 
-
-
 문제 해결
-- 사파리에서 Date format
-- Styled-components SSR
-- Styled-components flickering
+
 - comment props
