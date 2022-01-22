@@ -1,23 +1,6 @@
+import { IPost } from '../common/types';
 import Posts from '../components/post/Posts';
 import { getAllPost } from '../utils/mdxUtils';
-
-//TODO: MDX 관련 interface 정리하기
-
-export interface IFrontMatter {
-  title: string;
-  slug: string;
-  author: string;
-  hashTags: string[];
-  description: string;
-  createAt: string;
-  isPublish: boolean;
-  thumbnail: string;
-}
-interface IPost {
-  content: string;
-  filePath: string;
-  data: IFrontMatter;
-}
 
 interface IProps {
   posts: IPost[];

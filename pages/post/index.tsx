@@ -1,16 +1,11 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IFrontMatter } from '..';
+import { IPost } from '../../common/types';
+
 import HashTag from '../../components/HashTag';
 import Posts from '../../components/post/Posts';
 import { getAllPost } from '../../utils/mdxUtils';
-
-interface IPost {
-  content: string;
-  filePath: string;
-  data: IFrontMatter;
-}
 
 interface IProps {
   posts: IPost[];
@@ -51,11 +46,10 @@ export async function getStaticProps() {
       return post.data.hashTags;
     }),
   );
-  const result = Array.from(new Set(hashTags));
   return {
     props: {
       posts,
-      allHashTags: result,
+      allHashTags: Array.from(new Set(hashTags)),
     },
   };
 }

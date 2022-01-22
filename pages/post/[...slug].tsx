@@ -1,7 +1,6 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Seo from '../../components/Seo';
-import { IFrontMatter } from '..';
-import { getPost, postFilePaths } from '../../utils/mdxUtils';
+import { getAllPost, getPost } from '../../utils/mdxUtils';
 import styled from 'styled-components';
 import { openColor } from '../../styles/open-color';
 import media from '../../styles/media';
@@ -9,6 +8,7 @@ import HashTag from '../../components/HashTag';
 import { dateFormatter } from '../../utils/utils';
 import Toc from '../../components/post/Toc';
 import Comments from '../../components/comment/Comments';
+import { IFrontMatter } from '../../common/types';
 
 interface IMdxProps {
   mdxSource: MDXRemoteSerializeResult;
@@ -271,13 +271,13 @@ export default function Blog({
   );
 }
 
-interface IParams {
+interface IGetStaticProps {
   params: {
-    slug: string;
+    slug: [];
   };
 }
 
-export async function getStaticProps({ params }: IParams) {
+export async function getStaticProps({ params }: IGetStaticProps) {
   const { mdxSource, data, content } = await getPost(params.slug);
   return {
     props: {
@@ -289,9 +289,13 @@ export async function getStaticProps({ params }: IParams) {
 }
 
 export async function getStaticPaths() {
-  const paths = postFilePaths
-    .map((path) => path.replace(/\.mdx?$/, ''))
-    .map((slug) => ({ params: { slug } }));
+  const paths = getAllPost().map((post) => {
+    return {
+      params: {
+        slug: post.slug.split('/'),
+      },
+    };
+  });
   return {
     paths,
     fallback: false,

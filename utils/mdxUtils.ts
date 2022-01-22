@@ -6,30 +6,35 @@ import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import glob from 'glob';
 
-export const POSTS_PATH = path.join(process.cwd(), 'posts');
+const DIR_STRING = '/posts';
 
-export const postFilePaths = fs.readdirSync(POSTS_PATH).filter((path) => /\.mdx?$/.test(path));
+const POSTS_PATH = path.join(process.cwd(), DIR_STRING);
 
-const DIR_REPLACE_STRING = '/posts';
-
-const POST_PATH = `${process.cwd()}${DIR_REPLACE_STRING}`;
+const getPostSlugs = (filePath: string) => {
+  return filePath.slice(filePath.indexOf(DIR_STRING) + DIR_STRING.length + 1).replace('.mdx', '');
+};
 
 export const getAllPost = () => {
-  const files = glob.sync(`${POST_PATH}/**/*.mdx`).reverse();
+  const files = glob.sync(`${POSTS_PATH}/**/*.mdx`).reverse();
+
   const posts = files.map((filePath) => {
     const source = fs.readFileSync(filePath);
     const { content, data } = matter(source);
+    const slug = getPostSlugs(filePath);
     return {
       content,
       data,
-      filePath,
+      slug,
     };
   });
-  return posts;
+
+  const publishedPost = posts.filter((post) => post.data.isPublished === true);
+
+  return publishedPost;
 };
 
-export const getPost = async (slug: string) => {
-  const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
+export const getPost = async (slugs: []) => {
+  const postFilePath = path.join(POSTS_PATH, `${slugs.join('/')}.mdx`);
   const source = fs.readFileSync(postFilePath);
   const { content, data } = matter(source);
   const mdxSource = await serialize(content, {

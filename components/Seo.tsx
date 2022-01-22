@@ -6,6 +6,7 @@ interface ISeo {
   createAt?: string;
   keywords: string[];
 }
+
 export default function Seo({ title, description, keywords }: ISeo) {
   return (
     <Head>

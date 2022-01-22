@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { dateToTimeFormatter } from '../../utils/utils';
 import CommentInput from './CommentInput';
-import { IComment } from './Comments';
+import { IComment } from '../../common/types';
 
 interface IProps {
   setComments: React.Dispatch<React.SetStateAction<IComment[]>>;

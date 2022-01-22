@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CommentEditModal from './CommentEditModal';
 import CommentHeader from './CommentHeader';
-import { IComment } from './Comments';
+import { IComment } from '../../common/types';
 
 interface CommentCardsProps {
   comments: IComment[];

@@ -1,10 +1,10 @@
 // Thanks for yeun https://github.com/yeun/open-color //
 
-interface IColor {
+interface Color {
   [key: string]: string;
 }
 
-export const openColor: IColor = {
+export const openColor: Color = {
   white: '#ffffff',
 
   black: '#000000',

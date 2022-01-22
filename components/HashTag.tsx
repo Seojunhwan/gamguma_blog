@@ -34,13 +34,13 @@ const HashTagItem = styled.li<IHashTagItem>`
   }
 `;
 
-interface IType {
+interface IProps {
   hashTags: string[];
   articleId?: string;
   isHashTagMenu: boolean;
 }
 
-export default function HashTag({ hashTags, articleId, isHashTagMenu }: IType) {
+export default function HashTag({ hashTags, articleId, isHashTagMenu }: IProps) {
   const router = useRouter();
   const {
     query: { hashTag: selectHashTag },

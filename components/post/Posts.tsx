@@ -1,16 +1,9 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import media from '../../styles/media';
 import styled from 'styled-components';
 import HashTag from '../HashTag';
 import Link from 'next/link';
-import { IFrontMatter } from '../../pages';
-
-interface IPost {
-  content: string;
-  data: IFrontMatter;
-  filePath: string;
-}
+import { IPost } from '../../common/types';
 
 const Container = styled.div`
   width: 100%;
@@ -68,11 +61,10 @@ const PostInfoContainer = styled.div`
 `;
 
 export default function Posts({ posts }: { posts: IPost[] }) {
-  const router = useRouter();
   return (
     <Container>
       {posts.slice(0, 6).map((article) => (
-        <Post key={article.filePath}>
+        <Post key={article.slug}>
           <ImageWrapper>
             <Image
               src={'/guma.jpeg'}
@@ -83,14 +75,14 @@ export default function Posts({ posts }: { posts: IPost[] }) {
             />
           </ImageWrapper>
           <PostInfoContainer>
-            <Link href={`/post/${article.filePath.replace(/\.mdx?$/, '')}`}>
+            <Link href={`/post/${article.slug}`}>
               <a>
                 <Title>{article.data.title}</Title>
               </a>
             </Link>
             <Description>{article.data.description}</Description>
             <CreateAt>{article.data.createAt}</CreateAt>
-            <HashTag hashTags={article.data.hashTags} articleId={article.filePath} isHashTagMenu={false} />
+            <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
           </PostInfoContainer>
         </Post>
       ))}
