@@ -36,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         line-height: 1;
         font-family: GowunDodum, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        transition:background-color 0.2s ease-in-out;
         background-color: ${(props) => props.theme.bgColor};
         color:${(props) => props.theme.fontColor.contentColor}
     }

@@ -14,14 +14,11 @@ const Container = styled.div`
     border-radius: 0.5rem;
     border: 1px solid white;
     transition: all 0.2s ease-in;
-    background-color: #ff9999;
+    background-color: white;
+    border: 1px solid black;
     padding: 1rem 10rem;
-    color: white;
-    &:hover {
-      border: 1px solid #ff9999;
-      background-color: white;
-      color: black;
-    }
+    color: black;
+    font-size: 2rem;
   }
 `;
 

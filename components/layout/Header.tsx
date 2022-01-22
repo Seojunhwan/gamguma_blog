@@ -2,8 +2,10 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import ThemeChangeButton from '../ThemeChangeButton';
 
 const Wrapper = styled.header`
+  transition: background-color 0.2s ease-in-out;
   background-color: ${(props) => props.theme.headerColor};
   position: fixed;
   width: 100%;
@@ -34,7 +36,7 @@ const Container = styled.div`
 
 const Nav = styled.nav`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   text-align: center;
   font-size: 2rem;
   gap: 1rem;
@@ -68,6 +70,7 @@ export default function Header() {
           </Link>
         </div>
         <Nav>
+          <ThemeChangeButton />
           <Link href='/about'>
             <a>
               <span>About{router.asPath === '/about' && <Indicator layoutId='indicator' />}</span>

@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect } from 'react';
+import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
 import CommentInput from './CommentInput';
 import { IComment } from './Comments';
