@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <FooterWrapper>
       <Container>
-        <span>감구마 Dev-blog {new Date().getFullYear()} &copy;</span>
+        <span>&copy; {new Date().getFullYear()} by Gamguma </span>
       </Container>
     </FooterWrapper>
   );

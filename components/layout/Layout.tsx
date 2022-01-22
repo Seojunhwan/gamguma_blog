@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
@@ -13,7 +14,11 @@ const Main = styled.main`
   width: 100%;
 `;
 
-export default function Layout({ children }: any) {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: IProps) {
   return (
     <>
       <Header />
