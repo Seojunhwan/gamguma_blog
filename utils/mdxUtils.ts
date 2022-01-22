@@ -4,14 +4,20 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
+import glob from 'glob';
 
-export const POSTS_PATH = path.join(process.cwd(), 'data/posts');
+export const POSTS_PATH = path.join(process.cwd(), 'posts');
 
 export const postFilePaths = fs.readdirSync(POSTS_PATH).filter((path) => /\.mdx?$/.test(path));
 
+const DIR_REPLACE_STRING = '/posts';
+
+const POST_PATH = `${process.cwd()}${DIR_REPLACE_STRING}`;
+
 export const getAllPost = () => {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+  const files = glob.sync(`${POST_PATH}/**/*.mdx`).reverse();
+  const posts = files.map((filePath) => {
+    const source = fs.readFileSync(filePath);
     const { content, data } = matter(source);
     return {
       content,

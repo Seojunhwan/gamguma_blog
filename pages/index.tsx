@@ -11,6 +11,7 @@ export interface IFrontMatter {
   description: string;
   createAt: string;
   isPublish: boolean;
+  thumbnail: string;
 }
 interface IPost {
   content: string;

@@ -3,17 +3,12 @@ import { useRouter } from 'next/router';
 import media from '../../styles/media';
 import styled from 'styled-components';
 import HashTag from '../HashTag';
+import Link from 'next/link';
+import { IFrontMatter } from '../../pages';
 
 interface IPost {
   content: string;
-  data: {
-    title: string;
-    slug: string;
-    author: string;
-    hashTags: string[];
-    description: string;
-    createAt: string;
-  };
+  data: IFrontMatter;
   filePath: string;
 }
 
@@ -34,7 +29,6 @@ const Container = styled.div`
 `;
 
 const Post = styled.article`
-  cursor: pointer;
   background-color: ${(props) => props.theme.bgColor};
   border-radius: 1rem;
   overflow: hidden;
@@ -75,13 +69,10 @@ const PostInfoContainer = styled.div`
 
 export default function Posts({ posts }: { posts: IPost[] }) {
   const router = useRouter();
-  const onClick = (slug: string) => {
-    router.push(`/post/${slug.replace(/\.mdx?$/, '')}`);
-  };
   return (
     <Container>
       {posts.slice(0, 6).map((article) => (
-        <Post onClick={() => onClick(article.filePath)} key={article.filePath}>
+        <Post key={article.filePath}>
           <ImageWrapper>
             <Image
               src={'/guma.jpeg'}
@@ -92,7 +83,11 @@ export default function Posts({ posts }: { posts: IPost[] }) {
             />
           </ImageWrapper>
           <PostInfoContainer>
-            <Title>{article.data.title}</Title>
+            <Link href={`/post/${article.filePath.replace(/\.mdx?$/, '')}`}>
+              <a>
+                <Title>{article.data.title}</Title>
+              </a>
+            </Link>
             <Description>{article.data.description}</Description>
             <CreateAt>{article.data.createAt}</CreateAt>
             <HashTag hashTags={article.data.hashTags} articleId={article.filePath} isHashTagMenu={false} />
