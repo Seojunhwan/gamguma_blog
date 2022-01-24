@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import media from '../../styles/media';
 import styled from 'styled-components';
 import HashTag from '../HashTag';
 import Link from 'next/link';
 import { IPost } from '../../common/types';
+import Thumbnail from './Thumbnail';
 
 const Container = styled.div`
   width: 100%;
@@ -48,12 +48,6 @@ const CreateAt = styled.span`
   margin-bottom: 1rem;
 `;
 
-const ImageWrapper = styled.div`
-  width: 100%;
-  height: 15rem;
-  position: relative;
-`;
-
 const PostInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,15 +59,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
     <Container>
       {posts.slice(0, 6).map((article) => (
         <Post key={article.slug}>
-          <ImageWrapper>
-            <Image
-              src={'/guma.jpeg'}
-              layout='fill'
-              alt={article.data.title}
-              objectFit='cover'
-              objectPosition='center center'
-            />
-          </ImageWrapper>
+          <Thumbnail src={article.data.thumbnail} height='15rem' />
           <PostInfoContainer>
             <Link href={`/post/${article.slug}`}>
               <a>

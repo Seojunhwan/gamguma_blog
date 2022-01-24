@@ -5,9 +5,11 @@ import Code from '../components/post/Code';
 import { MDXProvider } from '@mdx-js/react';
 import { RecoilRoot } from 'recoil';
 import '../styles/fonts.css';
+import PostImage from '../components/post/PostImage';
 
 const components = {
   code: Code,
+  Image: PostImage,
 };
 
 function App({ Component, pageProps }: AppProps) {
@@ -16,7 +18,6 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Gamguma | 개발블로그</title>
         <meta charSet='utf-8' />
-        {/* <meta name='theme-color' content={lightTheme.headerColor} /> */}
         <meta name='viewport' content='width=device-width, initial-scale=1 user-scalable=no' />
         <meta name='google-site-verification' content='7sKg11gheMwgKUWF1yFO_cq8gx8jiPXacgwa7OSzhPY' />
         <meta name='description' content='감구마의 개발 블로그' />

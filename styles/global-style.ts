@@ -29,6 +29,10 @@ export const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
         scroll-padding-top: 8rem;
     }
+    html, body, #__next {
+        min-height: 100%;
+    }
+
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
         display: block;
