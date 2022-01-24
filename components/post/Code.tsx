@@ -94,7 +94,12 @@ const Line = styled.tr`
   }
 `;
 
-export default function Code({ children, className }: { children: string; className: string }) {
+interface IProps {
+  children: string;
+  className: string;
+}
+
+export default function Code({ children, className }: IProps) {
   const language = className ? className.replace(/language-/, '') : '';
   return (
     <Container>

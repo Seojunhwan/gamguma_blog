@@ -7,6 +7,7 @@ import { darkTheme, lightTheme } from '../../styles/theme';
 import { GlobalStyle } from '../../styles/global-style';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
+import Head from 'next/head';
 
 const Container = styled.div`
   max-width: 100rem;
@@ -27,7 +28,10 @@ export default function Layout({ children }: IProps) {
   const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <ThemeProvider theme={(isDark as boolean) ? darkTheme : lightTheme}>
+      <Head>
+        <meta name='theme-color' content={isDark ? darkTheme.headerColor : lightTheme.headerColor} />
+      </Head>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
         <Header />
         <Main>
