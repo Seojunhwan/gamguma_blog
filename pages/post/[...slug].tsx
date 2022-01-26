@@ -18,10 +18,10 @@ interface IGetStaticProps {
 }
 
 export default function Blog({ mdxSource, frontMatter, content }: IProps) {
-  const { title, description, hashTags } = frontMatter;
+  const { title, description, hashTags, thumbnail } = frontMatter;
   return (
     <>
-      <Seo title={title} description={description} keywords={hashTags} />
+      <Seo title={title} description={description} keywords={hashTags} thumbnail={thumbnail} />
       <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
       <Comments />
     </>

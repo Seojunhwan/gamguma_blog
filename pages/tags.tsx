@@ -1,24 +1,25 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IPost } from '../../common/types';
+import { IPost } from '../common/types';
 
-import HashTag from '../../components/HashTag';
-import Posts from '../../components/post/Posts';
-import { getAllPost } from '../../utils/mdxUtils';
+import HashTag from '../components/HashTag';
+import Posts from '../components/post/Posts';
+import { getAllPost } from '../utils/mdxUtils';
 
 interface IProps {
   posts: IPost[];
   allHashTags: string[];
 }
 
-export default function Post({ posts, allHashTags }: IProps) {
+export default function Tags({ posts, allHashTags }: IProps) {
   const [filteredPosts, setFilteredPosts] = useState<IPost[]>();
   const router = useRouter();
   const {
     query: { hashTag },
   } = router;
-  //TODO: useEffect 부분 리팩토링 필요
+  //FIXME: useEffect 부분 리팩토링 필요
   useEffect(() => {
     if (!hashTag || hashTag === 'All') {
       setFilteredPosts(posts);
@@ -32,10 +33,15 @@ export default function Post({ posts, allHashTags }: IProps) {
     }
   }, [hashTag]);
   return (
-    <Container>
-      <HashTag isHashTagMenu hashTags={['All', ...allHashTags]}></HashTag>
-      {filteredPosts && <Posts posts={filteredPosts} />}
-    </Container>
+    <>
+      <Head>
+        <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL + '/tags'} />
+      </Head>
+      <Container>
+        <HashTag isHashTagMenu hashTags={['All', ...allHashTags]}></HashTag>
+        {filteredPosts && <Posts posts={filteredPosts} />}
+      </Container>
+    </>
   );
 }
 

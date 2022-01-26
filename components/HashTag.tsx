@@ -48,7 +48,7 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu }: IProps) 
   return (
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
-        <Link href={{ pathname: '/post', query: { hashTag } }} key={`${articleId}${hashTag}`}>
+        <Link href={{ pathname: '/tags', query: { hashTag } }} key={`${articleId}${hashTag}`}>
           <a>
             <HashTagItem isHashTagMenu={isHashTagMenu} isSelected={hashTag === selectHashTag}>
               <span>{hashTag}</span>

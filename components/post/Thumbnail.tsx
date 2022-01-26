@@ -20,8 +20,8 @@ export default function Thumbnail({ src, height }: IProps) {
         objectPosition='center center'
         layout='responsive'
         alt='post-thumbnail'
-        height={600}
         width={1200}
+        height={600}
       />
     </Container>
   );
