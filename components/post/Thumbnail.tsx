@@ -8,10 +8,9 @@ const Container = styled.div`
 
 interface IProps {
   src: string;
-  height: string;
 }
 
-export default function Thumbnail({ src, height }: IProps) {
+export default function Thumbnail({ src }: IProps) {
   return (
     <Container>
       <Image

@@ -59,7 +59,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
     <Container>
       {posts.slice(0, 6).map((article) => (
         <Post key={article.slug}>
-          <Thumbnail src={article.data.thumbnail} height='15rem' />
+          <Thumbnail src={article.data.thumbnail} />
           <PostInfoContainer>
             <Link href={`/post/${article.slug}`}>
               <a>

@@ -28,9 +28,10 @@ export const getAllPost = () => {
     };
   });
 
-  const publishedPost = posts.filter((post) => post.data.isPublished === true);
-
-  return publishedPost;
+  if (process.env.NODE_ENV === 'production') {
+    return posts.filter((post) => post.data.isPublished === true);
+  }
+  return posts;
 };
 
 export const getPost = async (slugs: []) => {

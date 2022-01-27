@@ -1,16 +1,15 @@
+import '../styles/fonts.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 import Code from '../components/post/Code';
 import { MDXProvider } from '@mdx-js/react';
 import { RecoilRoot } from 'recoil';
-import '../styles/fonts.css';
-import PostImage from '../components/post/PostImage';
-import Seo from '../components/Seo';
+import ResponsiveImage from '../components/post/ResponsiveImage';
 
 const components = {
   code: Code,
-  Image: PostImage,
+  img: ResponsiveImage,
 };
 
 function App({ Component, pageProps }: AppProps) {

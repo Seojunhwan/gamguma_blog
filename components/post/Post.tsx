@@ -30,7 +30,7 @@ export default function Post({
         </div>
       </PostHeader>
       <PostContainer>
-        <Thumbnail src={thumbnail} height='25rem' />
+        <Thumbnail src={thumbnail} />
         <MDXRemote {...mdxSource} />
       </PostContainer>
     </article>
@@ -60,6 +60,7 @@ const PostHeader = styled.header`
 `;
 
 const PostContainer = styled.div`
+  display: block;
   table:not(pre table) {
     table-layout: auto;
     text-align: left;
