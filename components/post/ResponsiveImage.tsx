@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface ImageProps {
   src: string;
@@ -6,6 +7,18 @@ interface ImageProps {
 }
 
 export default function ResponsiveImage({ src, alt }: ImageProps) {
+  const router = useRouter();
+  const {
+    query: { slug },
+  } = router;
+
+  const relativeSrc = (() => {
+    if (Array.isArray(slug)) {
+      return `/${slug.join('/')}/images${src}`;
+    }
+    return src;
+  })();
+
   const size = (() => {
     const sizeInfo = alt.split(' ')[1].split('x');
     return {
@@ -13,5 +26,6 @@ export default function ResponsiveImage({ src, alt }: ImageProps) {
       height: Number(sizeInfo[1]),
     };
   })();
-  return <Image objectFit='contain' src={src} alt={alt} {...size} layout='responsive' />;
+
+  return <Image objectFit='contain' src={relativeSrc} alt={alt} {...size} layout='responsive' />;
 }

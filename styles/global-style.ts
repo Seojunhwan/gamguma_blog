@@ -63,7 +63,10 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit;
     }
-    input, textarea, button{
+    input, textarea, button {
         font-family: GowunDodum, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    button {
+        border: none;
     }
 `;

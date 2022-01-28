@@ -124,8 +124,6 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   position: relative;
-  border: none;
-  outline: none;
   cursor: pointer;
   background-color: white;
   border: 1px solid white;

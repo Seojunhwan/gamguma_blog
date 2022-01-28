@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../recoil/atoms';
 
-const Container = styled.div`
+const Container = styled.button`
   cursor: pointer;
+  background-color: inherit;
   svg {
     width: 2.4rem;
   }
@@ -25,7 +26,7 @@ const Container = styled.div`
 export default function ThemeChangeButton() {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
   return (
-    <Container onClick={() => setIsDark(isDark ? false : true)}>
+    <Container type='button' onClick={() => setIsDark(isDark ? false : true)}>
       {isDark ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'

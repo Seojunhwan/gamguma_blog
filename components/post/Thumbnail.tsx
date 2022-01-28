@@ -15,7 +15,7 @@ export default function Thumbnail({ src }: IProps) {
     <Container>
       <Image
         src={src}
-        objectFit='contain'
+        objectFit='cover'
         objectPosition='center center'
         layout='responsive'
         alt='post-thumbnail'
