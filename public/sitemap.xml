@@ -8,48 +8,48 @@
 
 
 <url>
-  <loc>https://gamguma-blog.vercel.app/</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/about</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/about</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/dev</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/dev</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/tags</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post/2022/01/nextjs-blog-development-review</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/post/2022/01/nextjs-blog-development-review</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post?hashTag=Blog</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/tags?hashTag=Blog</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post?hashTag=Next.js</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/tags?hashTag=Next.js</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post?hashTag=%EA%B0%9C%EB%B0%9C</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/tags?hashTag=%EA%B0%9C%EB%B0%9C</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gamguma-blog.vercel.app/post?hashTag=All</loc>
-  <lastmod>2022-01-22T16:21:03+00:00</lastmod>
+  <loc>https://gamguma.dev/tags?hashTag=All</loc>
+  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
