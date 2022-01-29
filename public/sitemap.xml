@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
 <url>
@@ -32,26 +31,4 @@
   <lastmod>2022-01-28T16:14:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-<url>
-  <loc>https://gamguma.dev/tags?hashTag=Blog</loc>
-  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://gamguma.dev/tags?hashTag=Next.js</loc>
-  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://gamguma.dev/tags?hashTag=%EA%B0%9C%EB%B0%9C</loc>
-  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://gamguma.dev/tags?hashTag=All</loc>
-  <lastmod>2022-01-28T16:14:10+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
 </urlset>

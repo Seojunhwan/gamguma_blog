@@ -36,6 +36,7 @@ export default function Tags({ posts, allHashTags }: IProps) {
     <>
       <Head>
         <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL + '/tags'} />
+        <title>Tags | 감구마 개발블로그</title>
       </Head>
       <Container>
         <HashTag isHashTagMenu hashTags={['All', ...allHashTags]}></HashTag>
