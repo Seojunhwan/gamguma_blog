@@ -20,7 +20,7 @@ const Container = styled.div`
   max-width: 100rem;
   padding: 2rem 1rem;
   margin: 0 auto;
-  & > div span {
+  & > div {
     font-size: 3rem;
     color: white;
     font-family: Aggro;
@@ -41,6 +41,9 @@ const Nav = styled.nav`
   font-size: 2rem;
   gap: 1rem;
   color: white;
+  a {
+    margin: auto;
+  }
   a > span {
     position: relative;
   }
@@ -64,9 +67,7 @@ export default function Header() {
       <Container>
         <div>
           <Link href='/'>
-            <a>
-              <span>감구마</span>
-            </a>
+            <a>감구마</a>
           </Link>
         </div>
         <Nav>
