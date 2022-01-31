@@ -18,6 +18,7 @@ const Container = styled.div`
 const Main = styled.main`
   margin-top: 7rem;
   width: 100%;
+  min-height: calc(100vh - 7rem - 6.5rem);
 `;
 
 interface IProps {
