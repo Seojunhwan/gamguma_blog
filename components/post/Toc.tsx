@@ -46,7 +46,7 @@ const Item = styled.li<IItemProps>`
 export default function Toc({ content }: ITocProps) {
   const [activeId, setActiveId] = useState('');
   useIntersectionObserver(setActiveId, content);
-  const titles = content.split('\n').filter((t) => t.startsWith('#'));
+  const titles = content.split('\n').filter((t) => t.startsWith('#') && !t.includes('include'));
   const result = titles.map((item) => {
     const depth = item.match(/#/g)?.length;
     return {

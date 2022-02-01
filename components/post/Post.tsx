@@ -64,18 +64,20 @@ const PostContainer = styled.div`
   table:not(pre table) {
     table-layout: auto;
     text-align: left;
-    margin-bottom: 2.8rem;
+    margin-bottom: 2rem;
+    width: 100%;
     min-width: 40%;
     max-width: 100%;
     border: 1px solid ${openColor.gray7};
     font-size: 1.5rem;
     overflow: auto;
-    thead > tr > th {
-      border-bottom: 1px solid ${openColor.white};
+    thead > tr {
+      border-bottom: 1px solid ${(props) => props.theme.fontColor.contentColor};
+      /* border-bottom: 1px solid ${openColor.white}; */
     }
     th,
     td {
-      padding: 0.5rem;
+      padding: 1rem;
     }
     td + td,
     th + th {
