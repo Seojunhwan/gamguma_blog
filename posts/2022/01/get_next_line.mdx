@@ -8,4 +8,76 @@ isPublished: false
 thumbnail: /2022/01/get_next_line/images/thumbnail.png
 ---
 
-![thumbnail 832x433](/thumbnail.png)
+## 안녕하세요  
+
+오늘은 42 과제 중 하나인 get_next_line 을 하며 배운 것들에 대해 작성하고자 합니다.
+
+## 과제 설명
+
+**함수 프로토타입 : `char *get_next_line(int fd)`**  
+fd 를 매개변수로 입력받아 fd 에 해당하는 파일을 한 줄씩 출력하는 함수입니다.  
+
+## File Descriptor 란?
+
+간단히 설명하자면 `프로세스` 내에서 열린 파일을 구분하기 위한 정수입니다.  
+여기서 프로세스는 하나 이상의 스레드에서 실행되는 프로그램 인스턴스의 단위로, 2개의 프로그램을 실행했을 때 2개의 프로세스가 존재한다고 할 수 있습니다.
+
+더 자세히 들어가자면 파일 디스크립터는 프로세스 단위로 할당되며, 한 프로세스에 `0 부터 OPEN_MAX` 까지 존재할 수 있습니다.
+파일을 닫으면 해당 파일 디스크립터는 추가로 할당이 가능합니다.
+또한, fd 는 프로세스 내에서 독립적이며 고유합니다.
+
+만약에 `a`라는 프로그램과 `b`라는 프로그램을 실행시킨 후 각각 다른 파일을 읽는다면 읽은 파일의 `fd` 는 어떻게 될까요?
+
+``` c
+// a.c
+#include <fcntl.h>
+
+int main(void)
+{
+  int fd;
+  //atest.txt 를 읽음
+  fd = open("./atest.txt", O_RDONLY);
+  while (1){
+   }
+  return (0);
+}
+```
+
+``` c
+// b.c
+#include <fcntl.h>
+
+int main(void)
+{
+  int fd;
+  //btest.txt 를 읽음
+  fd = open("./btest.txt", O_RDONLY);
+  while (1){
+   }
+  return (0);
+}
+```
+
+해당 파일을 읽고 프로세스가 종료되지 않게 무한루프를 걸어놓은 상태입니다.
+
+- 우선 `ps` 명령어를 이용해 각각의 `PID` 를 확인합니다.
+- 그 후 `lsof -p PID` 명령어를 통해 해당 프로세스에서 열린 파일들의 정보를 확인할 수 있습니다.
+
+![fd_test 2284x1670](/file-descriptor-test.png)
+
+상기 사진을 통해 `File Descriptor` 는 각각의 프로세스에서 독립적이란 것을 확인할 수 있습니다.
+
+**참고** (OPEN_MAX 는 터미널에 `ulimit -n` 명령어로 확인할 수 있습니다.)
+
+더불어 프로그램을 실행하면 fd 0, 1, 2 는 예약이 되어있습니다.
+
+| fd |    Represents   |   POSIX Name  | stdio stream |         Examples         |
+|:--:|:---------------:|:-------------:|:------------:|:------------------------:|
+|  0 |  Standard input |  STDIN_FILENO |    stdin     | Keyboard, file, terminal |
+|  1 | Standard output | STDOUT_FILENO |    stdout    |     Screen, database     |
+|  2 |  Standard error | STDERR_FILENO |    stderr    |      File, terminal      |
+> **요약**
+>
+> - 음이 아닌 정수.
+> - 프로세스 내에서 열린 파일을 고유하게 나타내는 값.
+> - 해당 프로세스에 할당되지 않은 가장 작은 fd 부터 순차적으로 할당.
