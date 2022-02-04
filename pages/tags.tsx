@@ -8,18 +8,24 @@ import HashTag from '../components/HashTag';
 import Posts from '../components/post/Posts';
 import { getAllPost } from '../utils/mdxUtils';
 
+interface IHashCount {
+  name: string;
+  count: number;
+}
 interface IProps {
   posts: IPost[];
   allHashTags: string[];
+  hashTagCountInfo: IHashCount[];
 }
 
-export default function Tags({ posts, allHashTags }: IProps) {
+export default function Tags({ posts, allHashTags, hashTagCountInfo }: IProps) {
   const [filteredPosts, setFilteredPosts] = useState<IPost[]>();
   const router = useRouter();
+
   const {
     query: { hashTag },
   } = router;
-  //FIXME: useEffect 부분 리팩토링 필요
+
   useEffect(() => {
     if (!hashTag || hashTag === 'All') {
       setFilteredPosts(posts);
@@ -32,6 +38,7 @@ export default function Tags({ posts, allHashTags }: IProps) {
       setFilteredPosts(filteredPost);
     }
   }, [hashTag]);
+
   return (
     <>
       <Head>
@@ -39,7 +46,12 @@ export default function Tags({ posts, allHashTags }: IProps) {
         <title>Tags | 감구마 개발블로그</title>
       </Head>
       <Container>
-        <HashTag isHashTagMenu hashTags={['All', ...allHashTags]}></HashTag>
+        <HashTag
+          isHashTagMenu
+          hashTags={['All', ...allHashTags]}
+          hashTagCountInfo={hashTagCountInfo}
+          allPostCount={posts.length}
+        ></HashTag>
         {filteredPosts && <Posts posts={filteredPosts} />}
       </Container>
     </>
@@ -53,10 +65,19 @@ export async function getStaticProps() {
       return post.data.hashTags;
     }),
   );
+
+  const removedDuplicateHashTags = Array.from(new Set(hashTags));
+
+  const hashTagWithCount = removedDuplicateHashTags.map((hashTag) => {
+    const count = hashTags.filter((compareTag) => compareTag === hashTag).length;
+    return { name: hashTag, count };
+  });
+
   return {
     props: {
       posts,
       allHashTags: Array.from(new Set(hashTags)),
+      hashTagCountInfo: hashTagWithCount,
     },
   };
 }

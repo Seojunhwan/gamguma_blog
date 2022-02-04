@@ -38,20 +38,41 @@ interface IProps {
   hashTags: string[];
   articleId?: string;
   isHashTagMenu: boolean;
+  hashTagCountInfo?: {
+    name: string;
+    count: number;
+  }[];
+  allPostCount: number;
 }
 
-export default function HashTag({ hashTags, articleId, isHashTagMenu }: IProps) {
+export default function HashTag({
+  hashTags,
+  articleId,
+  isHashTagMenu,
+  hashTagCountInfo,
+  allPostCount,
+}: IProps) {
   const router = useRouter();
   const {
     query: { hashTag: selectHashTag },
   } = router;
+
+  const getHashTagCount = (hashTag: string) => {
+    if (hashTag === 'All') {
+      return `(${allPostCount})`;
+    }
+    return `(${hashTagCountInfo?.find((tag) => tag.name === hashTag)?.count})`;
+  };
+
   return (
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
         <Link href={{ pathname: '/tags', query: { hashTag } }} key={`${articleId}${hashTag}`}>
           <a>
             <HashTagItem isHashTagMenu={isHashTagMenu} isSelected={hashTag === selectHashTag}>
-              <span>{hashTag}</span>
+              <span>
+                {hashTag} {hashTagCountInfo && getHashTagCount(hashTag)}
+              </span>
             </HashTagItem>
           </a>
         </Link>
