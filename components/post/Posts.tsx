@@ -5,6 +5,28 @@ import Link from 'next/link';
 import { IPost } from '../../common/types';
 import Thumbnail from './Thumbnail';
 
+export default function Posts({ posts }: { posts: IPost[] }) {
+  return (
+    <Container>
+      {posts.slice(0, 6).map((article) => (
+        <Post key={article.slug}>
+          <Thumbnail src={article.data.thumbnail} />
+          <PostInfoContainer>
+            <Link href={`/post/${article.slug}`}>
+              <a>
+                <Title>{article.data.title}</Title>
+              </a>
+            </Link>
+            <Description>{article.data.description}</Description>
+            <CreateAt>{article.data.createAt}</CreateAt>
+            <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
+          </PostInfoContainer>
+        </Post>
+      ))}
+    </Container>
+  );
+}
+
 const Container = styled.div`
   width: 100%;
   width: 100%;
@@ -53,25 +75,3 @@ const PostInfoContainer = styled.div`
   flex-direction: column;
   padding: 1.5rem;
 `;
-
-export default function Posts({ posts }: { posts: IPost[] }) {
-  return (
-    <Container>
-      {posts.slice(0, 6).map((article) => (
-        <Post key={article.slug}>
-          <Thumbnail src={article.data.thumbnail} />
-          <PostInfoContainer>
-            <Link href={`/post/${article.slug}`}>
-              <a>
-                <Title>{article.data.title}</Title>
-              </a>
-            </Link>
-            <Description>{article.data.description}</Description>
-            <CreateAt>{article.data.createAt}</CreateAt>
-            <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
-          </PostInfoContainer>
-        </Post>
-      ))}
-    </Container>
-  );
-}

@@ -3,25 +3,6 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { isDarkAtom } from '../../recoil/atoms';
 
-const FooterWrapper = styled.footer`
-  width: 100%;
-  bottom: 0;
-`;
-
-const Container = styled.div<{ isDark: boolean }>`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 2rem;
-  span {
-    font-size: 1.5rem;
-  }
-  svg {
-    fill: ${(props) => (props.isDark ? '#fff' : '#000')};
-  }
-`;
-
 export default function Footer() {
   const isDark = useRecoilValue(isDarkAtom);
   return (
@@ -58,3 +39,22 @@ export default function Footer() {
     </FooterWrapper>
   );
 }
+
+const FooterWrapper = styled.footer`
+  width: 100%;
+  bottom: 0;
+`;
+
+const Container = styled.div<{ isDark: boolean }>`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  span {
+    font-size: 1.5rem;
+  }
+  svg {
+    fill: ${(props) => (props.isDark ? '#fff' : '#000')};
+  }
+`;

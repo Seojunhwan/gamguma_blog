@@ -12,6 +12,38 @@ interface IItemProps {
   isSelected: boolean;
 }
 
+export default function Toc({ content }: ITocProps) {
+  const [activeId, setActiveId] = useState('');
+  useIntersectionObserver(setActiveId, content);
+  const titles = content.split('\n').filter((t) => t.startsWith('#') && !t.includes('include'));
+  const result = titles.map((item) => {
+    const depth = item.match(/#/g)?.length;
+    return {
+      title: item.substr(item.indexOf(' ')).trim().replace('\\', ''),
+      depth,
+    };
+  });
+  const convertTextToId = (title: string) => {
+    return title.toLowerCase().replace(/[?.]/gi, '').replace(/\s/g, '-');
+  };
+  const onValid = (title: string) => {
+    return convertTextToId(title) === activeId;
+  };
+  return (
+    <Container>
+      <ul>
+        {result.map((item, index) => (
+          <a key={item.title + index} href={`#${convertTextToId(item.title)}`}>
+            <Item isSelected={onValid(item.title)} depth={item.depth ?? 0}>
+              {item.title}
+            </Item>
+          </a>
+        ))}
+      </ul>
+    </Container>
+  );
+}
+
 const Container = styled.div`
   display: none;
   position: fixed;
@@ -42,38 +74,3 @@ const Item = styled.li<IItemProps>`
   transform-origin: left;
   transition: all 0.3s;
 `;
-
-export default function Toc({ content }: ITocProps) {
-  const [activeId, setActiveId] = useState('');
-  useIntersectionObserver(setActiveId, content);
-  const titles = content.split('\n').filter((t) => t.startsWith('#') && !t.includes('include'));
-  const result = titles.map((item) => {
-    const depth = item.match(/#/g)?.length;
-    return {
-      title: item.substr(item.indexOf(' ')).trim().replace('\\', ''),
-      depth,
-    };
-  });
-  const convertTextToId = (title: string) => {
-    return title.toLowerCase().replace(/[?.]/gi, '').replace(/\s/g, '-');
-  };
-  const onValid = (title: string) => {
-    if (convertTextToId(title) === activeId) {
-      return true;
-    }
-    return false;
-  };
-  return (
-    <Container>
-      <ul>
-        {result.map((item, index) => (
-          <a key={item.title + index} href={`#${convertTextToId(item.title)}`}>
-            <Item isSelected={onValid(item.title)} depth={item.depth ?? 0}>
-              {item.title}
-            </Item>
-          </a>
-        ))}
-      </ul>
-    </Container>
-  );
-}

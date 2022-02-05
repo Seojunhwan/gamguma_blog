@@ -3,6 +3,47 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import media from '../../styles/media';
 
+interface IProps {
+  children: string;
+  className: string;
+}
+
+export default function Code({ children, className }: IProps) {
+  const language = className ? className.replace(/language-/, '') : '';
+  return (
+    <Container>
+      <CodeInfoBar>
+        <span>{language}</span>
+        <div>
+          <span> </span>
+          <span> </span>
+          <span> </span>
+        </div>
+      </CodeInfoBar>
+      <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as any}>
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <TableWrapper>
+            <Table>
+              <tbody>
+                {tokens.map((line, i) => (
+                  <Line key={i} {...getLineProps({ line, key: i })}>
+                    <LineNo>{language ? i + 1 : ''}</LineNo>
+                    <td>
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token, key })} />
+                      ))}
+                    </td>
+                  </Line>
+                ))}
+              </tbody>
+            </Table>
+          </TableWrapper>
+        )}
+      </Highlight>
+    </Container>
+  );
+}
+
 const Container = styled.div`
   border-radius: 1rem;
   overflow: hidden;
@@ -93,44 +134,3 @@ const Line = styled.tr`
     }
   }
 `;
-
-interface IProps {
-  children: string;
-  className: string;
-}
-
-export default function Code({ children, className }: IProps) {
-  const language = className ? className.replace(/language-/, '') : '';
-  return (
-    <Container>
-      <CodeInfoBar>
-        <span>{language}</span>
-        <div>
-          <span> </span>
-          <span> </span>
-          <span> </span>
-        </div>
-      </CodeInfoBar>
-      <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as any}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <TableWrapper>
-            <Table>
-              <tbody>
-                {tokens.map((line, i) => (
-                  <Line key={i} {...getLineProps({ line, key: i })}>
-                    <LineNo>{language ? i + 1 : ''}</LineNo>
-                    <td>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token, key })} />
-                      ))}
-                    </td>
-                  </Line>
-                ))}
-              </tbody>
-            </Table>
-          </TableWrapper>
-        )}
-      </Highlight>
-    </Container>
-  );
-}

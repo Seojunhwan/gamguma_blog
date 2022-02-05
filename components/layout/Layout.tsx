@@ -9,18 +9,6 @@ import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
 import Head from 'next/head';
 
-const Container = styled.div`
-  max-width: 100rem;
-  margin: 0 auto;
-  padding: 1rem 1rem 5rem 1rem;
-`;
-
-const Main = styled.main`
-  margin-top: 7rem;
-  width: 100%;
-  min-height: calc(100vh - 7rem - 6.5rem);
-`;
-
 interface IProps {
   children: React.ReactNode;
 }
@@ -43,3 +31,15 @@ export default function Layout({ children }: IProps) {
     </>
   );
 }
+
+const Container = styled.div`
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 5rem 1rem;
+`;
+
+const Main = styled.main`
+  margin-top: 7rem;
+  width: 100%;
+  min-height: calc(100vh - 7rem - 6.5rem);
+`;

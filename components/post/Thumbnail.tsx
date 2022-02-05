@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  display: block;
-  position: relative;
-`;
-
 interface IProps {
   src: string;
 }
@@ -25,3 +20,8 @@ export default function Thumbnail({ src }: IProps) {
     </Container>
   );
 }
+
+const Container = styled.div`
+  display: block;
+  position: relative;
+`;

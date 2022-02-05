@@ -2,37 +2,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-const Wrapper = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  max-width: 60rem;
-  flex-wrap: wrap;
-`;
-
 interface IHashTagItem {
   isHashTagMenu: boolean;
   isSelected: boolean;
 }
-
-const HashTagItem = styled.li<IHashTagItem>`
-  font-size: 1.3rem;
-  padding: 0.5rem;
-  min-width: 5rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  color: black;
-  cursor: pointer;
-  box-shadow: ${(props) => props.theme.defaultShadow};
-  transition: background-color 0.3s ease-out;
-  border: 1px solid
-    ${(props) => (props.isHashTagMenu ? (props.isSelected ? '#FCF6F5' : props.theme.accentColor) : '#FCF6F5')};
-  background-color: ${(props) =>
-    props.isHashTagMenu ? (props.isSelected ? props.theme.accentColor : '#FCF6F5') : '#FCF6F5'};
-  &:hover {
-    background-color: ${(props) => props.theme.accentColor};
-  }
-`;
 
 interface IProps {
   hashTags: string[];
@@ -42,7 +15,7 @@ interface IProps {
     name: string;
     count: number;
   }[];
-  allPostCount: number;
+  allPostCount?: number;
 }
 
 export default function HashTag({
@@ -80,3 +53,30 @@ export default function HashTag({
     </Wrapper>
   );
 }
+
+const Wrapper = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 60rem;
+  flex-wrap: wrap;
+`;
+
+const HashTagItem = styled.li<IHashTagItem>`
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  min-width: 5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  color: black;
+  cursor: pointer;
+  box-shadow: ${(props) => props.theme.defaultShadow};
+  transition: background-color 0.3s ease-out;
+  border: 1px solid
+    ${(props) => (props.isHashTagMenu ? (props.isSelected ? '#FCF6F5' : props.theme.accentColor) : '#FCF6F5')};
+  background-color: ${(props) =>
+    props.isHashTagMenu ? (props.isSelected ? props.theme.accentColor : '#FCF6F5') : '#FCF6F5'};
+  &:hover {
+    background-color: ${(props) => props.theme.accentColor};
+  }
+`;

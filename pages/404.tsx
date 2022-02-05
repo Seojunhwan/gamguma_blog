@@ -3,6 +3,16 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import media from '../styles/media';
 
+export default function Custom404() {
+  const router = useRouter();
+  return (
+    <Container>
+      <h1>존재하지 않는 페이지입니다.</h1>
+      <button onClick={() => router.back()}>돌아가기</button>
+    </Container>
+  );
+}
+
 const Container = styled.div`
   position: absolute;
   top: 0;
@@ -31,13 +41,3 @@ const Container = styled.div`
     font-size: 2rem;
   }
 `;
-
-export default function Custom404() {
-  const router = useRouter();
-  return (
-    <Container>
-      <h1>존재하지 않는 페이지입니다.</h1>
-      <button onClick={() => router.back()}>돌아가기</button>
-    </Container>
-  );
-}

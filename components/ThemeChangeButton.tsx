@@ -2,27 +2,6 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../recoil/atoms';
 
-const Container = styled.div`
-  cursor: pointer;
-  background-color: inherit;
-  svg {
-    width: 2.4rem;
-  }
-  svg,
-  path {
-    transition: all 0.2s ease;
-    transition-property: fill, color;
-  }
-  &:hover {
-    svg {
-      color: #ffdd59;
-      fill: #ffdd59;
-      path {
-      }
-    }
-  }
-`;
-
 export default function ThemeChangeButton() {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
   return (
@@ -57,3 +36,24 @@ export default function ThemeChangeButton() {
     </Container>
   );
 }
+
+const Container = styled.div`
+  cursor: pointer;
+  background-color: inherit;
+  svg {
+    width: 2.4rem;
+  }
+  svg,
+  path {
+    transition: all 0.2s ease;
+    transition-property: fill, color;
+  }
+  &:hover {
+    svg {
+      color: #ffdd59;
+      fill: #ffdd59;
+      path {
+      }
+    }
+  }
+`;

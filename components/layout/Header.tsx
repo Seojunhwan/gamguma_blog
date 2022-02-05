@@ -4,6 +4,39 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import ThemeChangeButton from '../ThemeChangeButton';
 
+export default function Header() {
+  const router = useRouter();
+  return (
+    <Wrapper>
+      <Container>
+        <div>
+          <Link href='/'>
+            <a>감구마</a>
+          </Link>
+        </div>
+        <Nav>
+          <ThemeChangeButton />
+          <Link href='/about'>
+            <a>
+              <span>About{router.asPath === '/about' && <Indicator layoutId='indicator' />}</span>
+            </a>
+          </Link>
+          <Link href='/dev'>
+            <a>
+              <span>Dev{router.asPath === '/dev' && <Indicator layoutId='indicator' />}</span>
+            </a>
+          </Link>
+          <Link href='/tags'>
+            <a>
+              <span>Tags{router.asPath.startsWith('/tags') && <Indicator layoutId='indicator' />}</span>
+            </a>
+          </Link>
+        </Nav>
+      </Container>
+    </Wrapper>
+  );
+}
+
 const Wrapper = styled.header`
   transition: background-color 0.2s ease-in-out;
   background-color: ${(props) => props.theme.headerColor};
@@ -59,36 +92,3 @@ const Indicator = styled(motion.span)`
   margin: 0 auto;
   bottom: -0.3rem;
 `;
-
-export default function Header() {
-  const router = useRouter();
-  return (
-    <Wrapper>
-      <Container>
-        <div>
-          <Link href='/'>
-            <a>감구마</a>
-          </Link>
-        </div>
-        <Nav>
-          <ThemeChangeButton />
-          <Link href='/about'>
-            <a>
-              <span>About{router.asPath === '/about' && <Indicator layoutId='indicator' />}</span>
-            </a>
-          </Link>
-          <Link href='/dev'>
-            <a>
-              <span>Dev{router.asPath === '/dev' && <Indicator layoutId='indicator' />}</span>
-            </a>
-          </Link>
-          <Link href='/tags'>
-            <a>
-              <span>Tags{router.asPath.startsWith('/tags') && <Indicator layoutId='indicator' />}</span>
-            </a>
-          </Link>
-        </Nav>
-      </Container>
-    </Wrapper>
-  );
-}

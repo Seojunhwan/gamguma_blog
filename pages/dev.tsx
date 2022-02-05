@@ -1,3 +1,3 @@
 export default function DevIndex() {
-  return '뚝딱뚝딱 개발 중';
+  return '느릿느릿 개발 중';
 }

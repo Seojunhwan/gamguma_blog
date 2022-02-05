@@ -1,3 +1,3 @@
 export default function About() {
-  return 'about';
+  return '뚝,,딱,,뚝,,딱';
 }
