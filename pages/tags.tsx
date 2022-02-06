@@ -46,12 +46,7 @@ export default function Tags({ posts, allHashTags, hashTagCountInfo }: IProps) {
         <title>Tags | 감구마 개발블로그</title>
       </Head>
       <Container>
-        <HashTag
-          isHashTagMenu
-          hashTags={['All', ...allHashTags]}
-          hashTagCountInfo={hashTagCountInfo}
-          allPostCount={posts.length}
-        ></HashTag>
+        <HashTag isHashTagMenu hashTags={allHashTags} hashTagCountInfo={hashTagCountInfo}></HashTag>
         {filteredPosts && <Posts posts={filteredPosts} />}
       </Container>
     </>
@@ -66,9 +61,12 @@ export async function getStaticProps() {
     }),
   );
 
-  const removedDuplicateHashTags = Array.from(new Set(hashTags));
+  const removedDuplicateHashTags = Array.from(new Set(['All', ...hashTags]));
 
   const hashTagWithCount = removedDuplicateHashTags.map((hashTag) => {
+    if (hashTag === 'All') {
+      return { name: hashTag, count: posts.length };
+    }
     const count = hashTags.filter((compareTag) => compareTag === hashTag).length;
     return { name: hashTag, count };
   });
@@ -76,7 +74,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
-      allHashTags: Array.from(new Set(hashTags)),
+      allHashTags: removedDuplicateHashTags,
       hashTagCountInfo: hashTagWithCount,
     },
   };

@@ -15,25 +15,15 @@ interface IProps {
     name: string;
     count: number;
   }[];
-  allPostCount?: number;
 }
 
-export default function HashTag({
-  hashTags,
-  articleId,
-  isHashTagMenu,
-  hashTagCountInfo,
-  allPostCount,
-}: IProps) {
+export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCountInfo }: IProps) {
   const router = useRouter();
   const {
     query: { hashTag: selectHashTag },
   } = router;
 
   const getHashTagCount = (hashTag: string) => {
-    if (hashTag === 'All') {
-      return `(${allPostCount})`;
-    }
     return `(${hashTagCountInfo?.find((tag) => tag.name === hashTag)?.count})`;
   };
 
