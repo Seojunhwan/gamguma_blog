@@ -1,6 +1,6 @@
 ---
 title: 42서울 get_next_line
-description: 42서울의 과제 중 get_next_line 을 하며 배웠던 fd, static
+description: 42서울의 과제 중 get_next_line 을 하며 배웠던 fd, static, gcc 등등,,
 author: Junhwan Seo
 createAt: 2022-01-27 16:47
 hashTags: [42seoul, C]
@@ -15,9 +15,21 @@ thumbnail: /2022/01/get_next_line/images/thumbnail.png
 ## 과제 설명
 
 **함수 프로토타입 : `char *get_next_line(int fd)`**  
-fd 를 매개변수로 입력받아 fd 에 해당하는 파일을 한 줄씩 출력하는 함수입니다.  
+fd 를 매개변수로 입력받고 fd 에서 한 줄씩 읽어 출력하는 함수입니다.
+만약 읽을 것이 없거나, 오류가 발생하면 `NULL` 을 반환합니다.
 
-## File Descriptor 란?
+| **함수 이름**                | get_next_line                                                                     |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| **프로토타입**               | char \*get_next_line(int fd);                                                     |
+| **제출할 파일**              | get_next_line.c, get_next_line_utils.c, get_next_line.h                           |
+| **매개변수**                 | 읽어들일 파일의 디스크립터 (서술자)                                               |
+| **반환값**                   | 읽혀진 라인 : 한 줄이 제대로 읽힘 <br/> NULL : 읽을 라인이 더이상 없거나 에러 발생 |
+| **사용가능한 외부 함수**          | `read, malloc, free`                                                              |
+| **설명**                     | 파일 디스크립터로부터 한 줄을 읽고, 반환하는 함수를 작성하시오.               |
+
+## 사전 지식
+
+### File Descriptor
 
 간단히 설명하자면 `프로세스` 내에서 열린 파일을 구분하기 위한 정수입니다.  
 여기서 프로세스는 하나 이상의 스레드에서 실행되는 프로그램 인스턴스의 단위로, 2개의 프로그램을 실행했을 때 2개의 프로세스가 존재한다고 할 수 있습니다.
@@ -26,7 +38,7 @@ fd 를 매개변수로 입력받아 fd 에 해당하는 파일을 한 줄씩 출
 파일을 닫으면 해당 파일 디스크립터는 추가로 할당이 가능합니다.
 또한, fd 는 프로세스 내에서 독립적이며 고유합니다.
 
-만약에 `a`라는 프로그램과 `b`라는 프로그램을 실행시킨 후 각각 다른 파일을 읽는다면 읽은 파일의 `fd` 는 어떻게 될까요?
+만약에 `a`라는 프로그램과 `b`라는 프로그램을 실행시킨 후 파일을 읽는다면 읽은 파일의 `fd` 는 어떻게 될까요?
 
 ``` c
 // a.c
@@ -61,7 +73,7 @@ int main(void)
 해당 파일을 읽고 프로세스가 종료되지 않게 무한루프를 걸어놓은 상태입니다.
 
 - 우선 `ps` 명령어를 이용해 각각의 `PID` 를 확인합니다.
-- 그 후 `lsof -p PID` 명령어를 통해 해당 프로세스에서 열린 파일들의 정보를 확인할 수 있습니다.
+- 그 후 `lsof -p PID` 명령어를 통해 해당 프로세스에서 열린 파일들의 정보, `fd` 를 확인할 수 있습니다.
 
 ![fd_test 2284x1670](/file-descriptor-test.png)
 
@@ -69,15 +81,193 @@ int main(void)
 
 **참고** (OPEN_MAX 는 터미널에 `ulimit -n` 명령어로 확인할 수 있습니다.)
 
-더불어 프로그램을 실행하면 fd 0, 1, 2 는 예약이 되어있습니다.
+더불어 프로그램을 실행하면 `fd 0, 1, 2` 는 예약이 되어있습니다.
 
 | fd |    Represents   |   POSIX Name  | stdio stream |         Examples         |
 |:--:|:---------------:|:-------------:|:------------:|:------------------------:|
 |  0 |  Standard input |  STDIN_FILENO |    stdin     | Keyboard, file, terminal |
 |  1 | Standard output | STDOUT_FILENO |    stdout    |     Screen, database     |
 |  2 |  Standard error | STDERR_FILENO |    stderr    |      File, terminal      |
+
 > **요약**
 >
 > - 음이 아닌 정수.
 > - 프로세스 내에서 열린 파일을 고유하게 나타내는 값.
 > - 해당 프로세스에 할당되지 않은 가장 작은 fd 부터 순차적으로 할당.
+> - get_next_line 에선 파일을 열고 해당 파일을 기억한다고 생각하면 이해가 쉬울 것 같습니다.
+
+### static
+
+> **간단 설명**  
+> `static` 은 말 그대로 정적 그 자체이며 아래와 같은 특징을 갖고 있습니다.
+>
+> - `static 변수` 는 함수 호출 사이에 값을 잃지 않습니다. 즉, 전역 변수이지만 해당 변수가 정의된 지역 함수로 범위가 지정됩니다.
+> - `static 전역 변수` 는 정의된 C 파일 외부에서 볼 수 없습니다.
+> - `static 함수` 는 정의된 C 파일 외부에서 볼 수 없습니다.
+> - `static` 변수는 명시적으로 초기화하지 않은 경우 `0` 으로 초기화됩니다.
+
+```c
+#include <stdio.h>
+
+void print_number ()
+{
+  int         i = 10;
+  static int  s_i = 10;
+
+  i += 10; // int
+  s_i += 10; // static int
+
+  printf("i = %d\ts_i = %d\n\n", i, s_i);
+  return;
+}
+
+
+int main() {
+  
+  print_number();   // i = 20  s_i = 20
+  print_number();   // i = 20  s_i = 30
+  print_number();   // i = 20  s_i = 40
+  return 0;
+}
+```
+
+상기 코드의 실행 결과를 보았을 때 `static` 으로 변수를 선언하면 <u>함수를 재호출</u> 하여도 값을 잃어버리지 않고 더해가는 것을 확인할 수 있습니다.
+
+> **요약**
+>
+> - static 변수는 함수 호출 사이에 값을 잃지 않는다.
+> - static 변수, 전역 변수, 함수 는 정의된 C 파일이 아닌 외부에선 값을 볼 수 없다.
+
+### read
+
+**함수 : `ssize_t read(int fd, void *buf, size_t count)`**  
+파일 디스크립터 `fd` 를 `count` 만큼 읽고 `buf` 에 저장하는 함수로 정상적으로 읽었다면 읽은 바이트 수, 실패하였다면 -1, eof 에 도달하였다면 0 을 반환합니다.
+
+### GCC -D
+
+`gcc -D name=definition`  
+
+GCC 컴파일러의 `-D 플래그` 는 컴파일 할 때 name 을 predefine 하며, `definition` 을 적어주지 않으면 1 을 저장합니다(?)
+
+```c
+#include <stdio.h>
+
+int main()
+{
+  printf("%d", TEST);
+  return (0);
+}
+```
+
+`gcc -D TEST=20 test.c` 커맨드로 컴파일 후 실행시키면 20 이 출력됩니다.
+
+> **요약**
+>
+> - `gcc -D name=definition`  name 에 원하는 변수명, definition 에 값을 적고 컴파일하면 코드 실행 전 해당 변수를 미리 정의 후 값을 할당해준다.
+
+## 구현
+
+### 주의사항
+
+- 유효한 fd 인지 검증
+- malloc nullGuard 해주기
+
+우선 제가 생각한 로직의 순서는 아래와 같습니다.
+
+- BUFFER_SIZE 만큼 메모리 할당
+
+``` c
+#include "get_next_line.h"
+
+static char *ft_read_line(int fd, char *buf, char *backup)
+{
+  int   count;
+  char  *temp_pointer;
+
+  count = 1;
+  while (count)
+  {
+    count = read(fd, buf, BUFFER_SIZE);
+    if (count == -1)
+      return (0);
+    else if (count == 0)
+      break ;
+    buf[count] = '\0';
+    if (!backup)
+      backup = ft_strdup("");
+    temp_pointer = backup;
+    backup = ft_strjoin(temp_pointer, buf);
+    if (!backup)
+      return (NULL);
+    free(temp_pointer);
+    temp_pointer = NULL;
+    if (ft_strchr(buf, '\n'))
+      break ;
+  }
+  return (backup);
+}
+
+static char *ft_extract(char *line)
+{
+  int   i;
+  char  *result;
+
+  i = 0;
+  while (line[i] != '\n' && line[i] != '\0')
+    i++;
+  if (line[i] == '\0')
+    return (0);
+  result = ft_substr(line, i + 1, ft_strlen(line) - i);
+  if (!result)
+    return (NULL);
+  if (result[0] == '\0')
+  {
+    free(result);
+    result = NULL;
+    return (NULL);
+  }
+  line[i + 1] = '\0';
+  return (result);
+}
+
+char  *get_next_line(int fd)
+{
+  char    *line;
+  char    *buf;
+  static char *backup;
+
+  if (fd < 0 || BUFFER_SIZE <= 0)
+    return (NULL);
+  buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+  if (!buf)
+    return (NULL);
+  line = ft_read_line(fd, buf, backup);
+  free(buf);
+  buf = NULL;
+  if (!line)
+    return (NULL);
+  backup = ft_extract(line);
+  return (line);
+}
+
+#include <fcntl.h>
+#include <stdio.h>
+
+int main(void)
+{
+  int fd;
+
+  fd = 0;
+  printf("%d", BUFFER_SIZE);
+  // fd = open("../dummyPost.txt", O_RDONLY);
+  printf("%s", get_next_line(fd));
+  printf("%s", get_next_line(fd));
+  printf("%s", get_next_line(fd));
+  printf("%s", get_next_line(fd));
+  // printf("%s", get_next_line(fd));
+  return (0);
+}
+
+
+
+```
