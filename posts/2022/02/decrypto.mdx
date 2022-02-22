@@ -1,15 +1,15 @@
 ---
 title: Decrypto 게임 제작 회고
-description: 42서울에서 만난 팀원들과 함께 Decrypto 게임을 만들며 느낀 것, react, mongodb 를 통한 실시간 멀티플레이 게임 제작
+description: socket.io, react, express 를 사용해 실시간 멀티플레이 보드 게임 Decrypto 를 만들며 느낀점!
 author: Junhwan Seo
 createAt: 2022-02-22 16:47
-hashTags: [React, Node.js]
+hashTags: [React, Node.js, socket.io]
 isPublished: false
-thumbnail: /2022/01/get_next_line/images/thumbnail.png
+thumbnail: /2022/02/decrypto/images/thumbnail.png
 ---
 
 
-2. 팀이 변경되거나 유저가 나갔을 때 팀 동기화는 어떻게 할 것인지?
+1. 팀이 변경되거나 유저가 나갔을 때 팀 동기화는 어떻게 할 것인지?
   갈틱폰의 경우 팀이 나눠져있지않아 구현이 그나마 낫다.
   다만 디크립토는 팀 게임이다보니 팀원 변경, 퇴장 시 팀 state 변경하기 까다롭다(?) 물론 하면 하겠지,,
   a. 변경 이벤트가 발생했을 때 백엔드에서 db 접근하여 직접 옮긴 후 팀 전체를 fetch 해서 동기화 시킨다.
