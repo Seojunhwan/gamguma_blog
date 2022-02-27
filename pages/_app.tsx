@@ -18,7 +18,6 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1 user-scalable=no' />
-        <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL} />
       </Head>
       <RecoilRoot>
         <MDXProvider components={components}>
