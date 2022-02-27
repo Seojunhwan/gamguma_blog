@@ -2,15 +2,16 @@
 title: 42서울 get_next_line
 description: 42서울의 과제 중 get_next_line 을 하며 배웠던 fd, static, gcc 등등,,
 author: Junhwan Seo
-createAt: 2022-01-27 16:47
+createAt: 2022-02-20 16:47
 hashTags: [42seoul, C]
-isPublished: false
-thumbnail: /2022/01/get_next_line/images/thumbnail.png
+isPublished: true
+thumbnail: /2022/02/get_next_line/images/thumbnail.png
 ---
 
-## 안녕하세요  
+## GNL  
 
-오늘은 42 과제 중 하나인 get_next_line 을 하며 배운 것들에 대해 작성하고자 합니다.
+오늘은 42 과제 중 하나인 get_next_line 을 하며 배운 것들에 대해 작성하고자 합니다.  
+과제 해결은 오래전에 했으나, 리액트 맛좀 보느라 평가가 늦어졌습니다.
 
 ## 과제 설명
 
@@ -170,11 +171,40 @@ int main()
 ### 주의사항
 
 - 유효한 fd 인지 검증
-- malloc nullGuard 해주기
+- malloc null-guard 해주기
+- 댕글링 포인터 처리해주기
+- 정적 변수인 `static char *backup` 을 활용해 함수 호출 사이에서도 값이 누적되도록 하여 개행문자 이후의 값들을 여전히 참조할 수 있도록 활용.
 
-우선 제가 생각한 로직의 순서는 아래와 같습니다.
+우선 제가 생각한 로직은 아래와 같습니다.
 
-- BUFFER_SIZE 만큼 메모리 할당
+> **ft_read_line**  
+> 파일을 읽고 개행문자 줄을 추출하는 과정
+
+- BUFFER_SIZE 만큼 buffer 배열에 메모리 할당
+- fd 에 할당된 파일을 읽고 buffer 배열에 데이터 저장
+- backup 배열 생성 후 데이터가 저장되어있는 buffer 배열을 연결
+- 연결된 backup 배열에서 개행문자를 탐색, 있으면 2번째 섹션, 없으면 다시 읽고 backup 배열에 이어서 붙임
+
+> **ft_extract**  
+> ft_read_line 작업을 거치고 넘어온 한 줄에서 개행문자의 전후를 분리 및 추출하는 작업
+
+- 읽어들인 한 줄에서 개행문자의 위치를 확인
+- 만일 개행문자 말고 EOF 가 발견된다면 0 반환 (출력하는 줄은 그대로)
+- 개행문자 위치 이후로부턴 backup 에 저장
+- `backup` 은 개행문자 이후 데이터로, `backup` 의 첫 문자가 EOF 라면 메모리 해제 후 NULL 반환(정확하게 개행문자까지 읽음 or 실제 파일 마지막일 수도 있기에)
+- 읽어들인 한 줄의 개행문자 위치 이전은 실질적으로 출력해야할 데이터로, 해당 줄의 개행문자 + 1 위치에 `\0` 저장
+
+예시를 들어보자면
+
+``` c
+// BUFFER_SIZE = 100
+char *origin = "안녕하세요!\n감구마입니다!\n감사합니다!\0"
+
+// 상기 로직을 거친 후 line 과 backup 은 각각
+char *line = "안녕하세요!\0";  
+char *backup = "감구마입니다!\n감사합니다!\0"  
+//  상태일 것입니다.
+```
 
 ``` c
 #include "get_next_line.h"
@@ -258,16 +288,40 @@ int main(void)
   int fd;
 
   fd = 0;
-  printf("%d", BUFFER_SIZE);
-  // fd = open("../dummyPost.txt", O_RDONLY);
-  printf("%s", get_next_line(fd));
-  printf("%s", get_next_line(fd));
-  printf("%s", get_next_line(fd));
-  printf("%s", get_next_line(fd));
-  // printf("%s", get_next_line(fd));
+  fd = open("./test", O_RDONLY);
+  char *line = get_next_line(fd);
+  printf("%p\n", line);
+  printf("%s", line);
+
   return (0);
 }
-
-
-
 ```
+
+### Bonus
+
+> - 보너스 문제는 간단하게 여러 fd 에 대응하게끔. 즉, 1번 파일 한 줄 읽고 2번 파일 한 줄 읽은 후 1번 파일로 다시 돌아가도 이어서 읽을 수 있어야 한다.  
+> - 정적 변수를 하나만 선언하여 해결하는 것이 통과 조건입니다.
+
+컴퓨터의 max_fd 만큼 미리 정적 backup 을 생성해두면 `static char *backup[OPEN_MAX]`  
+물론 이와 같은 방법은 연결리스트로 구현한 것보다 메모리 낭비가 심하다고도 합니다.  
+처음엔 `char **` 처럼 이중 포인터로 했으나 해당 방식은 이중포인터 값 자체를 잃어버리지 않지만 이중포인터가 가르키고 있는 배열들의 데이터를 잃어버리기에 적용되지 않는 듯 하다. lldb 를 통해 알았습니다,,
+
+## 메모리 누수
+
+![memory_leak 1666x866](/memory-leak.png)
+
+상기 코드 + 필요한 유틸 함수들을 `gcc -Werror -Wextra -Wall -g -BUFFER_SIZE=100` 로 컴파일,
+`leaks -atExit -- ./a.out` 명령어로 메모리 누수를 확인하면 누수 목록에 ROOT LEAK 이 존재한다. <s>물론 test 파일에 내용이 있어야한다.</s>  
+당연하게도 main 함수에 있는 line 변수의 메모리를 해제하지 않았기 때문이며, printf("%s", get_next_line(fd)); 로 실행해도 메모리 릭이 발생한다.  
+처음엔 왜 누수가 발생하지,, 생각했는데 lldb 로 디버깅과 동시에 메모리 누수를 검사하니 어디서 발생하는지 쉽게 확인할 수 있었다.
+
+> 결론  
+>
+> - 메모리 누수는 여러 케이스를 테스트하여 확인하자.
+> - 눈과 뇌로 하는 것보다 디버깅 툴을 사용하자.
+
+## 마무리
+
+이번 과제를 하면서 배운 것은 크게 정적변수, read, fd, 디버거 등등 여러가지를 배울 수 있었습니다.
+역시 뭐든 사용하기 전은 어렵고 이해가 힘들지만 직접 사용해보면서 깨닫는 것이 많은 것 같습니다.  
+특히 lldb,, 이거 없었으면 보너스 문제 해결도 못 했을 거야,,
