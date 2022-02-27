@@ -28,10 +28,17 @@ export const getAllPost = () => {
     };
   });
 
+  const sortedPosts = posts.sort((a, b) => {
+    const aDate = +new Date(a.data.createAt);
+    const bDate = +new Date(b.data.createAt);
+
+    return bDate - aDate;
+  });
+
   if (process.env.NODE_ENV === 'production') {
-    return posts.filter((post) => post.data.isPublished === true);
+    return sortedPosts.filter((post) => post.data.isPublished === true);
   }
-  return posts;
+  return sortedPosts;
 };
 
 export const getPost = async (slugs: []) => {
