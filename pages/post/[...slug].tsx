@@ -34,7 +34,6 @@ export default function Blog({ mdxSource, frontMatter, content }: IProps) {
         />
       </Head>
       <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
-      <Comments />
     </>
   );
 }
