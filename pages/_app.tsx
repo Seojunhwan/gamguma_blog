@@ -6,6 +6,7 @@ import Code from '../components/post/Code';
 import { MDXProvider } from '@mdx-js/react';
 import { RecoilRoot } from 'recoil';
 import ResponsiveImage from '../components/post/ResponsiveImage';
+import { useEffect, useState } from 'react';
 
 const components = {
   code: Code,
@@ -13,6 +14,10 @@ const components = {
 };
 
 function App({ Component, pageProps }: AppProps) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
     <>
       <Head>
@@ -21,9 +26,11 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <RecoilRoot>
         <MDXProvider components={components}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          {isMounted ? (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          ) : null}
         </MDXProvider>
       </RecoilRoot>
     </>
