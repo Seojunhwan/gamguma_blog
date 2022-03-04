@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import ThemeChangeButton from '../ThemeChangeButton';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const router = useRouter();
-  return (
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  return isMounted ? (
     <Wrapper>
       <Container>
         <div>
@@ -34,7 +39,7 @@ export default function Header() {
         </Nav>
       </Container>
     </Wrapper>
-  );
+  ) : null;
 }
 
 const Wrapper = styled.header`

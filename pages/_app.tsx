@@ -14,10 +14,6 @@ const components = {
 };
 
 function App({ Component, pageProps }: AppProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   return (
     <>
       <Head>
@@ -26,11 +22,9 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <RecoilRoot>
         <MDXProvider components={components}>
-          {isMounted ? (
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          ) : null}
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </MDXProvider>
       </RecoilRoot>
     </>

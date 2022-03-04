@@ -1,11 +1,11 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Seo from '../../components/Seo';
 import { getAllPost, getPost } from '../../utils/mdxUtils';
-import Comments from '../../components/comment/Comments';
 import { IFrontMatter } from '../../common/types';
 import Post from '../../components/post/Post';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   mdxSource: MDXRemoteSerializeResult;
@@ -24,6 +24,10 @@ export default function Blog({ mdxSource, frontMatter, content }: IProps) {
   const {
     query: { slug },
   } = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
     <>
       <Seo title={title} description={description} keywords={hashTags} thumbnail={thumbnail} />
@@ -33,7 +37,7 @@ export default function Blog({ mdxSource, frontMatter, content }: IProps) {
           href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${typeof slug === 'object' ? slug.join('/') : ''}`}
         />
       </Head>
-      <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
+      {isMounted ? <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} /> : null}
     </>
   );
 }

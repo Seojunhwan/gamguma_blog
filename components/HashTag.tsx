@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface IHashTagItem {
@@ -22,12 +23,14 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCou
   const {
     query: { hashTag: selectHashTag },
   } = router;
-
   const getHashTagCount = (hashTag: string) => {
     return `(${hashTagCountInfo?.find((tag) => tag.name === hashTag)?.count})`;
   };
-
-  return (
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  return isMounted ? (
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
         <Link href={{ pathname: '/tags', query: { hashTag } }} key={`${articleId}${hashTag}`}>
@@ -41,7 +44,7 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCou
         </Link>
       ))}
     </Wrapper>
-  );
+  ) : null;
 }
 
 const Wrapper = styled.ul`

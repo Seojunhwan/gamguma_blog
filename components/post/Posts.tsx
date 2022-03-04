@@ -4,9 +4,14 @@ import HashTag from '../HashTag';
 import Link from 'next/link';
 import { IPost } from '../../common/types';
 import Thumbnail from './Thumbnail';
+import { useEffect, useState } from 'react';
 
 export default function Posts({ posts }: { posts: IPost[] }) {
-  return (
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  return isMounted ? (
     <Container>
       {posts.slice(0, 6).map((article) => (
         <Post key={article.slug}>
@@ -24,7 +29,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
         </Post>
       ))}
     </Container>
-  );
+  ) : null;
 }
 
 const Container = styled.div`
