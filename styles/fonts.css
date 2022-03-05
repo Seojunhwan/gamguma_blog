@@ -26,3 +26,31 @@
     font-weight: 400;
     font-display: fallback;
 }
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('/fonts/GmarketSans/GmarketSansTTFMedium.ttf');
+    font-weight: lighter;
+    font-style: normal;
+}

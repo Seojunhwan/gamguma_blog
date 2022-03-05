@@ -34,6 +34,19 @@ class MyDocument extends Document {
           <link rel='preload' href='/fonts/Aggro/Aggro-B.ttf' as='font' crossOrigin='' />
           <link rel='preload' href='/fonts/Aggro/Aggro-L.ttf' as='font' crossOrigin='' />
           <link rel='preload' href='/fonts/Aggro/Aggro-M.ttf' as='font' crossOrigin='' />
+          <link
+            rel='preload'
+            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.ttf'
+            as='font'
+            crossOrigin=''
+          />
+          <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.ttf' as='font' crossOrigin='' />
+          <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf' as='font' crossOrigin='' />
+          <link rel='preload' href='/fonts/GmarketSans/GmarketSansTTFMedium.ttf' as='font' crossOrigin='' />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
+            rel='stylesheet'
+          />
         </Head>
         <body>
           <Main />

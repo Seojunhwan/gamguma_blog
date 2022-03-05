@@ -95,6 +95,8 @@ const PostContainer = styled.div`
     padding: 0.8rem;
     margin-bottom: 1rem;
     p {
+      font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
+        Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       margin: 0rem;
     }
   }
@@ -104,21 +106,37 @@ const PostContainer = styled.div`
   code {
     background-color: ${(props) => props.theme.accentColor};
     color: ${(props) => props.theme.fontColor.contentColor};
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     padding: 0 0.5rem;
+    font-family: monospace;
+    /* TODO: 코드 폰트 컬러 바꾸기 */
+    /* TODO: 코드 배경 컬러 바꾸기 */
+  }
+  h1,
+  h2,
+  h3 {
+    /* TODO: 제목 강조 컬러 적용하기 */
   }
   h1 {
     padding-bottom: 2rem;
     border-bottom: 1px solid black;
   }
-  h1,
-  h2,
+  h2 {
+    /* TODO: h2 와 같은 소제목의 경우 바닥에 border 적용하기 */
+    /* TODO: 소제목 바닥 border 적용 */
+    line-height: 4.1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid gray;
+  }
   h3 {
-    font-weight: bold;
+    /* TODO: 소제목 파트 폰트 컬러 적용하기 */
   }
   a {
-    color: ${openColor.blue7};
-    text-decoration: underline;
+    /* TODO: 링크 태그 배경 적용 */
+    font-weight: bold;
+    background: linear-gradient(transparent 70%, #ff9999 0);
+
+    background: ${({ theme }) => `linear-gradient(transparent 70%, ${theme.headerColor} 0)`};
   }
   ul,
   ol {
