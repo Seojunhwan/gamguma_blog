@@ -95,8 +95,6 @@ const PostContainer = styled.div`
     padding: 0.8rem;
     margin-bottom: 1rem;
     p {
-      font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-        Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       margin: 0rem;
     }
   }
@@ -108,7 +106,9 @@ const PostContainer = styled.div`
     color: ${(props) => props.theme.fontColor.contentColor};
     border-radius: 0.2rem;
     padding: 0 0.5rem;
-    font-family: monospace;
+    margin: 0 0.25rem;
+    font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell,
+      'Open Sans', 'Helvetica Neue', sans-serif;
     /* TODO: 코드 폰트 컬러 바꾸기 */
     /* TODO: 코드 배경 컬러 바꾸기 */
   }
@@ -135,7 +135,6 @@ const PostContainer = styled.div`
     /* TODO: 링크 태그 배경 적용 */
     font-weight: bold;
     background: linear-gradient(transparent 70%, #ff9999 0);
-
     background: ${({ theme }) => `linear-gradient(transparent 70%, ${theme.headerColor} 0)`};
   }
   ul,
@@ -272,7 +271,7 @@ const PostContainer = styled.div`
       font-size: 1.4rem;
     }
     p {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
     li,
     li p {

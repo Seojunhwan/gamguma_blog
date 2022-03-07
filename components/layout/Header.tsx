@@ -62,7 +62,6 @@ const Container = styled.div`
     font-size: 3rem;
     color: white;
     font-family: Aggro;
-    font-weight: 600;
   }
   span {
     transition: color 0.3s ease-in-out;

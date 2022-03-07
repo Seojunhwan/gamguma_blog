@@ -30,9 +30,6 @@ class MyDocument extends Document {
     return (
       <Html lang='ko'>
         <Head>
-          <link rel='preload' href='/fonts/GowunDodum/GowunDodum-Regular.ttf' as='font' crossOrigin='' />
-          <link rel='preload' href='/fonts/Aggro/Aggro-B.ttf' as='font' crossOrigin='' />
-          <link rel='preload' href='/fonts/Aggro/Aggro-L.ttf' as='font' crossOrigin='' />
           <link rel='preload' href='/fonts/Aggro/Aggro-M.ttf' as='font' crossOrigin='' />
           <link
             rel='preload'
@@ -41,7 +38,7 @@ class MyDocument extends Document {
             crossOrigin=''
           />
           <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.ttf' as='font' crossOrigin='' />
-          <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf' as='font' crossOrigin='' />
+          {/* <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf' as='font' crossOrigin='' /> */}
           <link rel='preload' href='/fonts/GmarketSans/GmarketSansTTFMedium.ttf' as='font' crossOrigin='' />
           <link
             href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
