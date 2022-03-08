@@ -11,6 +11,7 @@
     src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.ttf');
     font-weight: normal;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -18,19 +19,21 @@
     src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.ttf');
     font-weight: bold;
     font-style: normal;
+    font-display: fallback;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'SpoqaHanSansNeo';
     src: url('/fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf');
     font-weight: lighter;
     font-style: normal;
-}
+    font-display: fallback;
+} */
 
-/* 아직은 미사용
 @font-face {
     font-family: 'GmarketSans';
     src: url('/fonts/GmarketSans/GmarketSansTTFMedium.ttf');
     font-weight: lighter;
     font-style: normal;
-} */
+    font-display: fallback;
+}
