@@ -1,6 +1,6 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import styled from 'styled-components';
-import { IFrontMatter } from '../../common/types';
+import { IFrontMatter } from '../../interfaces';
 import media from '../../styles/media';
 import { openColor } from '../../styles/open-color';
 import { dateFormatter } from '../../utils/utils';

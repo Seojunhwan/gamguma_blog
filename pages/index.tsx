@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { IPost } from '../common/types';
+import { IPost } from '../interfaces';
 import Posts from '../components/post/Posts';
 import Seo from '../components/Seo';
 import { getAllPost } from '../utils/mdxUtils';

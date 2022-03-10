@@ -61,7 +61,7 @@ export default function CommentInput({
         <textarea {...content} minLength={10} placeholder='내용을 입력해주세요!' />
       </TextareaWrapper>
       <ButtonContainer>
-        <SubmmitButton>{isModalOpen ? '수정' : '딸깍'}</SubmmitButton>
+        <SubmitButton>{isModalOpen ? '수정' : '딸깍'}</SubmitButton>
         {isModalOpen && (
           <>
             <DeleteButton onClick={handleEditClick}>삭제</DeleteButton>
@@ -141,7 +141,7 @@ const Button = styled.button`
   }
 `;
 
-const SubmmitButton = styled(Button)`
+const SubmitButton = styled(Button)`
   &:hover {
     background-color: #0be881;
   }

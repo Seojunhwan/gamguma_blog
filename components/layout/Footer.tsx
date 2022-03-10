@@ -6,11 +6,7 @@ import { isDarkAtom } from '../../recoil/atoms';
 
 export default function Footer() {
   const isDark = useRecoilValue(isDarkAtom);
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  return isMounted ? (
+  return (
     <FooterWrapper>
       <Container isDark={isDark}>
         <Link href='https://github.com/Seojunhwan'>
@@ -42,7 +38,7 @@ export default function Footer() {
         <span>&copy; {new Date().getFullYear()} by Gamguma </span>
       </Container>
     </FooterWrapper>
-  ) : null;
+  );
 }
 
 const FooterWrapper = styled.footer`

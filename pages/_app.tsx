@@ -6,7 +6,6 @@ import Code from '../components/post/Code';
 import { MDXProvider } from '@mdx-js/react';
 import { RecoilRoot } from 'recoil';
 import ResponsiveImage from '../components/post/ResponsiveImage';
-import { useEffect, useState } from 'react';
 
 const components = {
   code: Code,

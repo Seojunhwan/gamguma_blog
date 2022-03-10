@@ -2,16 +2,12 @@ import media from '../../styles/media';
 import styled from 'styled-components';
 import HashTag from '../HashTag';
 import Link from 'next/link';
-import { IPost } from '../../common/types';
+import { IPost } from '../../interfaces';
 import Thumbnail from './Thumbnail';
 import { useEffect, useState } from 'react';
 
 export default function Posts({ posts }: { posts: IPost[] }) {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  return isMounted ? (
+  return (
     <Container>
       {posts.slice(0, 6).map((article) => (
         <Post key={article.slug}>
@@ -29,7 +25,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
         </Post>
       ))}
     </Container>
-  ) : null;
+  );
 }
 
 const Container = styled.div`

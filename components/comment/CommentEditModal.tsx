@@ -1,7 +1,7 @@
 import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
 import CommentInput from './CommentInput';
-import { IComment } from '../../common/types';
+import { IComment } from '../../interfaces';
 
 interface CommentEditModalProps {
   commentInfo: IComment;

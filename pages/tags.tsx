@@ -2,8 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IPost } from '../common/types';
-
+import { IPost } from '../interfaces';
 import HashTag from '../components/HashTag';
 import Posts from '../components/post/Posts';
 import { getAllPost } from '../utils/mdxUtils';

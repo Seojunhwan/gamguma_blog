@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CommentCards from './CommentCards';
 import CommentWrite from './CommentWrite';
-import { IComment } from '../../common/types';
+import { IComment } from '../../interfaces';
 
 export default function Comments() {
   const [comments, setComments] = useState<IComment[]>([]);

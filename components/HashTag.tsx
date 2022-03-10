@@ -26,11 +26,7 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCou
   const getHashTagCount = (hashTag: string) => {
     return `(${hashTagCountInfo?.find((tag) => tag.name === hashTag)?.count})`;
   };
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  return isMounted ? (
+  return (
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
         <Link href={{ pathname: '/tags', query: { hashTag } }} key={`${articleId}${hashTag}`}>
@@ -44,7 +40,7 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCou
         </Link>
       ))}
     </Wrapper>
-  ) : null;
+  );
 }
 
 const Wrapper = styled.ul`

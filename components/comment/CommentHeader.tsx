@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { dateFormatter } from '../../utils/utils';
-import { IComment } from '../../common/types';
+import { IComment } from '../../interfaces';
 
 interface IProps {
   comment: IComment;

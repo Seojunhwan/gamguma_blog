@@ -7,11 +7,8 @@ import { useEffect, useState } from 'react';
 
 export default function Header() {
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  return isMounted ? (
+
+  return (
     <Wrapper>
       <Container>
         <div>
@@ -39,7 +36,7 @@ export default function Header() {
         </Nav>
       </Container>
     </Wrapper>
-  ) : null;
+  );
 }
 
 const Wrapper = styled.header`

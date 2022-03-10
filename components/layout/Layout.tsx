@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
@@ -8,6 +8,7 @@ import { GlobalStyle } from '../../styles/global-style';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
 import Head from 'next/head';
+import useDarkMode from '../../hooks/useDarkMode';
 
 interface IProps {
   children: React.ReactNode;
@@ -15,6 +16,8 @@ interface IProps {
 
 export default function Layout({ children }: IProps) {
   const isDark = useRecoilValue(isDarkAtom);
+  const [dark] = useDarkMode();
+  console.log(dark);
   return (
     <>
       <Head>
