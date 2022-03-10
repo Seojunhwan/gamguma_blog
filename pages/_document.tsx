@@ -30,16 +30,62 @@ class MyDocument extends Document {
     return (
       <Html lang='ko'>
         <Head>
-          <link rel='preload' href='/fonts/Aggro/Aggro-M.ttf' as='font' crossOrigin='' />
           <link
             rel='preload'
-            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.ttf'
+            href='/fonts/Aggro/Aggro-M.woff2'
             as='font'
+            type='font/woff2'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='/fonts/Aggro/Aggro-M.woff'
+            as='font'
+            type='font/woff'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
+            as='font'
+            type='font/woff2'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff'
+            as='font'
+            type='font/woff'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2'
+            as='font'
+            type='font/woff2'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff'
+            as='font'
+            type='font/woff'
+            crossOrigin='anonymous'
+          />
+          <link
+            rel='preload'
+            href='/fonts/GmarketSans/GmarketSansTTFMedium.woff2'
+            as='font'
+            type='font/woff2'
             crossOrigin=''
           />
-          <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.ttf' as='font' crossOrigin='' />
-          {/* <link rel='preload' href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Light.ttf' as='font' crossOrigin='' /> */}
-          <link rel='preload' href='/fonts/GmarketSans/GmarketSansTTFMedium.ttf' as='font' crossOrigin='' />
+          <link
+            rel='preload'
+            href='/fonts/GmarketSans/GmarketSansTTFMedium.woff'
+            as='font'
+            type='font/woff'
+            crossOrigin=''
+          />
           <link
             href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
             rel='stylesheet'
