@@ -1,5 +1,5 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import Seo from '../../components/Seo';
+import Seo from '../../components/common/Seo';
 import { getAllPost, getPost } from '../../utils/mdxUtils';
 import { IFrontMatter } from '../../interfaces';
 import Post from '../../components/post/Post';

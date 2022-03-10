@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { IPost } from '../interfaces';
 import Posts from '../components/post/Posts';
-import Seo from '../components/Seo';
+import Seo from '../components/common/Seo';
 import { getAllPost } from '../utils/mdxUtils';
 
 interface IProps {

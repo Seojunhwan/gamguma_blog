@@ -46,28 +46,28 @@ class MyDocument extends Document {
           />
           <link
             rel='preload'
-            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
+            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff'
+            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff'
             as='font'
             type='font/woff'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2'
+            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff'
+            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff'
             as='font'
             type='font/woff'
             crossOrigin='anonymous'

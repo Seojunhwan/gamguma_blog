@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
-import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '../../styles/theme';
 import { GlobalStyle } from '../../styles/global-style';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
 import Head from 'next/head';
-import useDarkMode from '../../hooks/useDarkMode';
+import SSRThemeProvider from '../common/SSRThemeProvider';
 
 interface IProps {
   children: React.ReactNode;
@@ -16,21 +15,19 @@ interface IProps {
 
 export default function Layout({ children }: IProps) {
   const isDark = useRecoilValue(isDarkAtom);
-  const [dark] = useDarkMode();
-  console.log(dark);
   return (
     <>
       <Head>
         <meta name='theme-color' content={isDark ? darkTheme.headerColor : lightTheme.headerColor} />
       </Head>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <SSRThemeProvider>
         <GlobalStyle />
         <Header />
         <Main>
           <Container>{children}</Container>
         </Main>
         <Footer />
-      </ThemeProvider>
+      </SSRThemeProvider>
     </>
   );
 }
