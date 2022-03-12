@@ -21,7 +21,7 @@ export default function Code({ children, className }: IProps) {
         </div>
       </CodeInfoBar>
       <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as any}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        {({ tokens, getLineProps, getTokenProps }) => (
           <TableWrapper>
             <Table>
               <tbody>
@@ -127,6 +127,11 @@ const LineNo = styled.td`
 
 const Line = styled.tr`
   transition: all 0.05s ease;
+  line-height: 1.5;
+  td:last-child {
+    font-family: monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+      'Open Sans', 'Helvetica Neue', sans-serif;
+  }
   &:hover {
     background-color: #20202099;
     ${LineNo} {
