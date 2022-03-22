@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^12.1.0",
     "framer-motion": "^5.5.5",
     "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
