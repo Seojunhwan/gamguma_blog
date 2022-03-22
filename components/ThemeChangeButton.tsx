@@ -4,8 +4,12 @@ import { isDarkAtom } from '../recoil/atoms';
 
 export default function ThemeChangeButton() {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const toggleTheme = () => {
+    setIsDark(isDark ? false : true);
+    localStorage.setItem('isDark', JSON.stringify(isDark ? false : true));
+  };
   return (
-    <Container onClick={() => setIsDark(isDark ? false : true)}>
+    <Container onClick={toggleTheme}>
       {isDark ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'

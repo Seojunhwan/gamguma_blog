@@ -1,33 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import Footer from './Footer';
 import Header from './Header';
 import { darkTheme, lightTheme } from '../../styles/theme';
+import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../../styles/global-style';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../../recoil/atoms';
-import Head from 'next/head';
-import SSRThemeProvider from '../common/SSRThemeProvider';
 
 interface IProps {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: IProps) {
-  const isDark = useRecoilValue(isDarkAtom);
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  useEffect(() => {
+    const persistTheme = localStorage.getItem('isDark');
+    if (typeof persistTheme === 'string') {
+      setIsDark(JSON.parse(persistTheme));
+    } else {
+      setIsDark(false);
+    }
+  }, []);
   return (
     <>
       <Head>
         <meta name='theme-color' content={isDark ? darkTheme.headerColor : lightTheme.headerColor} />
       </Head>
-      <SSRThemeProvider>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
         <Header />
         <Main>
           <Container>{children}</Container>
         </Main>
         <Footer />
-      </SSRThemeProvider>
+      </ThemeProvider>
     </>
   );
 }
