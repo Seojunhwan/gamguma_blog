@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
@@ -8,7 +9,7 @@ interface IProps {
   className: string;
 }
 
-export default function Code({ children, className }: IProps) {
+function Code({ children, className }: IProps) {
   const language = className ? className.replace(/language-/, '') : '';
   return (
     <Container>
@@ -43,6 +44,8 @@ export default function Code({ children, className }: IProps) {
     </Container>
   );
 }
+
+export default React.memo(Code);
 
 const Container = styled.div`
   border-radius: 1rem;
