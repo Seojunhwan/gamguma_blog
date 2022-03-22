@@ -39,23 +39,9 @@ class MyDocument extends Document {
           />
           <link
             rel='preload'
-            href='/fonts/Aggro/Aggro-M.woff'
-            as='font'
-            type='font/woff'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
             href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
             as='font'
             type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
-            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff'
-            as='font'
-            type='font/woff'
             crossOrigin='anonymous'
           />
           <link
@@ -67,23 +53,9 @@ class MyDocument extends Document {
           />
           <link
             rel='preload'
-            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff'
-            as='font'
-            type='font/woff'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
             href='/fonts/GmarketSans/GmarketSansTTFMedium.woff2'
             as='font'
             type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
-            href='/fonts/GmarketSans/GmarketSansTTFMedium.woff'
-            as='font'
-            type='font/woff'
             crossOrigin='anonymous'
           />
           <link
