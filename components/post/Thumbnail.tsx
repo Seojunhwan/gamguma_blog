@@ -16,6 +16,7 @@ export default function Thumbnail({ src }: IProps) {
         alt='post-thumbnail'
         width={1200}
         height={600}
+        priority
       />
     </Container>
   );

@@ -27,5 +27,5 @@ export default function ResponsiveImage({ src, alt }: ImageProps) {
     };
   })();
 
-  return <Image objectFit='contain' src={relativeSrc} alt={alt} {...size} layout='responsive' />;
+  return <Image objectFit='contain' priority src={relativeSrc} alt={alt} {...size} layout='responsive' />;
 }
