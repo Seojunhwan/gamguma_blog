@@ -8,3 +8,15 @@ export const dateToTimeFormatter = (dateSrc: Date) => {
     dateSrc.getMonth() + 1
   }-${dateSrc.getDate()} ${dateSrc.getHours()}:${dateSrc.getMinutes()}`;
 };
+
+export const throttle = (callback: Function, delay: number) => {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+
+  return () => {
+    if (timer) return;
+    timer = setTimeout(() => {
+      callback();
+      timer = null;
+    }, delay);
+  };
+};
