@@ -153,6 +153,7 @@ export default function Header() {
               </a>
             </Link>
           </MenuModalItem>
+          <MenuModalCloseButton onClick={toggleModal}>닫기</MenuModalCloseButton>
         </MenuModalContainer>
       </Modal>
     </>
@@ -243,7 +244,7 @@ const MenuModalContainer = styled.div`
   display: grid;
   gap: 2rem 4rem;
   grid-template-columns: repeat(2, 8rem);
-  grid-template-rows: repeat(2, 8rem);
+  grid-template-rows: repeat(2, 8rem) 3.5rem;
   max-width: 70rem;
   padding: 5rem 8rem;
   border-radius: 1rem;
@@ -253,7 +254,7 @@ const MenuModalContainer = styled.div`
 
 const MenuModalItem = styled.div`
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: 1rem;
   transition: background-color 0.2s ease-out;
   &,
@@ -270,6 +271,19 @@ const MenuModalItem = styled.div`
   }
   &:hover {
     background-color: ${({ theme }) => theme.headerColor};
+  }
+`;
+
+const MenuModalCloseButton = styled.button`
+  cursor: pointer;
+  width: 100%;
+  grid-column: span 2;
+  background-color: inherit;
+  border: none;
+  border-radius: 1rem;
+  color: ${({ theme }) => theme.fontColor.contentColor};
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  &:hover {
   }
 `;
 
