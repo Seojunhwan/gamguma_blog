@@ -39,7 +39,9 @@ export default function Modal({ children, visible, toggleModal }: Props) {
   }, [localVisible, visible]);
 
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    if (visible) {
+      document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    }
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = `position: ""; top: "";`;
