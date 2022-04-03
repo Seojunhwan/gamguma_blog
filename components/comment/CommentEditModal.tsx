@@ -93,7 +93,7 @@ const Container = styled.div`
   max-width: 100rem;
   padding: 2rem;
   background-color: ${(props) => props.theme.bgColor};
-  box-shadow: ${(props) => props.theme.defaultShadow};
+  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
   border-radius: 1rem;
   z-index: 1;
   overflow: hidden;

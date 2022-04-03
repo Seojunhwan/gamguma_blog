@@ -59,13 +59,14 @@ const HashTagItem = styled.li<IHashTagItem>`
   text-align: center;
   color: black;
   cursor: pointer;
-  box-shadow: ${(props) => props.theme.defaultShadow};
+  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
   transition: background-color 0.3s ease-out;
   border: 1px solid
-    ${(props) => (props.isHashTagMenu ? (props.isSelected ? '#FCF6F5' : props.theme.accentColor) : '#FCF6F5')};
-  background-color: ${(props) =>
-    props.isHashTagMenu ? (props.isSelected ? props.theme.accentColor : '#FCF6F5') : '#FCF6F5'};
+    ${({ isHashTagMenu, isSelected, theme }) =>
+      isHashTagMenu ? (isSelected ? '#FCF6F5' : theme.accentColor) : '#FCF6F5'};
+  background-color: ${({ isHashTagMenu, theme, isSelected }) =>
+    isHashTagMenu ? (isSelected ? theme.accentColor : '#FCF6F5') : '#FCF6F5'};
   &:hover {
-    background-color: ${(props) => props.theme.accentColor};
+    background-color: ${({ theme }) => theme.accentColor};
   }
 `;

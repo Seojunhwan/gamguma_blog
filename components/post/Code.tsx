@@ -51,7 +51,7 @@ const Container = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   background-color: #2f3135;
-  box-shadow: ${(props) => props.theme.defaultShadow};
+  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
   margin: 2rem 0;
 `;
 

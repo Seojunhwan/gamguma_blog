@@ -48,7 +48,7 @@ const Post = styled.article`
   background-color: ${(props) => props.theme.bgColor};
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: ${(props) => props.theme.defaultShadow};
+  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
 `;
 
 const Title = styled.h2`
