@@ -249,12 +249,12 @@ const MenuModalContainer = styled.div`
   padding: 5rem 8rem;
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.bgColor};
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
 `;
 
 const MenuModalItem = styled.div`
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: ${({ theme }) => theme.shadow.buttonShadow};
   border-radius: 1rem;
   transition: background-color 0.2s ease-out;
   &,
@@ -282,7 +282,7 @@ const MenuModalCloseButton = styled.button`
   border: none;
   border-radius: 1rem;
   color: ${({ theme }) => theme.fontColor.contentColor};
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: ${({ theme }) => theme.shadow.buttonShadow};
   &:hover {
   }
 `;

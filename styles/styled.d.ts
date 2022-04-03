@@ -5,7 +5,10 @@ declare module 'styled-components' {
     bgColor: string;
     headerColor: string;
     accentColor: string;
-    defaultShadow: string;
+    shadow: {
+      defaultShadow: string;
+      buttonShadow: string;
+    };
     blockquoteColor: string;
     fontColor: {
       contentColor: string;
