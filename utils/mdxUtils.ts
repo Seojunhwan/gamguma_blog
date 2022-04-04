@@ -15,7 +15,7 @@ const getPostSlugs = (filePath: string) => {
 };
 
 export const getAllPost = () => {
-  const files = glob.sync(`${POSTS_PATH}/**/*.mdx`).reverse();
+  const files = glob.sync(`${POSTS_PATH}/**/*.mdx`);
 
   const posts = files.map((filePath) => {
     const source = fs.readFileSync(filePath);

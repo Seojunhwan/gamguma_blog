@@ -507,6 +507,11 @@
   "resolved" "https://registry.npmjs.org/@types/parse5/-/parse5-5.0.3.tgz"
   "version" "5.0.3"
 
+"@types/prettier@^2.4.4":
+  "integrity" "sha512-ReVR2rLTV1kvtlWFyuot+d1pkpG2Fw/XKE3PDAdj57rbM97ttSp9JZ2UsP+2EHTylra9cUf6JA7tGwW1INzUrA=="
+  "resolved" "https://registry.npmjs.org/@types/prettier/-/prettier-2.4.4.tgz"
+  "version" "2.4.4"
+
 "@types/prop-types@*":
   "integrity" "sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ=="
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
@@ -2271,9 +2276,9 @@
     "brace-expansion" "^1.1.7"
 
 "minimist@^1.2.0", "minimist@^1.2.3", "minimist@^1.2.5":
-  "integrity" "sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw=="
-  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
-  "version" "1.2.5"
+  "integrity" "sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q=="
+  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz"
+  "version" "1.2.6"
 
 "mkdirp-classic@^0.5.2", "mkdirp-classic@^0.5.3":
   "integrity" "sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A=="
@@ -2623,6 +2628,11 @@
   "integrity" "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="
   "resolved" "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   "version" "1.2.1"
+
+"prettier@^2.6.2":
+  "integrity" "sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.6.2.tgz"
+  "version" "2.6.2"
 
 "prism-react-renderer@^1.2.1":
   "integrity" "sha512-w23ch4f75V1Tnz8DajsYKvY5lF7H1+WvzvLUcF0paFxkTHSp42RS0H5CttdN2Q8RR3DRGZ9v5xD/h3n8C8kGmg=="
@@ -3000,9 +3010,9 @@
   "version" "1.0.1"
 
 "simple-get@^4.0.0":
-  "integrity" "sha512-ZalZGexYr3TA0SwySsr5HlgOOinS4Jsa8YB2GJ6lUNAazyAu4KG/VmzMTwAt2YVXzzVj8QmefmAonZIK2BSGcQ=="
-  "resolved" "https://registry.npmjs.org/simple-get/-/simple-get-4.0.0.tgz"
-  "version" "4.0.0"
+  "integrity" "sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA=="
+  "resolved" "https://registry.npmjs.org/simple-get/-/simple-get-4.0.1.tgz"
+  "version" "4.0.1"
   dependencies:
     "decompress-response" "^6.0.0"
     "once" "^1.3.1"
