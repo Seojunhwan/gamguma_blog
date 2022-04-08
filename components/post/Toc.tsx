@@ -19,7 +19,7 @@ export default function Toc({ content }: ITocProps) {
   const result = titles.map((item) => {
     const depth = item.match(/#/g)?.length;
     return {
-      title: item.substr(item.indexOf(' ')).trim().replace('\\', ''),
+      title: item.substr(item.indexOf(' ')).trim().replace('\\', '').replace('(', '').replace(')', ''),
       depth,
     };
   });
