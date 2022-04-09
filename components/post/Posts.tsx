@@ -4,7 +4,6 @@ import HashTag from '../HashTag';
 import Link from 'next/link';
 import { IPost } from '../../interfaces';
 import Thumbnail from './Thumbnail';
-import { useEffect, useState } from 'react';
 
 export default function Posts({ posts }: { posts: IPost[] }) {
   return (
@@ -18,9 +17,13 @@ export default function Posts({ posts }: { posts: IPost[] }) {
                 <Title>{article.data.title}</Title>
               </a>
             </Link>
-            <Description>{article.data.description}</Description>
-            <CreateAt>{article.data.createAt}</CreateAt>
-            <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
+            <div>
+              <Description>{article.data.description}</Description>
+            </div>
+            <PostMetadata>
+              <CreateAt>{article.data.createAt}</CreateAt>
+              <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
+            </PostMetadata>
           </PostInfoContainer>
         </Post>
       ))}
@@ -49,6 +52,8 @@ const Post = styled.article`
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.h2`
@@ -75,4 +80,12 @@ const PostInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  height: 100%;
+`;
+
+const PostMetadata = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
 `;

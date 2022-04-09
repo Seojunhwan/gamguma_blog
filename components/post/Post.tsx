@@ -72,7 +72,7 @@ const PostContainer = styled.div`
     font-size: 1.5rem;
     overflow: auto;
     thead > tr {
-      border-bottom: 1px solid ${(props) => props.theme.fontColor.contentColor};
+      border-bottom: 1px solid ${({ theme }) => theme.fontColor.contentColor};
       /* border-bottom: 1px solid ${openColor.white}; */
     }
     th,
@@ -87,11 +87,11 @@ const PostContainer = styled.div`
   p {
     line-height: 2.5rem;
     word-wrap: break-word;
-    color: ${(props) => props.theme.fontColor.contentColor};
+    color: ${({ theme }) => theme.fontColor.contentColor};
   }
   blockquote {
-    background-color: ${(props) => props.theme.blockquoteColor};
-    border-left: 0.5rem solid ${(props) => props.theme.accentColor};
+    background-color: ${({ theme }) => theme.blockquoteColor};
+    border-left: 0.5rem solid ${({ theme }) => theme.accentColor};
     padding: 0.8rem;
     margin-bottom: 1rem;
     p {
@@ -102,8 +102,8 @@ const PostContainer = styled.div`
     font-weight: bold;
   }
   code {
-    background-color: ${(props) => props.theme.accentColor};
-    color: ${(props) => props.theme.fontColor.contentColor};
+    background-color: ${({ theme }) => theme.accentColor};
+    color: ${({ theme }) => theme.fontColor.contentColor};
     border-radius: 0.2rem;
     padding: 0 0.5rem;
     margin: 0 0.25rem;

@@ -200,7 +200,7 @@ const Container = styled.div<HeaderProps>`
   span {
     transition: color 0.3s ease-in-out;
     &:hover {
-      color: ${(props) => props.theme.accentColor};
+      color: ${({ theme }) => theme.accentColor};
     }
   }
 `;
@@ -223,7 +223,7 @@ const Indicator = styled(motion.span)`
   position: absolute;
   width: 100%;
   height: 0.1rem;
-  background-color: ${(props) => props.theme.accentColor};
+  background-color: ${({ theme }) => theme.accentColor};
   left: 0;
   right: 0;
   margin: 0 auto;

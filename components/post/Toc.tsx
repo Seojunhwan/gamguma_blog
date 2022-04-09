@@ -67,10 +67,10 @@ const Item = styled.li<IItemProps>`
   cursor: pointer;
   font-size: 1.4rem;
   padding: 0.5rem;
-  padding-left: ${(props) => (props.depth ? `${props.depth}rem` : '0rem')};
-  background-color: ${(props) => (props.isSelected ? props.theme.accentColor : 'inherit')};
+  padding-left: ${({ depth }) => (depth ? `${depth}rem` : '0rem')};
+  background-color: ${({ isSelected, theme }) => (isSelected ? theme.accentColor : 'inherit')};
   border-radius: 0.5rem;
-  transform: ${(props) => props.isSelected && 'scale(1.05)'};
+  transform: ${({ isSelected }) => isSelected && 'scale(1.05)'};
   transform-origin: left;
   transition: all 0.3s;
 `;

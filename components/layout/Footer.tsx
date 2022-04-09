@@ -56,6 +56,6 @@ const Container = styled.div<{ isDark: boolean }>`
     font-size: 1.5rem;
   }
   svg {
-    fill: ${(props) => (props.isDark ? '#fff' : '#000')};
+    fill: ${({ isDark }) => (isDark ? '#fff' : '#000')};
   }
 `;
