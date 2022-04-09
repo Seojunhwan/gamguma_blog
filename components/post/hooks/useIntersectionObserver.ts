@@ -45,7 +45,7 @@ export const useIntersectionObserver = (
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOption);
-    const headingElements = Array.from(document.querySelectorAll('h2, h3'));
+    const headingElements = Array.from(document.querySelectorAll('h2, h3, h4'));
     headingElements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, [content]);
