@@ -11,7 +11,7 @@ const lightTheme: DefaultTheme = {
   ...defaultTheme,
   bgColor: '#FFF9F9',
   headerColor: '#BAABDA',
-  accentColor: '#D6E5FA',
+  accentColor: '#f0e9c8',
   blockquoteColor: '#eee8e8',
   fontColor: {
     contentColor: '#2F3135',

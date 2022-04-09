@@ -134,7 +134,6 @@ const PostContainer = styled.div`
   a {
     /* TODO: 링크 태그 배경 적용 */
     font-weight: bold;
-    background: linear-gradient(transparent 70%, #ff9999 0);
     background: ${({ theme }) => `linear-gradient(transparent 70%, ${theme.headerColor} 0)`};
   }
   ul,
@@ -260,7 +259,7 @@ const PostContainer = styled.div`
     }
     h4 {
       margin: 1.6rem 0;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
     h5 {
       margin: 1.6rem 0;

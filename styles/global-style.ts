@@ -70,7 +70,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     h1,
     h2,
-    h3 {
+    h3,
+    h4 {
     font-family: Roboto, GmarketSans,-apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     }
