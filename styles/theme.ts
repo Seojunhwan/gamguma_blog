@@ -17,6 +17,8 @@ const lightTheme: DefaultTheme = {
     contentColor: '#2F3135',
     hashTag: '#000',
   },
+  codeColor: '#c7254e',
+  codeBackground: '#f9f2f4',
 };
 
 const darkTheme: DefaultTheme = {
@@ -29,6 +31,8 @@ const darkTheme: DefaultTheme = {
     contentColor: '#cbcbcb',
     hashTag: '#000',
   },
+  codeColor: '#bbb',
+  codeBackground: '#454545',
 };
 
 export { lightTheme, darkTheme };

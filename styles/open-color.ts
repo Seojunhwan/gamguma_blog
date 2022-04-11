@@ -1,10 +1,6 @@
 // Thanks for yeun https://github.com/yeun/open-color //
 
-interface Color {
-  [key: string]: string;
-}
-
-export const openColor: Color = {
+const openColor = {
   white: '#ffffff',
 
   black: '#000000',
@@ -151,3 +147,4 @@ export const openColor: Color = {
   orange8: '#e8590c',
   orange9: '#d9480f',
 };
+export default openColor;

@@ -14,5 +14,7 @@ declare module 'styled-components' {
       contentColor: string;
       hashTag: string;
     };
+    codeColor: string;
+    codeBackground: string;
   }
 }
