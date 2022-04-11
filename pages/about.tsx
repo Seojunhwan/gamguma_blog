@@ -178,10 +178,18 @@ export default function About() {
             </InfoItem>
           </Info>
           <ButtonContainer>
-            <StyledButton size='large' color='yellow5' type='button' outline fullWidth>
-              <a target='_blank' rel='noreferrer' href='https://gamguma.dev/'>
+            <StyledButton
+              size='large'
+              color='yellow5'
+              type='button'
+              onClick={() => alert('포트폴리오 사이트 제작 중')}
+              outline
+              fullWidth
+            >
+              {/* <a target='_blank' rel='noreferrer' href='https://gamguma.dev/'>
                 포트폴리오 보러가기
-              </a>
+              </a> */}
+              포트폴리오 사이트 제작 중
             </StyledButton>
             <StyledButton size='large' color='gray7' type='button' outline fullWidth>
               <a target='_blank' rel='noreferrer' href='https://github.com/Seojunhwan'>
@@ -218,10 +226,9 @@ const AccentAnimation = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 5rem;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 5rem;
   ${media.small} {
     margin-top: 15rem;
   }
@@ -229,7 +236,6 @@ const Container = styled.div`
 
 const Profile = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column-reverse;
   align-items: center;
   ${media.small} {
@@ -238,16 +244,11 @@ const Profile = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  ${media.medium} {
-    justify-content: center;
-    justify-content: flex-end;
-    align-items: flex-start;
-  }
+  width: 100%;
 `;
 
 const ProfileImage = styled.div`
@@ -279,13 +280,13 @@ const AccentWord = styled.span`
 `;
 
 const StyledTypingWriter = styled(TypeWriter)`
-  font-size: 2rem;
+  height: 14rem;
   font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 6rem;
   text-align: center;
-  height: 14rem;
   ${media.small} {
     text-align: left;
     font-size: 3rem;
@@ -333,8 +334,8 @@ const InfoField = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   flex-direction: column;
   padding: 0rem 2rem;
   ${media.small} {

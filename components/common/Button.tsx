@@ -39,6 +39,7 @@ const colorStyles = css<Props>`
         color: ${selected};
         border: 1.5px solid ${selected};
         &:hover {
+          color: white;
           * {
             color: white;
           }
