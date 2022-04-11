@@ -65,7 +65,8 @@ const CodeInfoBar = styled.div`
   span {
     text-transform: uppercase;
     color: #ff8a64;
-    font-family: Aggro;
+    font-family: 'Source Code Pro', Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   div:last-child {
     display: flex;

@@ -2,7 +2,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import styled from 'styled-components';
 import { IFrontMatter } from '../../interfaces';
 import media from '../../styles/media';
-import { openColor } from '../../styles/open-color';
+import openColor from '../../styles/open-color';
 import { dateFormatter } from '../../utils/utils';
 import HashTag from '../HashTag';
 import Thumbnail from './Thumbnail';
@@ -73,7 +73,6 @@ const PostContainer = styled.div`
     overflow: auto;
     thead > tr {
       border-bottom: 1px solid ${({ theme }) => theme.fontColor.contentColor};
-      /* border-bottom: 1px solid ${openColor.white}; */
     }
     th,
     td {
@@ -102,15 +101,14 @@ const PostContainer = styled.div`
     font-weight: bold;
   }
   code {
-    background-color: ${({ theme }) => theme.accentColor};
-    color: ${({ theme }) => theme.fontColor.contentColor};
+    background-color: ${({ theme }) => theme.codeBackground};
+    color: ${({ theme }) => theme.codeColor};
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     border-radius: 0.2rem;
     padding: 0 0.5rem;
     margin: 0 0.25rem;
-    font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
-    /* TODO: 코드 폰트 컬러 바꾸기 */
-    /* TODO: 코드 배경 컬러 바꾸기 */
+    font-family: 'Source Code Pro', Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   h1,
   h2,
