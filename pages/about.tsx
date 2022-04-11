@@ -17,7 +17,9 @@ export default function About() {
     <Container>
       <Profile>
         <InfoContainer>
-          <StyledTypingWriter content={content} styledContent={styledContent} speed={200} waitTime={3000} />
+          <TypeWriterWrapper>
+            <StyledTypeWriter content={content} styledContent={styledContent} speed={200} waitTime={3000} />
+          </TypeWriterWrapper>
           <Info>
             <InfoItem>
               <span>
@@ -229,7 +231,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  ${media.small} {
+  ${media.medium} {
     margin-top: 15rem;
   }
 `;
@@ -238,7 +240,7 @@ const Profile = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  ${media.small} {
+  ${media.medium} {
     flex-direction: row;
   }
 `;
@@ -260,7 +262,7 @@ const ProfileImage = styled.div`
 const ProfileImageWrapper = styled.div`
   width: 30%;
   margin-bottom: 2rem;
-  ${media.small} {
+  ${media.medium} {
     width: 50%;
     margin-bottom: 0rem;
   }
@@ -279,7 +281,14 @@ const AccentWord = styled.span`
   }
 `;
 
-const StyledTypingWriter = styled(TypeWriter)`
+const TypeWriterWrapper = styled.div`
+  width: 100%;
+  ${media.medium} {
+    margin-left: 17rem;
+  }
+`;
+
+const StyledTypeWriter = styled(TypeWriter)`
   height: 14rem;
   font-family: Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
@@ -288,6 +297,9 @@ const StyledTypingWriter = styled(TypeWriter)`
   line-height: 6rem;
   text-align: center;
   ${media.small} {
+    font-size: 2.6rem;
+  }
+  ${media.medium} {
     text-align: left;
     font-size: 3rem;
   }
@@ -326,7 +338,7 @@ const InfoField = styled.div`
     }
   }
   span + * {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     ${media.medium} {
       font-size: 1.4rem;
     }
@@ -347,6 +359,10 @@ const ButtonContainer = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+  font-size: 1.4rem;
+  ${media.small} {
+    font-size: 1.7rem;
+  }
   & + & {
     margin-top: 2rem;
     ${media.small} {
