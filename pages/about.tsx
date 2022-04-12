@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import styled, { keyframes } from 'styled-components';
 import Button from '../components/common/Button';
@@ -24,6 +25,9 @@ export default function About() {
         keywords={['프론트엔드', '서준환', '감구마', 'gamguma']}
         thumbnail='/images/og_about.png'
       />
+      <Head>
+        <link rel='canonical' href={`${process.env.NEXT_PUBLIC_SITE_URL}/about`} />
+      </Head>
       <Container>
         <Profile>
           <InfoContainer>
