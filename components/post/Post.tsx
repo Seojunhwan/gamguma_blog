@@ -1,4 +1,5 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { IFrontMatter } from '../../interfaces';
 import media from '../../styles/media';
@@ -7,6 +8,7 @@ import { dateFormatter } from '../../utils/utils';
 import HashTag from '../HashTag';
 import Thumbnail from './Thumbnail';
 import Toc from './Toc';
+import Utterances from './Utterances';
 
 interface IProps {
   mdxSource: MDXRemoteSerializeResult;
@@ -20,20 +22,23 @@ export default function Post({
   content,
 }: IProps) {
   return (
-    <article>
-      <Toc content={content} />
-      <PostHeader>
-        <div>
-          <h1>{title}</h1>
-          <time dateTime={createAt}>{dateFormatter(createAt)}</time>
-          <HashTag isHashTagMenu={false} hashTags={hashTags} />
-        </div>
-      </PostHeader>
-      <PostContainer>
-        <Thumbnail src={thumbnail} />
-        <MDXRemote {...mdxSource} />
-      </PostContainer>
-    </article>
+    <>
+      <article>
+        <Toc content={content} />
+        <PostHeader>
+          <div>
+            <h1>{title}</h1>
+            <time dateTime={createAt}>{dateFormatter(createAt)}</time>
+            <HashTag isHashTagMenu={false} hashTags={hashTags} />
+          </div>
+        </PostHeader>
+        <PostContainer>
+          <Thumbnail src={thumbnail} />
+          <MDXRemote {...mdxSource} />
+        </PostContainer>
+      </article>
+      <Utterances />
+    </>
   );
 }
 
