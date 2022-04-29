@@ -14,7 +14,6 @@ export default function Utterances() {
     scriptElem.setAttribute('label', 'blog-comment');
     scriptElem.crossOrigin = 'anonymous';
     utterances.current?.appendChild(scriptElem);
-    console.log(utterances.current);
   }, []);
 
   return <Container ref={utterances} />;
