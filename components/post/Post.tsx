@@ -162,6 +162,9 @@ const PostContainer = styled.div`
       }
     }
   }
+  hr {
+    margin-bottom: 1.8rem;
+  }
   ${media.xsmall} {
     h1 {
       font-size: 2.4rem;

@@ -21,6 +21,7 @@ export default function Utterances() {
 }
 
 const Container = styled.section`
+  margin-top: 5rem;
   .utterances {
     max-width: 100%;
   }
