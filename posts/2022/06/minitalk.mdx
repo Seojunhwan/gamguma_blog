@@ -1,0 +1,27 @@
+write - 문자열 출력함수
+
+signal -
+
+sigemptyset - function initializes a signal set to be empty.
+  int sigemptyset(sigset_t *set);
+
+sigaddset - function adds the specified signal signo to the signal set.
+  int sigaddset(sigset_t *set, int signo);
+
+sigaction - 시그널 함수보다 향상된 기능을 제공하는 시그널 처리를 결정하는 함수
+
+kill - terminate or signal a process
+
+getpid - get parent or calling process identification
+   pid_t  getpid(void);
+
+malloc - memory allocation
+free - release memory
+
+pause - stop until signal
+sleep
+usleep
+exit -
+
+30 SIGUSR1 프로세스 종료 사용자 정의 신호 1
+     31 SIGUSR2 프로세스 종료 사용자 정의 신호 2
