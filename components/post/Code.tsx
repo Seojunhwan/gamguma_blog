@@ -15,6 +15,9 @@ function Code({ children, className }: IProps) {
 
   return (
     <Container>
+      <span style={{ display: 'block', backgroundColor: 'beige', padding: '1rem 2rem' }}>
+        code component 수정 중,, 양해 바랍니닷,,
+      </span>
       <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as Language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <TableWrapper>
@@ -46,7 +49,10 @@ const Container = styled.div`
   overflow: hidden;
   background-color: #2f3135;
   box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
-  margin: 2rem -5rem;
+  margin: 2rem 0;
+  ${media.medium} {
+    margin: 2rem -5rem;
+  }
   font-family: NaverD2, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
 `;
