@@ -13,9 +13,7 @@ export default function Posts({ posts }: { posts: IPost[] }) {
           <Thumbnail src={article.data.thumbnail} />
           <PostInfoContainer>
             <Link href={`/post/${article.slug}`}>
-              <a>
-                <Title>{article.data.title}</Title>
-              </a>
+              <Title>{article.data.title}</Title>
             </Link>
             <div>
               <Description>{article.data.description}</Description>
@@ -32,7 +30,6 @@ export default function Posts({ posts }: { posts: IPost[] }) {
 }
 
 const Container = styled.div`
-  width: 100%;
   width: 100%;
   margin: 1rem 0;
   display: flex;

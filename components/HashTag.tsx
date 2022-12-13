@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface IHashTagItem {
@@ -30,13 +29,11 @@ export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCou
     <Wrapper onClick={(event) => event.stopPropagation()}>
       {hashTags.map((hashTag) => (
         <Link href={{ pathname: '/tags', query: { hashTag } }} key={`${articleId}${hashTag}`}>
-          <a>
-            <HashTagItem isHashTagMenu={isHashTagMenu} isSelected={hashTag === selectHashTag}>
-              <span>
-                {hashTag} {hashTagCountInfo && getHashTagCount(hashTag)}
-              </span>
-            </HashTagItem>
-          </a>
+          <HashTagItem isHashTagMenu={isHashTagMenu} isSelected={hashTag === selectHashTag}>
+            <span>
+              {hashTag} {hashTagCountInfo && getHashTagCount(hashTag)}
+            </span>
+          </HashTagItem>
         </Link>
       ))}
     </Wrapper>
