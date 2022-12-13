@@ -40,7 +40,7 @@ export default function Layout({ children }: IProps) {
 }
 
 const Container = styled.div`
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
   min-height: calc(100vh - 7rem - 6.5rem);
   padding: 1rem 1rem 5rem 1rem;
