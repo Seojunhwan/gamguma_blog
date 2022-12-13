@@ -3,11 +3,11 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 import Code from '../components/post/Code';
-import { MDXProvider } from '@mdx-js/react';
 import { RecoilRoot } from 'recoil';
 import ResponsiveImage from '../components/post/ResponsiveImage';
 import Script from 'next/script';
 import { useEffect } from 'react';
+// import { MDXProvider } from '@mdx-js/react';
 
 const components = {
   code: Code,
@@ -35,11 +35,11 @@ function App({ Component, pageProps }: AppProps) {
         `}
       </Script>
       <RecoilRoot>
-        <MDXProvider components={components}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </MDXProvider>
+        {/*<MDXProvider components={components}>*/}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        {/*</MDXProvider>*/}
       </RecoilRoot>
     </>
   );
