@@ -1,5 +1,4 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { useRef } from 'react';
 import styled from 'styled-components';
 import { IFrontMatter } from '../../interfaces';
 import media from '../../styles/media';
@@ -49,7 +48,7 @@ const PostHeader = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 1rem 0rem;
+    padding: 1rem 0;
     h1 {
       font-size: 2.3rem;
       margin-bottom: 2.5rem;
@@ -99,7 +98,7 @@ const PostContainer = styled.div`
     padding: 0.8rem;
     margin-bottom: 1rem;
     p {
-      margin: 0rem;
+      margin: 0;
     }
   }
   strong {
@@ -112,8 +111,8 @@ const PostContainer = styled.div`
     border-radius: 0.2rem;
     padding: 0 0.5rem;
     margin: 0 0.25rem;
-    font-family: 'Source Code Pro', Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'NaverD2', Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
+      Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   h1,
   h2,
@@ -141,7 +140,7 @@ const PostContainer = styled.div`
   }
   ul,
   ol {
-    margin: 2rem 0rem;
+    margin: 2rem 0;
     font-size: 1.6rem;
     li {
       margin: 0.8rem 0rem;

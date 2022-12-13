@@ -1,5 +1,6 @@
-import React from 'react';
+import { memo as ReactMemo } from 'react';
 import styled from 'styled-components';
+import type { Language } from 'prism-react-renderer';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/nightOwl';
 import media from '../../styles/media';
@@ -11,17 +12,10 @@ interface IProps {
 
 function Code({ children, className }: IProps) {
   const language = className ? className.replace(/language-/, '') : '';
+
   return (
     <Container>
-      <CodeInfoBar>
-        <span>{language}</span>
-        <div>
-          <span> </span>
-          <span> </span>
-          <span> </span>
-        </div>
-      </CodeInfoBar>
-      <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as any}>
+      <Highlight {...defaultProps} theme={theme} code={children.trim()} language={language as Language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <TableWrapper>
             <Table>
@@ -45,51 +39,22 @@ function Code({ children, className }: IProps) {
   );
 }
 
-export default React.memo(Code);
+export default ReactMemo(Code);
 
 const Container = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   background-color: #2f3135;
   box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
-  margin: 2rem 0;
-`;
-
-const CodeInfoBar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 1.5rem;
-  user-select: none;
-  background-color: #15151599;
-  span {
-    text-transform: uppercase;
-    color: #ff8a64;
-    font-family: 'Source Code Pro', Roboto, GmarketSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  div:last-child {
-    display: flex;
-    gap: 0.3rem;
-    span {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 0.5rem;
-      background-color: #ffbd2d;
-      &:first-child {
-        background-color: #fe5f57;
-      }
-      &:last-child {
-        background-color: #29c941;
-      }
-    }
-  }
+  margin: 2rem -5rem;
+  font-family: NaverD2, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 const TableWrapper = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 1rem 0.5rem;
+  padding: 1.5rem 0.5rem;
   &::-webkit-scrollbar {
     height: 1.5rem;
   }
@@ -122,6 +87,7 @@ const LineNo = styled.td`
   padding-right: 0.5rem;
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
+  min-width: 5rem;
   & + td {
     border-top-right-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
@@ -132,10 +98,6 @@ const LineNo = styled.td`
 const Line = styled.tr`
   transition: all 0.05s ease;
   line-height: 1.5;
-  td:last-child {
-    font-family: monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
-  }
   &:hover {
     background-color: #20202099;
     ${LineNo} {

@@ -38,7 +38,16 @@
     font-family: 'GmarketSans';
     src: url('/fonts/GmarketSans/GmarketSansTTFMedium.woff2') format('woff2'),
         url('/fonts/GmarketSans/GmarketSansTTFMedium.woff') format('woff');
-    font-weight: lighter;
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'NaverD2';
+    src: url('/fonts/NaverD2/D2Coding.woff2') format('woff2'),
+        url('/fonts/NaverD2/D2Coding.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
     font-display: fallback;
 }
