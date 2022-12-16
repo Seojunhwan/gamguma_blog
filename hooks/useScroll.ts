@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { throttle } from '../utils/utils';
 
-const useScrolling = (direction: 'up' | 'down') => {
+export const useScrolling = (direction: 'up' | 'down') => {
   let prevScroll: number;
 
   if (typeof window !== 'undefined') {
@@ -27,4 +27,3 @@ const useScrolling = (direction: 'up' | 'down') => {
   });
   return scrollingUp;
 };
-export default useScrolling;

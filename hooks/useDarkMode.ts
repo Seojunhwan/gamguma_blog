@@ -1,14 +1,14 @@
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../recoil/atoms';
 
-const useDarkMode = () => {
+export const useDarkMode = () => {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+
   const toggleTheme = () => {
     setIsDark(isDark ? false : true);
-    localStorage.setItem('isDark', JSON.stringify(isDark ? false : true));
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    document.documentElement.classList.toggle('dark');
   };
 
   return { isDark, toggleTheme };
 };
-
-export default useDarkMode;

@@ -2,12 +2,12 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 
+import GoogleAnalytics from '@components/GoogleAnalytics';
+import { Providers } from '@components/common';
+import { Layout } from '@components/layout';
+
 import '@/styles/globals.css';
 import '@/styles/fonts.css';
-import Layout from '@/components/layout/Layout';
-import Providers from '@/components/common/Providers';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-
 function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     console.log('%c감구마 블로그', `color:#BAABDA; font-size: 4rem; font-weight: bold`);
