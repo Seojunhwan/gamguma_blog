@@ -1,6 +1,3 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "prefer-const":"warn"
-  }
+  "extends": ["next/core-web-vitals", "prettier"]
 }
