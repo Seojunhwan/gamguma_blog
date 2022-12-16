@@ -24,18 +24,8 @@ function App({ Component, pageProps }: AppProps) {
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1 user-scalable=no' />
       </Head>
-      <Script src='https://www.googletagmanager.com/gtag/js?id=G-LYR2W8NBVJ' strategy='afterInteractive' />
-      <Script id='google-analytics' strategy='afterInteractive'>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          
-          gtag('config', 'G-LYR2W8NBVJ');
-        `}
-      </Script>
-      <RecoilRoot>
-        {/*<MDXProvider components={components}>*/}
+      <GoogleAnalytics />
+      <Providers>
         <Layout>
           <Component {...pageProps} />
         </Layout>
