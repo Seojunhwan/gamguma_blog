@@ -1,12 +1,12 @@
+import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 
 import '@/styles/globals.css';
 import '@/styles/fonts.css';
 import Layout from '@/components/layout/Layout';
-import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import Providers from '@/components/common/Providers';
-import Head from 'next/head';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
