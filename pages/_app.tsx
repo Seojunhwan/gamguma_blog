@@ -1,23 +1,18 @@
-import '../styles/fonts.css';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import Layout from '../components/layout/Layout';
-import Code from '../components/post/Code';
-import { RecoilRoot } from 'recoil';
-import ResponsiveImage from '../components/post/ResponsiveImage';
-import Script from 'next/script';
 import { useEffect } from 'react';
-// import { MDXProvider } from '@mdx-js/react';
 
-const components = {
-  code: Code,
-  img: ResponsiveImage,
-};
+import '@/styles/globals.css';
+import '@/styles/fonts.css';
+import Layout from '@/components/layout/Layout';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import Providers from '@/components/common/Providers';
+import Head from 'next/head';
 
 function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     console.log('%c감구마 블로그', `color:#BAABDA; font-size: 4rem; font-weight: bold`);
   }, []);
+
   return (
     <>
       <Head>
@@ -29,8 +24,7 @@ function App({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-        {/*</MDXProvider>*/}
-      </RecoilRoot>
+      </Providers>
     </>
   );
 }
