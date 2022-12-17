@@ -1,88 +1,32 @@
-import media from '../../styles/media';
-import styled from 'styled-components';
-import HashTag from '../HashTag';
 import Link from 'next/link';
-import { IPost } from '../../interfaces';
-import Thumbnail from './Thumbnail';
 
-export default function Posts({ posts }: { posts: IPost[] }) {
-  return (
-    <Container>
-      {posts.slice(0, 6).map((article) => (
-        <Post key={article.slug}>
-          <Thumbnail src={article.data.thumbnail} />
-          <PostInfoContainer>
-            <Link href={`/post/${article.slug}`}>
-              <Title>{article.data.title}</Title>
-            </Link>
-            <div>
-              <Description>{article.data.description}</Description>
-            </div>
-            <PostMetadata>
-              <CreateAt>{article.data.createAt}</CreateAt>
-              <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} />
-            </PostMetadata>
-          </PostInfoContainer>
-        </Post>
-      ))}
-    </Container>
-  );
+import Thumbnail from './Thumbnail';
+import type { Post } from '@interface';
+
+interface Props {
+  posts: Post[];
 }
 
-const Container = styled.div`
-  width: 100%;
-  margin: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  ${media.small} {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  ${media.medium} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
-
-const Post = styled.article`
-  background-color: ${(props) => props.theme.bgColor};
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: ${({ theme }) => theme.shadow.defaultShadow};
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-
-const Description = styled.p`
-  margin-bottom: 2rem;
-  font-size: 1.3rem;
-  overflow: hidden;
-  height: 6rem;
-  text-overflow: ellipsis;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  line-height: 2rem;
-`;
-
-const CreateAt = styled.span`
-  margin-bottom: 1rem;
-`;
-
-const PostInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  height: 100%;
-`;
-
-const PostMetadata = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-end;
-`;
+export default function Posts({ posts }: Props) {
+  return (
+    <div className='flex flex-col'>
+      {posts.map((article) => (
+        <article key={article.slug}>
+          <Thumbnail src={article.data.thumbnail} />
+          <div>
+            <Link href={`/post/${article.slug}`}>
+              <h2>{article.data.title}</h2>
+            </Link>
+            <div>
+              <p>{article.data.description}</p>
+            </div>
+            <div>
+              <span>{article.data.createAt}</span>
+              {/* <HashTag hashTags={article.data.hashTags} articleId={article.slug} isHashTagMenu={false} /> */}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
