@@ -1,52 +1,37 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
-import Footer from './Footer';
-import Header from './Header';
-import { darkTheme, lightTheme } from '../../styles/theme';
-import styled, { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../../styles/global-style';
-import { useRecoilState } from 'recoil';
-import { isDarkAtom } from '../../recoil/atoms';
+import { ThemeProvider } from 'styled-components';
 
-interface IProps {
+import { useSetRecoilState } from 'recoil';
+import { isDarkAtom } from '../../recoil/atoms';
+import { lightTheme } from '@styles/theme';
+
+import Header from './Header';
+import Footer from './Footer';
+
+interface Props {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: IProps) {
-  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+export default function Layout({ children }: Props) {
+  const setIsDark = useSetRecoilState(isDarkAtom);
+
   useEffect(() => {
-    const persistTheme = localStorage.getItem('isDark');
-    if (typeof persistTheme === 'string') {
-      setIsDark(JSON.parse(persistTheme));
+    const persistTheme = localStorage.getItem('theme');
+    if (typeof persistTheme === 'string' && persistTheme === 'dark') {
+      setIsDark(true);
     } else {
       setIsDark(false);
     }
   }, []);
+
   return (
     <>
-      <Head>
-        <meta name='theme-color' content={isDark ? darkTheme.headerColor : lightTheme.headerColor} />
-      </Head>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <GlobalStyle />
+      {/* TODO: ThemeProvider 제거 */}
+      <ThemeProvider theme={lightTheme}>
         <Header />
-        <Main>
-          <Container>{children}</Container>
-        </Main>
+        <main className='mx-auto max-w-5xl pt-24'>{children}</main>
         <Footer />
       </ThemeProvider>
     </>
   );
 }
-
-const Container = styled.div`
-  max-width: 80rem;
-  margin: 0 auto;
-  min-height: calc(100vh - 7rem - 6.5rem);
-  padding: 1rem 1rem 5rem 1rem;
-`;
-
-const Main = styled.main`
-  margin-top: 7rem;
-  width: 100%;
-`;
