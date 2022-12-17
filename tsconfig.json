@@ -19,10 +19,12 @@
       "@pages/*": ["pages/*"],
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
+      "@utils": ["utils"],
       "@utils/*": ["utils/*"],
       "@hooks": ["hooks"],
       "@hooks/*": ["hooks/*"],
-      "@@types/*": ["types/*"],
+      "@interface": ["interfaces"],
+      "@interface/*": ["interfaces/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/sitemapGenerator.js"],
