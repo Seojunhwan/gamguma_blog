@@ -5,6 +5,8 @@ import { serialize } from 'next-mdx-remote/serialize';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import glob from 'glob';
+import { FrontMatter, Post } from '@interface';
+import { PAGINATION_OFFSET } from '@utils';
 
 const DIR_STRING = '/posts';
 
@@ -14,16 +16,39 @@ const getPostSlugs = (filePath: string) => {
   return filePath.slice(filePath.indexOf(DIR_STRING) + DIR_STRING.length + 1).replace('.mdx', '');
 };
 
+export const getPostPaginationPaths = () => {
+  const posts = getAllPost();
+
+  const pageLength = Math.ceil(posts.length / PAGINATION_OFFSET);
+
+  const paths = Array.from({ length: Math.ceil(pageLength) }, (_, index) => ({
+    params: { index: (index + 1).toString() },
+  }));
+
+  return paths;
+};
+
+export const getPostsViaPagination = (index: number) => {
+  const posts = getAllPost();
+
+  const startIndex = (index - 1) * PAGINATION_OFFSET;
+  const endIndex = startIndex + PAGINATION_OFFSET;
+
+  const slicedPosts = posts.slice(startIndex, endIndex);
+
+  return slicedPosts;
+};
+
 export const getAllPost = () => {
   const files = glob.sync(`${POSTS_PATH}/**/*.mdx`);
 
-  const posts = files.map((filePath) => {
+  const posts: Post[] = files.map((filePath) => {
     const source = fs.readFileSync(filePath);
     const { content, data } = matter(source);
     const slug = getPostSlugs(filePath);
     return {
       content,
-      data,
+      data: data as FrontMatter,
       slug,
     };
   });

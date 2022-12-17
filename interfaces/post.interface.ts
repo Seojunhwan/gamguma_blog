@@ -1,3 +1,5 @@
+import type { ParsedUrlQuery } from 'querystring';
+
 export interface Comment {
   id: number;
   author: string;
@@ -13,7 +15,7 @@ export interface FrontMatter {
   hashTags: string[];
   description: string;
   createAt: string;
-  isPublish: boolean;
+  isPublished: boolean;
   thumbnail: string;
 }
 
@@ -21,4 +23,15 @@ export interface Post {
   content: string;
   slug: string;
   data: FrontMatter;
+}
+
+export interface GetStaticPropsResult {
+  posts: Post[];
+  isFirstPage: boolean;
+  isLastPage: boolean;
+  paginationLength: number;
+}
+
+export interface GetStaticPropsParams extends ParsedUrlQuery {
+  index: string;
 }
