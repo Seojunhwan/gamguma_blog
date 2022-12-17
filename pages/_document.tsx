@@ -1,4 +1,5 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document {
@@ -86,10 +87,19 @@ class MyDocument extends Document {
           <meta name='msapplication-TileColor' content='#ffffff' />
           <meta name='msapplication-TileImage' content='/ms-icon-144x144.png' />
         </Head>
-        <body>
+        <body className='bg-white transition-colors dark:bg-black'>
           <Main />
           <div id='modal' />
           <NextScript />
+          <Script id='tailwind' strategy='beforeInteractive'>
+            {`
+              if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+              } else {
+                document.documentElement.classList.remove('dark')
+              }
+            `}
+          </Script>
         </body>
       </Html>
     );
