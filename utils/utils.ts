@@ -20,3 +20,7 @@ export const throttle = (callback: Function, delay: number) => {
     }, delay);
   };
 };
+
+export const cls = (...classnames: string[]) => {
+  return classnames.join(' ');
+};
