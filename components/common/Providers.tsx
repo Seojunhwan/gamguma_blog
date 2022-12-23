@@ -1,12 +1,12 @@
 import { RecoilRoot } from 'recoil';
 import { MDXProvider } from '@mdx-js/react';
 
-import Code from '@/components/post/Code';
-import ResponsiveImage from '@/components/post/ResponsiveImage';
+import Code from '@components/post/Code';
+import ResponsiveImage from '@components/post/ResponsiveImage';
 
 const components = {
-  code: (props) => <Code {...props} />,
-  img: (props) => <ResponsiveImage {...props} />,
+  code: (props: any) => <Code {...props} />,
+  img: (props: any) => <ResponsiveImage {...props} />,
 };
 
 interface Props {
