@@ -28,7 +28,7 @@ export const getPostPaginationPaths = () => {
   return paths;
 };
 
-export const getPostsViaPagination = (index: number) => {
+export const getPostsByPage = (index: number) => {
   const posts = getAllPost();
 
   const startIndex = (index - 1) * PAGINATION_OFFSET;
