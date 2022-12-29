@@ -34,28 +34,28 @@ class MyDocument extends Document {
         <Head>
           <link
             rel='preload'
-            href='/fonts/Aggro/Aggro-M.woff2'
+            href='/styles/fonts/Aggro/Aggro-M.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
+            href='/styles/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2'
+            href='/styles/fonts/SpoqaHanSans/SpoqaHanSansNeo-Bold.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
           />
           <link
             rel='preload'
-            href='/fonts/GmarketSans/GmarketSansTTFMedium.woff2'
+            href='/styles/fonts/GmarketSans/GmarketSansTTFMedium.woff2'
             as='font'
             type='font/woff2'
             crossOrigin='anonymous'
