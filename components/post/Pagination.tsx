@@ -18,8 +18,8 @@ function Pagination({ paginationLength, currentPage }: Props) {
   return (
     <div className='flex justify-center space-x-2'>
       {!isFirstPage && (
-        <div>
-          <Link href={previousPage}>
+        <Link href={previousPage}>
+          <span className='flex aspect-square h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
             <svg
               className='h-6 w-6'
               fill='none'
@@ -29,19 +29,26 @@ function Pagination({ paginationLength, currentPage }: Props) {
             >
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
             </svg>
-          </Link>
-        </div>
+          </span>
+        </Link>
       )}
 
       {pages.map((page) => (
-        <div key={page} className={cls(page === currentPage ? 'bg-orange-500' : '')}>
-          <Link href={page === 1 ? '/' : `/page/${page}`}>{page}</Link>
-        </div>
+        <Link key={page} href={page === 1 ? '/' : `/page/${page}`}>
+          <span
+            className={cls(
+              'flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-sm font-medium transition-colors',
+              page === currentPage ? 'bg-amber-300 hover:bg-amber-400' : 'hover:bg-gray-200',
+            )}
+          >
+            {page}
+          </span>
+        </Link>
       ))}
 
       {!isLastPage && (
-        <div>
-          <Link href={nextPage}>
+        <Link href={nextPage}>
+          <span className='flex aspect-square h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
             <svg
               className='h-6 w-6'
               fill='none'
@@ -51,8 +58,8 @@ function Pagination({ paginationLength, currentPage }: Props) {
             >
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
             </svg>
-          </Link>
-        </div>
+          </span>
+        </Link>
       )}
     </div>
   );
