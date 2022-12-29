@@ -19,7 +19,7 @@ function Pagination({ paginationLength, currentPage }: Props) {
     <div className='flex justify-center space-x-2'>
       {!isFirstPage && (
         <Link href={previousPage}>
-          <span className='flex aspect-square h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
+          <span className='flex aspect-square h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
             <svg
               className='h-6 w-6'
               fill='none'
@@ -37,7 +37,7 @@ function Pagination({ paginationLength, currentPage }: Props) {
         <Link key={page} href={page === 1 ? '/' : `/page/${page}`}>
           <span
             className={cls(
-              'flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-sm font-medium transition-colors',
+              'flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors',
               page === currentPage ? 'bg-amber-300 hover:bg-amber-400' : 'hover:bg-gray-200',
             )}
           >
@@ -48,7 +48,7 @@ function Pagination({ paginationLength, currentPage }: Props) {
 
       {!isLastPage && (
         <Link href={nextPage}>
-          <span className='flex aspect-square h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
+          <span className='flex aspect-square h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-gray-200'>
             <svg
               className='h-6 w-6'
               fill='none'
