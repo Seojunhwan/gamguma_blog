@@ -27,9 +27,8 @@ export interface Post {
 
 export interface GetStaticPropsResult {
   posts: Post[];
-  isFirstPage: boolean;
-  isLastPage: boolean;
   paginationLength: number;
+  currentPage: number;
 }
 
 export interface GetStaticPropsParams extends ParsedUrlQuery {

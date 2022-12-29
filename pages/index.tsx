@@ -1,15 +1,16 @@
 import Head from 'next/head';
-import { IPost } from '../interfaces';
-import Posts from '../components/post/Posts';
-import Seo from '../components/common/Seo';
-import { getAllPost } from '../utils/mdxUtils';
+import type { GetStaticProps } from 'next';
 
-interface IProps {
-  posts: IPost[];
-}
+import { Seo } from '@components/common';
+import Posts from '@components/post/Posts';
+import Pagination from '@components/post/Pagination';
+import type { GetStaticPropsResult } from '@interface';
+import { BLOG_THUMBNAIL } from '@utils';
+import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
 
-export default function Home({ posts }: IProps) {
-  const BLOG_THUMBNAIL = 'https://gamguma-blog.s3.ap-northeast-2.amazonaws.com/thumbnail/blog_thumbnail.jpeg';
+interface Props extends GetStaticPropsResult {}
+
+export default function Home({ posts, currentPage, paginationLength }: Props) {
   return (
     <>
       <Seo
@@ -18,15 +19,24 @@ export default function Home({ posts }: IProps) {
         thumbnail={BLOG_THUMBNAIL}
         keywords={['개발', '개발자', '감구마', '42seoul', '42서울', '프론트엔드']}
       />
-      <Head>
+      {/* <Head>
         <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL} />
-      </Head>
+      </Head> */}
       <Posts posts={posts} />
+      <Pagination currentPage={currentPage} paginationLength={paginationLength} />
     </>
   );
 }
 
-export async function getStaticProps() {
-  const posts = getAllPost();
-  return { props: { posts } };
-}
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const posts = getPostsByPage(1);
+  const pageLength = getPostPaginationPaths().length;
+
+  return {
+    props: {
+      posts,
+      currentPage: 1,
+      paginationLength: pageLength,
+    },
+  };
+};

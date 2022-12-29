@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import glob from 'glob';
 import { FrontMatter, Post } from '@interface';
-import { PAGINATION_OFFSET } from '@utils';
+import { POSTS_PER_PAGE_OFFSET } from '@utils';
 
 const DIR_STRING = '/posts';
 
@@ -19,7 +19,7 @@ const getPostSlugs = (filePath: string) => {
 export const getPostPaginationPaths = () => {
   const posts = getAllPost();
 
-  const pageLength = Math.ceil(posts.length / PAGINATION_OFFSET);
+  const pageLength = Math.ceil(posts.length / POSTS_PER_PAGE_OFFSET);
 
   const paths = Array.from({ length: Math.ceil(pageLength) }, (_, index) => ({
     params: { index: (index + 1).toString() },
@@ -31,8 +31,8 @@ export const getPostPaginationPaths = () => {
 export const getPostsByPage = (index: number) => {
   const posts = getAllPost();
 
-  const startIndex = (index - 1) * PAGINATION_OFFSET;
-  const endIndex = startIndex + PAGINATION_OFFSET;
+  const startIndex = (index - 1) * POSTS_PER_PAGE_OFFSET;
+  const endIndex = startIndex + POSTS_PER_PAGE_OFFSET;
 
   const slicedPosts = posts.slice(startIndex, endIndex);
 

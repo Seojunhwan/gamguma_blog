@@ -2,13 +2,14 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Seo } from '@components/common';
 import Posts from '@components/post/Posts';
-import type { GetStaticPropsParams, GetStaticPropsResult } from '@interface';
+import Pagination from '@components/post/Pagination';
 import { BLOG_THUMBNAIL } from '@utils';
-import { getPostPaginationPaths, getPostsViaPagination } from '@utils/mdxUtils';
+import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
+import type { GetStaticPropsParams, GetStaticPropsResult } from '@interface';
 
 interface Props extends GetStaticPropsResult {}
 
-export default function Page({ posts, isFirstPage, isLastPage, paginationLength }: Props) {
+export default function Page({ posts, currentPage, paginationLength }: Props) {
   return (
     <>
       <Seo
@@ -18,6 +19,7 @@ export default function Page({ posts, isFirstPage, isLastPage, paginationLength 
         keywords={['개발', '개발자', '감구마', '42seoul', '42서울', '프론트엔드']}
       />
       <Posts posts={posts} />
+      <Pagination currentPage={currentPage} paginationLength={paginationLength} />
     </>
   );
 }
@@ -33,14 +35,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<GetStaticPropsResult, GetStaticPropsParams> = async (context) => {
   const currentIndex = Number(context.params?.index);
-  const posts = getPostsViaPagination(currentIndex);
+  const posts = getPostsByPage(currentIndex);
   const pageLength = getPostPaginationPaths().length;
 
   return {
     props: {
       posts: posts,
-      isFirstPage: currentIndex === 1,
-      isLastPage: currentIndex === pageLength,
+      currentPage: currentIndex,
       paginationLength: pageLength,
     },
   };
