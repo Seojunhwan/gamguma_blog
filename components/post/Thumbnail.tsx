@@ -1,28 +1,13 @@
 import Image from 'next/image';
-import styled from 'styled-components';
 
-interface IProps {
+interface Props {
   src: string;
 }
 
-export default function Thumbnail({ src }: IProps) {
+export default function Thumbnail({ src }: Props) {
   return (
-    <Container>
-      <Image
-        src={src}
-        objectFit='cover'
-        objectPosition='center center'
-        layout='responsive'
-        alt='post-thumbnail'
-        width={1200}
-        height={600}
-        priority
-      />
-    </Container>
+    <div className='grow-1 order-1 overflow-hidden rounded-lg md:order-2 md:w-60 md:grow-0 md:basis-auto'>
+      <Image src={src} alt='post-thumbnail' width={1200} height={600} priority />
+    </div>
   );
 }
-
-const Container = styled.div`
-  display: block;
-  position: relative;
-`;

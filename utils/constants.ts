@@ -1,7 +1,7 @@
 /**
  * 한 페이지에 보여줄 포스트 수
  */
-export const POSTS_PER_PAGE_OFFSET = 2;
+export const POSTS_PER_PAGE_OFFSET = 10;
 
 /**
  * 페이지네이션에서 보여줄 페이지 수
