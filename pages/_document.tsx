@@ -87,7 +87,7 @@ class MyDocument extends Document {
           <meta name='msapplication-TileColor' content='#ffffff' />
           <meta name='msapplication-TileImage' content='/ms-icon-144x144.png' />
         </Head>
-        <body className='bg-white transition-colors dark:bg-black'>
+        <body className='bg-white transition-colors dark:bg-[#111111]'>
           <Main />
           <div id='modal' />
           <NextScript />
