@@ -8,6 +8,7 @@ import { Layout } from '@components/layout';
 
 import '@styles/globals.css';
 import '@styles/fonts.css';
+import '@styles/prism-one-dark.css';
 
 function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
