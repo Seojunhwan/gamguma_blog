@@ -9,6 +9,6 @@ module.exports = {
       sans: ['var(--font-pretendard)', ...fontFamily.sans],
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
   darkMode: 'class',
 };
