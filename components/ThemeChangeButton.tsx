@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useDarkMode from '../hooks/useDarkMode';
+import useDarkMode from '../hooks/useTheme';
 
 interface Props {
   isScrollingDown: boolean;

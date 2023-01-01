@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { isDarkAtom } from '../recoil/atoms';
 
-export const useDarkMode = () => {
+export const useTheme = () => {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
 
   const toggleTheme = () => {
