@@ -16,7 +16,9 @@ export default function Posts({ posts }: Props) {
           key={post.slug}
           className='mb-8 flex flex-col rounded-md p-4 shadow-sm ring-1 ring-gray-200 transition-shadow hover:ring-4 hover:ring-amber-200 dark:ring-gray-700 md:flex-row md:items-center md:justify-between md:space-x-2 md:py-8'
         >
-          <Thumbnail src={post.data.thumbnail} />
+          <div className='grow-1 order-1 overflow-hidden rounded-lg shadow-md md:order-2 md:w-60 md:grow-0 md:basis-auto'>
+            <Thumbnail src={post.data.thumbnail} />
+          </div>
           <div className='order-2 mt-4 flex grow basis-0 flex-col space-y-2 p-2 md:order-1 md:mt-0'>
             <Link href={`/post/${post.slug}`}>
               <h2 className='text-lg font-bold text-gray-700'>{post.data.title}</h2>
