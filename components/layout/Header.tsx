@@ -1,14 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { useTheme } from '@hooks';
+import { useScrolling } from '@hooks';
+import { cls } from '@utils';
 
 export default function Header() {
-  const { toggleTheme } = useTheme();
+  const isScrollDown = useScrolling('down');
 
   return (
-    <header className='fixed top-0 z-10 w-full bg-white bg-opacity-80 py-6 backdrop-blur-[1px]'>
-      <div className='mx-auto flex w-full max-w-5xl items-center justify-between px-4'>
+    <header
+      className={cls(
+        'fixed top-0 z-10 w-full bg-white bg-opacity-95 py-6 backdrop-blur-[1px] transition-all duration-300 ease-in-out',
+        isScrollDown ? 'h-16' : 'h-32 bg-transparent',
+      )}
+    >
+      <div className='mx-auto flex h-full w-full max-w-5xl items-center justify-between px-4 lg:px-2'>
         <div className='max-w-[20%] basis-1/5'>
           <span onClick={() => alert('만드는 중 !')}>
             <svg
@@ -29,7 +35,9 @@ export default function Header() {
         </div>
         <div className='grow space-x-2 text-center'>
           {/* TODO: <Image src=''/> */}
-          <Link href='/'>감구마</Link>
+          <Link href='/'>
+            <h1 className='text-xl font-medium text-gray-800'>Gamguma</h1>
+          </Link>
         </div>
         <div className='max-w-[20%] basis-1/5'>
           <input

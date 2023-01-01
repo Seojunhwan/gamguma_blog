@@ -10,7 +10,7 @@ interface Props {
 
 export default function Posts({ posts }: Props) {
   return (
-    <div className='flex flex-col px-4 lg:px-0'>
+    <div className='mb-2 flex flex-col px-4 lg:px-0'>
       {posts.map((post) => (
         <article
           key={post.slug}
@@ -24,7 +24,7 @@ export default function Posts({ posts }: Props) {
               <h2 className='text-lg font-bold text-gray-700'>{post.data.title}</h2>
             </Link>
             <div className='md:mr-6'>
-              <p className='mb-1 max-h-20 overflow-hidden text-ellipsis text-sm font-medium text-gray-700'>
+              <p className='mb-1 max-h-20 overflow-hidden text-ellipsis text-sm font-medium text-gray-600'>
                 {post.data.description}
               </p>
               <time dateTime={post.data.createAt} className='text-sm font-light text-gray-400'>
