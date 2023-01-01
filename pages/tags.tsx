@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IPost } from '../interfaces';
+import { Post } from '../interfaces';
 import HashTag from '../components/HashTag';
 import Posts from '../components/post/Posts';
 import { getAllPost } from '../utils/mdxUtils';
@@ -12,13 +12,13 @@ interface IHashCount {
   count: number;
 }
 interface IProps {
-  posts: IPost[];
+  posts: Post[];
   allHashTags: string[];
   hashTagCountInfo: IHashCount[];
 }
 
 export default function Tags({ posts, allHashTags, hashTagCountInfo }: IProps) {
-  const [filteredPosts, setFilteredPosts] = useState<IPost[]>();
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>();
   const router = useRouter();
 
   const {
@@ -54,11 +54,7 @@ export default function Tags({ posts, allHashTags, hashTagCountInfo }: IProps) {
 
 export async function getStaticProps() {
   const posts = getAllPost();
-  const hashTags = [].concat(
-    ...posts.map((post) => {
-      return post.data.hashTags;
-    }),
-  );
+  const hashTags = posts.map((post) => post.data.hashTags).concat();
 
   const removedDuplicateHashTags = Array.from(new Set(['All', ...hashTags]));
 

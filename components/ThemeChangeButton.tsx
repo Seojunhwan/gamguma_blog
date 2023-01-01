@@ -1,5 +1,5 @@
+import { useTheme } from '@hooks';
 import styled from 'styled-components';
-import useDarkMode from '../hooks/useTheme';
 
 interface Props {
   isScrollingDown: boolean;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function ThemeChangeButton({ isScrollingDown, className }: Props) {
-  const { isDark, toggleTheme } = useDarkMode();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <Container onClick={toggleTheme} className={className}>
@@ -65,3 +65,6 @@ const Container = styled.div`
     }
   }
 `;
+function useDarkMode(): { isDark: any; toggleTheme: any } {
+  throw new Error('Function not implemented.');
+}

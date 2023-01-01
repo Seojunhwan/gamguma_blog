@@ -1,24 +1,25 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import Seo from '../../components/common/Seo';
-import { getAllPost, getPost } from '../../utils/mdxUtils';
-import { IFrontMatter } from '../../interfaces';
-import Post from '../../components/post/Post';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-interface IProps {
+import { Seo } from '@components/common';
+import Post from '@components/post/Post';
+import { getAllPost, getPost } from '@utils/mdxUtils';
+import type { FrontMatter } from '@interface';
+
+interface Props {
   mdxSource: MDXRemoteSerializeResult;
-  frontMatter: IFrontMatter;
+  frontMatter: FrontMatter;
   content: string;
 }
 
-interface IGetStaticProps {
+interface GetStaticProps {
   params: {
     slug: [];
   };
 }
 
-export default function Blog({ mdxSource, frontMatter, content }: IProps) {
+export default function Blog({ mdxSource, frontMatter, content }: Props) {
   const { title, description, hashTags, thumbnail } = frontMatter;
   const {
     query: { slug },
@@ -37,7 +38,7 @@ export default function Blog({ mdxSource, frontMatter, content }: IProps) {
   );
 }
 
-export async function getStaticProps({ params }: IGetStaticProps) {
+export async function getStaticProps({ params }: GetStaticProps) {
   const { mdxSource, data, content } = await getPost(params.slug);
   return {
     props: {
