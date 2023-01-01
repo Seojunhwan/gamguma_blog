@@ -31,7 +31,7 @@ function a (){
 a();
 ```
 
-![context_example 3078x1032](/context_example.png)
+<Image src="/context_example.png" alt="context_example" width="3078" height="1032" description="context_example"/>
 
 > 처음 자바스크립트 코드를 실행하는 순간 사진의 (1) 처럼 전역 컨텍스트가 콜스택에 담깁니다.  
 > 브라우저의 경우 `window`, node 환경의 경우 `global` 같은 객체를 사용할 수 있는 이유입니다. 요건 하단의 outerEnvironmentReference 를 읽으시면 이해하실 수 있습니다.
@@ -127,7 +127,7 @@ console.log(guma); //ReferenceError: guma is not defined
 
 더불어 outerEnvironmentReference 는 오직 자신이 선언될 당시의 LexicalEnvironment 를 참조하기에 순차적으로만 접근이 가능하며, 여러 스코프에서 동일한 식별자를 생성하였다 하더라도 가장 먼저 발견된 식별자만 접근이 가능합니다.
 
-![outerEnvironmentReference 1150x700](/outerEnvironmentReference.png)
+<Image src="/outerEnvironmentReference.png" alt="outerEnvironmentReference" width="1150" height="700" description="outerEnvironmentReference"/>
 
 ```js
 const message = 'hello';
