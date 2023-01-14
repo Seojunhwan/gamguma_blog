@@ -64,6 +64,17 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
+const aggro = localFont({
+  src: [
+    {
+      path: '../../styles/fonts/Aggro/Aggro-M.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-aggro',
+});
+
 export default function Layout({ children }: Props) {
   const setIsDark = useSetRecoilState(isDarkAtom);
 
@@ -80,9 +91,11 @@ export default function Layout({ children }: Props) {
     <>
       {/* TODO: ThemeProvider 제거 */}
       <ThemeProvider theme={lightTheme}>
-        <Header />
-        <main className={`${pretendard.variable} mx-auto max-w-5xl pt-24 font-sans`}>{children}</main>
-        <Footer />
+        <div className={`${pretendard.variable} ${aggro.variable}`}>
+          <Header />
+          <main className={`mx-auto max-w-5xl pt-24 font-sans`}>{children}</main>
+          <Footer />
+        </div>
       </ThemeProvider>
     </>
   );

@@ -34,13 +34,6 @@ class MyDocument extends Document {
         <Head>
           <link
             rel='preload'
-            href='/styles/fonts/Aggro/Aggro-M.woff2'
-            as='font'
-            type='font/woff2'
-            crossOrigin='anonymous'
-          />
-          <link
-            rel='preload'
             href='/styles/fonts/SpoqaHanSans/SpoqaHanSansNeo-Regular.woff2'
             as='font'
             type='font/woff2'
