@@ -1,18 +1,13 @@
 import type { ParsedUrlQuery } from 'querystring';
+import { TAGS } from '@utils';
 
-export interface Comment {
-  id: number;
-  author: string;
-  createAt: string;
-  content: string;
-  password: string;
-}
+export type Tag = typeof TAGS[number];
 
 export interface FrontMatter {
   title: string;
   slug: string;
   author: string;
-  hashTags: string[];
+  hashTags: Tag[];
   description: string;
   createAt: string;
   isPublished: boolean;
