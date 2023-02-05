@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import Thumbnail from './Thumbnail';
+import { Profile } from '@components/profile';
 import { getRelativeDate } from '@utils';
 import type { Post } from '@interface';
 
@@ -27,9 +28,12 @@ export default function Posts({ posts }: Props) {
                 <p className='mb-1 max-h-20 overflow-hidden text-ellipsis text-sm font-medium text-gray-600'>
                   {post.data.description}
                 </p>
-                <time dateTime={post.data.createAt} className='text-sm font-light text-gray-400'>
-                  {getRelativeDate(post.data.createAt)}
-                </time>
+                <div className='mt-5 flex items-center space-x-2'>
+                  <Profile imageSize='xsm' />
+                  <time dateTime={post.data.createAt} className='text-sm font-light text-gray-400'>
+                    {getRelativeDate(post.data.createAt)}
+                  </time>
+                </div>
               </div>
             </div>
           </article>

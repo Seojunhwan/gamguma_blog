@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import Thumbnail from './Thumbnail';
@@ -6,6 +7,7 @@ import Code from './Code';
 import { getRelativeDate } from '@utils';
 import type { FrontMatter } from '@interface';
 import ResponsiveImage from './ResponsiveImage';
+import { Profile } from '@components/profile';
 
 interface Props {
   mdxSource: MDXRemoteSerializeResult;
@@ -35,17 +37,21 @@ export default function Post({
   frontMatter: { title, createAt, hashTags, thumbnail },
   content,
 }: Props) {
+  const relativeDate = useMemo(() => getRelativeDate(createAt), [createAt]);
   return (
     <>
       <div className='px-8'>
         <div className='-mx-4 mb-4 overflow-hidden rounded-lg shadow-md lg:-mx-8'>
           <Thumbnail src={thumbnail} />
         </div>
-        <header className='mb-4 flex flex-col space-y-2 border-b-2 pb-4'>
+        <header className='mb-4 flex flex-col space-y-4 border-b-2 pb-4'>
           <h1 className='mt-4 text-3xl font-bold text-gray-700 dark:text-gray-100'>{title}</h1>
-          <time className='text-gray-500 dark:text-gray-100' dateTime={createAt}>
-            {getRelativeDate(createAt)}
-          </time>
+          <div className='flex items-center justify-between'>
+            <Profile imageSize='xsm' />
+            <time className='text-gray-500 dark:text-gray-100' dateTime={createAt}>
+              {relativeDate}
+            </time>
+          </div>
         </header>
         <article
           className='prose prose-sm max-w-full pt-8 
