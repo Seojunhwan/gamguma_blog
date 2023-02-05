@@ -1,17 +1,16 @@
 import Link from 'next/link';
-import React from 'react';
 
-import { useScrolling } from '@hooks';
 import { cls } from '@utils';
+import { useScrollTop } from './hooks';
 
 export default function Header() {
-  const isScrollDown = useScrolling('down');
+  const isScrollTop = useScrollTop();
 
   return (
     <header
       className={cls(
         'fixed top-0 z-10 w-full bg-white bg-opacity-95 py-6 backdrop-blur-[1px] transition-all duration-300 ease-in-out',
-        isScrollDown ? 'h-16 border-b-[1px]' : 'h-32 bg-transparent',
+        isScrollTop ? 'h-16 border-b-[1px]' : 'h-32 bg-transparent',
       )}
     >
       <div className='mx-auto flex h-full w-full max-w-5xl items-center justify-between px-4 lg:px-2'>

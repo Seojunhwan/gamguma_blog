@@ -93,7 +93,7 @@ export default function Layout({ children }: Props) {
       <ThemeProvider theme={lightTheme}>
         <div className={`${pretendard.variable} ${aggro.variable}`}>
           <Header />
-          <main className={`mx-auto max-w-5xl pt-24 font-sans`}>{children}</main>
+          <main className={`mx-auto max-w-5xl pt-[128px] font-sans`}>{children}</main>
           <Footer />
         </div>
       </ThemeProvider>
