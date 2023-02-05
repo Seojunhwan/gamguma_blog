@@ -16,7 +16,7 @@ export const useScrollTop = () => {
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, [handleScroll]);
 
   return scrollTop;
 };
