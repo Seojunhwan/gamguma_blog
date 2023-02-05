@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node ./utils/sitemapGenerator"
+    "prebuild": "node ./utils/sitemapGenerator",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.5",

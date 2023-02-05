@@ -22,7 +22,7 @@ export const getRelativeDate = (date: string | Date) => {
   });
 
   const today = new Date();
-  const targetDate = new Date(date);
+  const targetDate = typeof date === 'string' ? new Date(date) : date;
 
   const { diffDay, diffHour, diffMinute } = getDifferenceDate(today, targetDate);
 
