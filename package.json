@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "prebuild": "node ./utils/sitemapGenerator",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.5",
@@ -46,7 +46,7 @@
     "eslint": "8.5.0",
     "eslint-config-next": "^13.0.6",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.2",
+    "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
