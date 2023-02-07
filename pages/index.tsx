@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { GetStaticProps } from 'next';
 
-import { Seo } from '@components/common';
+import { CategoryNavigation, Seo } from '@components/common';
 import Posts from '@components/post/Posts';
 import Pagination from '@components/post/Pagination';
 import type { GetStaticPropsResult } from '@interface';
@@ -22,7 +22,12 @@ export default function Home({ posts, currentPage, paginationLength }: Props) {
       />
       <Head>{/* <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL} /> */}</Head>
       <SimpleIntroduce />
-      <Posts posts={posts} />
+      <div className='flex items-start space-x-4'>
+        <Posts posts={posts} />
+        <div className='hidden lg:block'>
+          <CategoryNavigation />
+        </div>
+      </div>
       <Pagination currentPage={currentPage} paginationLength={paginationLength} />
     </>
   );
