@@ -1,6 +1,8 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
+const { blueGray, coolGray, lightBlue, trueGray, warmGray, ...restColors } = colors;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
@@ -11,7 +13,7 @@ module.exports = {
       aggro: ['var(--font-aggro)', ...fontFamily.sans],
     },
     colors: {
-      ...colors,
+      ...restColors,
       primary: '#FFE3E1',
       secondary: '#FFD1D1',
       accent: '#FF9494',
