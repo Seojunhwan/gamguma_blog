@@ -9,7 +9,7 @@ interface Props {
   currentPage: number;
 }
 
-function Pagination({ paginationLength, currentPage }: Props) {
+function _Pagination({ paginationLength, currentPage }: Props) {
   const { pages, isFirstPage, isLastPage, previousPage, nextPage } = usePagination(
     currentPage,
     paginationLength,
@@ -67,4 +67,4 @@ function Pagination({ paginationLength, currentPage }: Props) {
   );
 }
 
-export default memo(Pagination);
+export const Pagination = memo(_Pagination);

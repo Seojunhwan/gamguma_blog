@@ -9,7 +9,7 @@ interface Props {
   description?: string;
 }
 
-export default function ResponsiveImage({ src, alt, width, height, description }: Props) {
+export function ResponsiveImage({ src, alt, width, height, description }: Props) {
   const router = useRouter();
   const {
     query: { slug },

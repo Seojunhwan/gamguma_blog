@@ -1,13 +1,11 @@
 import { useMemo } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import Thumbnail from './Thumbnail';
-import Utterances from './Utterances';
-import Code from './Code';
-import { getRelativeDate } from '@utils';
-import type { FrontMatter } from '@interface';
-import ResponsiveImage from './ResponsiveImage';
+import { Code, ResponsiveImage, Thumbnail, Utterances } from '.';
 import { Profile } from '@components/profile';
+import { getRelativeDate } from '@utils';
+
+import type { FrontMatter } from '@interface';
 
 interface Props {
   mdxSource: MDXRemoteSerializeResult;
@@ -32,11 +30,7 @@ const mdxComponents = {
   ),
 };
 
-export default function Post({
-  mdxSource,
-  frontMatter: { title, createAt, hashTags, thumbnail },
-  content,
-}: Props) {
+export function Post({ mdxSource, frontMatter: { title, createAt, hashTags, thumbnail }, content }: Props) {
   const relativeDate = useMemo(() => getRelativeDate(createAt), [createAt]);
   return (
     <>

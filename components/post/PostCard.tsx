@@ -1,5 +1,7 @@
+import { motion } from 'framer-motion';
+
+import { Thumbnail } from '.';
 import { Profile } from '@components/profile';
-import Thumbnail from './Thumbnail';
 import { getRelativeDate } from '@utils';
 
 import type { Post } from '@interface';
@@ -10,7 +12,11 @@ interface Props {
 
 export function PostCard({ post }: Props) {
   return (
-    <article
+    <motion.article
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.5 }}
       className='mb-8 flex flex-col rounded-md p-4 shadow-sm ring-1 ring-gray-200 transition-all 
                 hover:-translate-y-1 hover:bg-neutral-50 hover:ring-4 hover:ring-amber-200
               active:bg-neutral-100 dark:ring-gray-700 md:flex-row md:items-center md:justify-between md:space-x-2 md:py-8'
@@ -32,6 +38,6 @@ export function PostCard({ post }: Props) {
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

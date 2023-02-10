@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { cls } from '@utils';
-import { useRouter } from 'next/router';
 import { TAGS as tags } from '@constants';
 
 export function CategoryNavigation() {

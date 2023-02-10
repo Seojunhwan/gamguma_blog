@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { cls } from '@utils';
 import { useScrollTop } from './hooks';
 
-export default function Header() {
+export function Header() {
   const isScrollTop = useScrollTop();
 
   return (

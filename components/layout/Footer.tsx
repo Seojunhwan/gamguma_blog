@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className='z-10 mt-12 w-full'>
       <div className='mx-auto flex w-full max-w-5xl items-center justify-between border-t-[1px] px-4 pt-12 pb-14 lg:px-0'>

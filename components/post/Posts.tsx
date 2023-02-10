@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { PostCard } from './PostCard';
+
+import { PostCard } from '.';
 
 import type { Post } from '@interface';
 
@@ -7,7 +8,7 @@ interface Props {
   posts: Post[];
 }
 
-export default function Posts({ posts }: Props) {
+export function Posts({ posts }: Props) {
   return (
     <div className='mb-2 flex grow flex-col px-4 lg:px-0'>
       {posts.map((post) => (

@@ -2,8 +2,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
+import { Post } from '@components/post';
 import { Seo } from '@components/common';
-import Post from '@components/post/Post';
+
 import { getAllPost, getPost } from '@utils/mdxUtils';
 import type { FrontMatter } from '@interface';
 

@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-interface ISeo {
+interface Props {
   title: string;
   description: string;
   keywords: string[];
   thumbnail: string;
 }
 
-export default function Seo({ title, description, keywords, thumbnail }: ISeo) {
+export function Seo({ title, description, keywords, thumbnail }: Props) {
   const router = useRouter();
   return (
     <Head>

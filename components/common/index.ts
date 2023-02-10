@@ -1,7 +1,9 @@
-export { default as Button } from './Button';
-export { default as Modal } from './Modal';
-export { default as Portal } from './Portal';
-export { default as Providers } from './Providers';
-export { default as Seo } from './Seo';
-export { default as TypeWriter } from './TypeWriter';
+export { Button } from './Button';
+export { Modal } from './Modal';
+export { Portal } from './Portal';
+export { Providers } from './Providers';
+export { Seo } from './Seo';
+export { TypeWriter } from './TypeWriter';
 export { CategoryNavigation } from './CategoryNavigation';
+export { ThemeChangeButton } from './ThemeChangeButton';
+export { GoogleAnalytics } from './GoogleAnalytics';

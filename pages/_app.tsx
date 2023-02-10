@@ -1,16 +1,16 @@
 import Head from 'next/head';
-import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import type { AppProps } from 'next/app';
 
-import GoogleAnalytics from '@components/GoogleAnalytics';
-import { Providers } from '@components/common';
+import { GoogleAnalytics, Providers } from '@components/common';
 import { Layout } from '@components/layout';
 
 import '@styles/globals.css';
 import '@styles/fonts.css';
 import '@styles/prism-one-dark.css';
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     console.log('%c감구마 블로그', `color:#BAABDA; font-size: 4rem; font-weight: bold`);
   }, []);
@@ -23,9 +23,26 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <GoogleAnalytics />
       <Providers>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <motion.main
+          variants={{
+            initial: { x: 100, opacity: 0 },
+            animate: { x: 0, opacity: 1 },
+            exit: { x: -100, opacity: 0 },
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 500,
+            damping: 30,
+          }}
+          initial='initial'
+          animate='animate'
+          exit='exit'
+          key={router.asPath}
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </motion.main>
       </Providers>
     </>
   );

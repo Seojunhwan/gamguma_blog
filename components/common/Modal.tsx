@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Portal from './Portal';
+
+import { Portal } from './Portal';
 
 const fadeIn = keyframes`
   from {
@@ -21,12 +22,11 @@ const fadeOut = keyframes`
 `;
 
 interface Props {
-  children: React.ReactNode;
   visible: boolean;
   toggleModal: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function Modal({ children, visible, toggleModal }: Props) {
+export function Modal({ children, visible, toggleModal }: PropsWithChildren<Props>) {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(visible);
 

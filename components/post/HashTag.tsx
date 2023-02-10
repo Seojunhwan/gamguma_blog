@@ -17,7 +17,7 @@ interface IProps {
   }[];
 }
 
-export default function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCountInfo }: IProps) {
+export function HashTag({ hashTags, articleId, isHashTagMenu, hashTagCountInfo }: IProps) {
   const router = useRouter();
   const {
     query: { hashTag: selectHashTag },

@@ -1,6 +1,6 @@
 // Thanks for yeun https://github.com/yeun/open-color //
 
-const openColor = {
+export const openColor = {
   white: '#ffffff',
 
   black: '#000000',
@@ -147,4 +147,3 @@ const openColor = {
   orange8: '#e8590c',
   orange9: '#d9480f',
 };
-export default openColor;

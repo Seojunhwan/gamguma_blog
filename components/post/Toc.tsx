@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useIntersectionObserver } from './hooks/useIntersectionObserver';
-import media from '../../styles/media';
 
-interface ITocProps {
+import { media } from '@styles';
+import { useIntersectionObserver } from './hooks';
+
+interface TocProps {
   content: string;
 }
 
-interface IItemProps {
+interface TocItemProps {
   depth: number;
   isSelected: boolean;
 }
 
-export default function Toc({ content }: ITocProps) {
+export function Toc({ content }: TocProps) {
   const [activeId, setActiveId] = useState('');
   useIntersectionObserver(setActiveId, content);
   const titles = content.split('\n').filter((t) => t.startsWith('#') && !t.includes('include'));
@@ -63,7 +64,7 @@ const Container = styled.div`
   }
 `;
 
-const Item = styled.li<IItemProps>`
+const Item = styled.li<TocItemProps>`
   cursor: pointer;
   font-size: 1.4rem;
   padding: 0.5rem;

@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function SimpleIntroduce() {
+export function SimpleIntroduce() {
   return (
     <div className='group mt-8 mb-14 py-4 px-8 lg:px-2'>
       {/* <h2 className='mb-4 text-lg'>감 구 마</h2> */}

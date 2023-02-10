@@ -1,3 +1,3 @@
-export { default as Layout } from './Layout';
-export { default as Header } from './Header';
-export { default as Footer } from './Footer';
+export { Layout } from './Layout';
+export { Header } from './Header';
+export { Footer } from './Footer';

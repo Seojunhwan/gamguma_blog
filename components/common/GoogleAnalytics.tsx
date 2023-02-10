@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-function GoogleAnalytics() {
+export function GoogleAnalytics() {
   if (process.env.NODE_ENV !== 'production') {
     return null;
   }
@@ -22,5 +22,3 @@ function GoogleAnalytics() {
     </>
   );
 }
-
-export default GoogleAnalytics;

@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-export default function ThemeChangeButton({ isScrollingDown, className }: Props) {
+export function ThemeChangeButton({ isScrollingDown, className }: Props) {
   const { isDark, toggleTheme } = useTheme();
 
   return (

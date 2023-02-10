@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-export default function Utterances() {
+export function Utterances() {
   const utterances = useRef<HTMLElement | null>(null);
   useEffect(() => {
     if (typeof utterances.current === null) return;

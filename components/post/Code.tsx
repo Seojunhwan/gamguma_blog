@@ -1,7 +1,5 @@
-import { memo as ReactMemo, PropsWithChildren, useEffect } from 'react';
+import { memo, PropsWithChildren, useEffect } from 'react';
 import hljs from 'highlight.js';
-
-import { cls } from '@utils';
 
 import 'highlight.js/styles/atom-one-dark.css';
 
@@ -15,12 +13,12 @@ interface Props {
   className: string;
 }
 
-function Code({ children, className: language }: PropsWithChildren<Props>) {
+function _Code({ children, className: language }: PropsWithChildren<Props>) {
   useEffect(() => {
     hljs.highlightAll();
   }, []);
 
-  return <code className={cls(language)}>{children}</code>;
+  return <code className={language}>{children}</code>;
 }
 
-export default ReactMemo(Code);
+export const Code = memo(_Code);

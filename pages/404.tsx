@@ -1,7 +1,7 @@
+import { media } from '@styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import media from '../styles/media';
 
 export default function Custom404() {
   const router = useRouter();

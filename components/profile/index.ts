@@ -1,2 +1,3 @@
-export * from './ProfileImage';
-export * from './Profile';
+export { ProfileImage } from './ProfileImage';
+export { Profile } from './Profile';
+export { SimpleIntroduce } from './SimpleIntroduce';
