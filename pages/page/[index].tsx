@@ -1,10 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Seo } from '@components/common';
-import Posts from '@components/post/Posts';
-import Pagination from '@components/post/Pagination';
-import { BLOG_THUMBNAIL } from '@utils';
+import { Pagination, Posts } from '@components/post';
 import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
+import { BLOG_THUMBNAIL } from '@constants';
+
 import type { GetStaticPropsParams, GetStaticPropsResult } from '@interface';
 
 interface Props extends GetStaticPropsResult {}

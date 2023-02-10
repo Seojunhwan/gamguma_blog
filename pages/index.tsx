@@ -2,14 +2,12 @@ import Head from 'next/head';
 import type { GetStaticProps } from 'next';
 
 import { CategoryNavigation, Seo } from '@components/common';
-
-import type { GetStaticPropsResult } from '@interface';
-
-import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
-
 import { SimpleIntroduce } from '@components/profile';
 import { Pagination, Posts } from '@components/post';
 import { BLOG_THUMBNAIL } from '@constants';
+import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
+
+import type { GetStaticPropsResult } from '@interface';
 
 interface Props extends GetStaticPropsResult {}
 

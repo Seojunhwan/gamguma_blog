@@ -4,8 +4,8 @@ import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { Post } from '@components/post';
 import { Seo } from '@components/common';
-
 import { getAllPost, getPost } from '@utils/mdxUtils';
+
 import type { FrontMatter } from '@interface';
 
 interface Props {
