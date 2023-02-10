@@ -1,5 +1,5 @@
 import type { ParsedUrlQuery } from 'querystring';
-import { TAGS } from '@utils';
+import { TAGS } from '@constants';
 
 export type Tag = typeof TAGS[number];
 

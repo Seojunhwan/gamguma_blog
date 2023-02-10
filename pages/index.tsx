@@ -5,9 +5,10 @@ import { CategoryNavigation, Seo } from '@components/common';
 import Posts from '@components/post/Posts';
 import Pagination from '@components/post/Pagination';
 import type { GetStaticPropsResult } from '@interface';
-import { BLOG_THUMBNAIL } from '@utils';
+
 import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
 import SimpleIntroduce from '@components/SimpleIntroduce';
+import { BLOG_THUMBNAIL } from '@constants';
 
 interface Props extends GetStaticPropsResult {}
 

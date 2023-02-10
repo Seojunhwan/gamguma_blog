@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import { cls, TAGS } from '@utils';
+import { cls } from '@utils';
 import { useRouter } from 'next/router';
+import { TAGS as tags } from '@constants';
 
 export function CategoryNavigation() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export function CategoryNavigation() {
         카테고리
       </h3>
       <ul className='text-center'>
-        {TAGS.map((tag) => (
+        {tags.map((tag) => (
           <Link key={tag} href={`/categories/${tag.toLocaleLowerCase()}`}>
             <li
               className={cls(

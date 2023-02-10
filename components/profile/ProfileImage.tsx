@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import { cls, PROFILE_IMAGE } from '@utils';
+import { cls } from '@utils';
+import { PROFILE_IMAGE } from '@constants';
 
 type ProfileSize = 'xsm' | 'sm' | 'md' | 'lg';
 

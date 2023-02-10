@@ -25,6 +25,7 @@
       "@hooks/*": ["hooks/*"],
       "@interface": ["interfaces"],
       "@interface/*": ["interfaces/*"],
+      "@constants": ["constants"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/sitemapGenerator.js"],

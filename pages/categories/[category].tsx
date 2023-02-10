@@ -4,11 +4,12 @@ import Posts from '@components/post/Posts';
 import type { GetStaticPropsParams, GetStaticPropsResult, Post } from '@interface';
 import { CategoryNavigation, Seo } from '@components/common';
 import Pagination from '@components/post/Pagination';
-import { BLOG_THUMBNAIL, TAGS } from '@utils';
+
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getAllPost } from '@utils/mdxUtils';
+import { BLOG_THUMBNAIL, TAGS as tags } from '@constants';
 
 interface Props {
   posts: Post[];
@@ -36,7 +37,7 @@ export default function Categories({ posts = [] }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = TAGS.map((tag) => ({ params: { category: tag.toLocaleLowerCase() } }));
+  const paths = tags.map((tag) => ({ params: { category: tag.toLocaleLowerCase() } }));
 
   return {
     paths: paths,

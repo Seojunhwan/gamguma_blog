@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import glob from 'glob';
 import { FrontMatter, Post } from '@interface';
-import { POSTS_PER_PAGE_OFFSET } from '@utils';
+import { POSTS_PER_PAGE_OFFSET } from '@constants';
 
 const DIR_STRING = '/posts';
 
