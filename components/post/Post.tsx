@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { Code, ResponsiveImage, Thumbnail, Utterances } from '.';
 import { Profile } from '@components/profile';
 import { getRelativeDate } from '@utils';
+import { animateVariants } from '@constants';
 
 import type { FrontMatter } from '@interface';
 
@@ -34,7 +36,7 @@ export function Post({ mdxSource, frontMatter: { title, createAt, hashTags, thum
   const relativeDate = useMemo(() => getRelativeDate(createAt), [createAt]);
   return (
     <>
-      <div className='px-8'>
+      <motion.div variants={animateVariants} initial='initial' animate='animate' exit='exit' className='px-8'>
         <div className='-mx-4 mb-4 overflow-hidden rounded-lg shadow-md lg:-mx-8'>
           <Thumbnail src={thumbnail} />
         </div>
@@ -61,7 +63,7 @@ export function Post({ mdxSource, frontMatter: { title, createAt, hashTags, thum
         >
           <MDXRemote {...mdxSource} components={mdxComponents} />
         </article>
-      </div>
+      </motion.div>
       <Utterances />
     </>
   );
