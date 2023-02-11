@@ -1,11 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import { motion } from 'framer-motion';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { CategoryNavigation, Seo } from '@components/common';
+import { Empty } from '@components/lotties';
 import { Posts } from '@components/post';
-import { BLOG_THUMBNAIL, TAGS as tags } from '@constants';
+import { animateVariants, BLOG_THUMBNAIL, TAGS as tags } from '@constants';
 import { getAllPost } from '@utils/mdxUtils';
-
 import { isEmpty } from '@utils';
 import type { Post } from '@interface';
 
@@ -29,9 +30,16 @@ export default function Categories({ posts = [] }: Props) {
         {!isEmptyCategory ? (
           <Posts posts={posts} />
         ) : (
-          <div className='mb-2 flex grow flex-col items-center px-4 lg:px-0'>
-            <h1 className='mb-2 text-3xl font-bold'>아직 작성 중인가봐요!</h1>
-          </div>
+          <motion.div
+            variants={animateVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+            className='mb-2 flex grow flex-col items-center px-4 lg:px-0'
+          >
+            <h1 className='mb-4 text-2xl font-semibold'>아직 작성된 글이 없습니다.</h1>
+            <Empty className='w-1/2 md:w-2/5' />
+          </motion.div>
         )}
         <div className='hidden lg:block'>
           <CategoryNavigation />
