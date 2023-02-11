@@ -1,5 +1,7 @@
-import { memo, PropsWithChildren, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import hljs from 'highlight.js';
+
+import type { PropsWithChildren } from 'react';
 
 import 'highlight.js/styles/atom-one-dark.css';
 
