@@ -22,8 +22,6 @@ interface Props {
 
 const mdxComponents = {
   code: Code,
-  img: ResponsiveImage,
-  Image: ResponsiveImage,
   a: (props: any) => (
     <a
       {...props}
@@ -32,8 +30,13 @@ const mdxComponents = {
   ),
 };
 
-export function Post({ mdxSource, frontMatter: { title, createAt, hashTags, thumbnail }, content }: Props) {
+export function Post({
+  mdxSource,
+  frontMatter: { title, createAt, hashTags, thumbnail, slug },
+  content,
+}: Props) {
   const relativeDate = useMemo(() => getRelativeDate(createAt), [createAt]);
+
   return (
     <>
       <motion.div variants={animateVariants} initial='initial' animate='animate' exit='exit' className='px-8'>
@@ -61,7 +64,14 @@ export function Post({ mdxSource, frontMatter: { title, createAt, hashTags, thum
                     md:prose-pre:-mx-8
                     lg:prose-base'
         >
-          <MDXRemote {...mdxSource} components={mdxComponents} />
+          <MDXRemote
+            {...mdxSource}
+            components={{
+              ...mdxComponents,
+              img: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
+              Image: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
+            }}
+          />
         </article>
       </motion.div>
       <Utterances />
