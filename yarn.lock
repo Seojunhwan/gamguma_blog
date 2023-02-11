@@ -4302,6 +4302,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-web@npm:^5.10.2":
+  version: 5.10.2
+  resolution: "lottie-web@npm:5.10.2"
+  checksum: 9ec80b479d8d03c079bd4f246d301f0c4aac2c4d6f8daaa79f6f3fc285aaba377c64879f6748d49c1db52b9854aea81c3203d858e9c686f7a47cd8b771d112d0
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -5255,6 +5262,7 @@ __metadata:
     highlight.js: ^11.7.0
     husky: ^8.0.0
     lint-staged: ^13.1.0
+    lottie-web: ^5.10.2
     next: ^13.1.1
     next-mdx-remote: ^3.0.8
     postcss: ^8.4.20
