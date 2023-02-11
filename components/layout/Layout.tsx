@@ -28,9 +28,9 @@ export function Layout({ children }: Props) {
     <>
       {/* TODO: ThemeProvider 제거 */}
       <ThemeProvider theme={lightTheme}>
-        <div className={`${pretendard.variable} ${aggro.variable}`}>
+        <div className={`${pretendard.variable} ${aggro.variable} flex min-h-screen flex-col`}>
           <Header />
-          <main className={`mx-auto max-w-5xl pt-[128px] font-sans`}>{children}</main>
+          <main className={`mx-auto w-full max-w-5xl grow pt-[128px] font-sans`}>{children}</main>
           <Footer />
         </div>
       </ThemeProvider>
