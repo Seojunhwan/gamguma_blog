@@ -21,18 +21,13 @@ interface GetStaticProps {
 }
 
 export default function Blog({ mdxSource, frontMatter, content }: Props) {
-  const { title, description, hashTags, thumbnail } = frontMatter;
-  const {
-    query: { slug },
-  } = useRouter();
+  const { title, description, hashTags, thumbnail, slug } = frontMatter;
+
   return (
     <>
       <Seo title={title} description={description} keywords={hashTags} thumbnail={thumbnail} />
       <Head>
-        <link
-          rel='canonical'
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${typeof slug === 'object' ? slug.join('/') : ''}`}
-        />
+        <link rel='canonical' href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${slug}`} />
       </Head>
       <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
     </>
@@ -41,10 +36,11 @@ export default function Blog({ mdxSource, frontMatter, content }: Props) {
 
 export async function getStaticProps({ params }: GetStaticProps) {
   const { mdxSource, data, content } = await getPost(params.slug);
+
   return {
     props: {
       mdxSource,
-      frontMatter: data,
+      frontMatter: { ...data, slug: params.slug.join('/') },
       content,
     },
   };
