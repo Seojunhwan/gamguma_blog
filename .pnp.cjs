@@ -60,7 +60,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:18.2.0"],\
             ["react-is", "npm:18.2.0"],\
-            ["react-lottie", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:1.2.3"],\
             ["recoil", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:0.5.2"],\
             ["recoil-persist", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:4.0.0"],\
             ["rehype-slug", "npm:5.0.1"],\
@@ -1959,17 +1958,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["babel-runtime", [\
-        ["npm:6.26.0", {\
-          "packageLocation": "./.yarn/cache/babel-runtime-npm-6.26.0-d38e7946b4-8aeade9466.zip/node_modules/babel-runtime/",\
-          "packageDependencies": [\
-            ["babel-runtime", "npm:6.26.0"],\
-            ["core-js", "npm:2.6.12"],\
-            ["regenerator-runtime", "npm:0.11.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["bail", [\
         ["npm:1.0.5", {\
           "packageLocation": "./.yarn/cache/bail-npm-1.0.5-2d4ac89442-6c334940d7.zip/node_modules/bail/",\
@@ -2475,15 +2463,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["convert-source-map", "npm:1.7.0"],\
             ["safe-buffer", "npm:5.1.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["core-js", [\
-        ["npm:2.6.12", {\
-          "packageLocation": "./.yarn/unplugged/core-js-npm-2.6.12-0b93d77d31/node_modules/core-js/",\
-          "packageDependencies": [\
-            ["core-js", "npm:2.6.12"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5246,15 +5225,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["lottie-web", [\
-        ["npm:5.10.2", {\
-          "packageLocation": "./.yarn/cache/lottie-web-npm-5.10.2-b1628c6dac-9ec80b479d.zip/node_modules/lottie-web/",\
-          "packageDependencies": [\
-            ["lottie-web", "npm:5.10.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["lru-cache", [\
         ["npm:6.0.0", {\
           "packageLocation": "./.yarn/cache/lru-cache-npm-6.0.0-b4c8668fe1-f97f499f89.zip/node_modules/lru-cache/",\
@@ -6296,7 +6266,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:18.2.0"],\
             ["react-is", "npm:18.2.0"],\
-            ["react-lottie", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:1.2.3"],\
             ["recoil", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:0.5.2"],\
             ["recoil-persist", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:4.0.0"],\
             ["rehype-slug", "npm:5.0.1"],\
@@ -7204,30 +7173,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["react-lottie", [\
-        ["npm:1.2.3", {\
-          "packageLocation": "./.yarn/cache/react-lottie-npm-1.2.3-3d4f0a3852-05326e40b4.zip/node_modules/react-lottie/",\
-          "packageDependencies": [\
-            ["react-lottie", "npm:1.2.3"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:1.2.3", {\
-          "packageLocation": "./.yarn/__virtual__/react-lottie-virtual-dbf2766192/0/cache/react-lottie-npm-1.2.3-3d4f0a3852-05326e40b4.zip/node_modules/react-lottie/",\
-          "packageDependencies": [\
-            ["react-lottie", "virtual:55f0b8057497357da30e7b6d95bdcd8f6aae8d7be9a41427d6ecfa2b52394406dcbd7b2b8c9a416a0c4dacf90b706eef8d522dbd375457fce624af25a90f5f5e#npm:1.2.3"],\
-            ["@types/react", "npm:17.0.38"],\
-            ["babel-runtime", "npm:6.26.0"],\
-            ["lottie-web", "npm:5.10.2"],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
-            "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["read-cache", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/read-cache-npm-1.0.0-00fa89ed05-cffc728b9e.zip/node_modules/read-cache/",\
@@ -7328,13 +7273,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["regenerator-runtime", [\
-        ["npm:0.11.1", {\
-          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.11.1-a31e4f8dcd-3c97bd2c7b.zip/node_modules/regenerator-runtime/",\
-          "packageDependencies": [\
-            ["regenerator-runtime", "npm:0.11.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:0.13.4", {\
           "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.4-09f9ad5d1a-ba49669ddb.zip/node_modules/regenerator-runtime/",\
           "packageDependencies": [\
