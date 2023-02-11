@@ -17,6 +17,10 @@ interface Props {
 
 function _Code({ children, className: language }: PropsWithChildren<Props>) {
   useEffect(() => {
+    // TODO: 이스케이프 확인해보기
+    hljs.configure({
+      ignoreUnescapedHTML: true,
+    });
     hljs.highlightAll();
   }, []);
 
