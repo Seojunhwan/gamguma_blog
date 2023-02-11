@@ -1,14 +1,13 @@
-import { useRecoilState } from 'recoil';
-import { isDarkAtom } from '../recoil/atoms';
+import { useContext } from 'react';
+
+import { ThemeContext } from '@context';
 
 export const useTheme = () => {
-  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const value = useContext(ThemeContext);
 
-  const toggleTheme = () => {
-    setIsDark(isDark ? false : true);
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    document.documentElement.classList.toggle('dark');
-  };
+  if (!value) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
 
-  return { isDark, toggleTheme };
+  return value;
 };
