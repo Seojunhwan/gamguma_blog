@@ -1,20 +1,26 @@
+import { useMemo } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+import { ProgressIndicator } from './ProgressIndicator';
 import { cls } from '@utils';
 import { useScrollTop } from './hooks';
 
 export function Header() {
   const isScrollTop = useScrollTop();
+  const router = useRouter();
+
+  const isPost = useMemo(() => router.asPath.startsWith('/post'), [router.asPath]);
 
   return (
     <header
       className={cls(
-        'fixed top-0 left-0 right-0 z-30 bg-white bg-opacity-95 backdrop-blur-[1px] transition-all duration-300 ease-in-out md:m-4',
+        'fixed top-0 left-0 right-0 z-30 bg-opacity-95 backdrop-blur-[1px] transition-all duration-300 ease-in-out md:m-4',
       )}
     >
       <div
         className={cls(
-          'mx-auto max-w-5xl py-4',
+          'relative mx-auto max-w-6xl overflow-hidden bg-white py-4',
           isScrollTop ? 'transition-all md:rounded-xl md:shadow-lg' : '',
         )}
       >
@@ -53,6 +59,7 @@ export function Header() {
           /> */}
           </div>
         </div>
+        {isPost && <ProgressIndicator />}
       </div>
     </header>
   );
