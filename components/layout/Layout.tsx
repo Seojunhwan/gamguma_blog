@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router';
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { motion } from 'framer-motion';
 import { useSetRecoilState } from 'recoil';
+
+import type { ReactNode } from 'react';
 
 import { Header, Footer } from '.';
 import { isDarkAtom } from '@recoil/atoms';
-
 import { aggro, pretendard, lightTheme } from '@styles';
 
 interface Props {
@@ -15,7 +14,6 @@ interface Props {
 
 export function Layout({ children }: Props) {
   const setIsDark = useSetRecoilState(isDarkAtom);
-  const router = useRouter();
 
   useEffect(() => {
     const persistTheme = localStorage.getItem('theme');
@@ -32,7 +30,7 @@ export function Layout({ children }: Props) {
       <ThemeProvider theme={lightTheme}>
         <div className={`${pretendard.variable} ${aggro.variable}`}>
           <Header />
-          <motion.main className={`mx-auto max-w-5xl pt-[128px] font-sans`}>{children}</motion.main>
+          <main className={`mx-auto max-w-5xl pt-[128px] font-sans`}>{children}</main>
           <Footer />
         </div>
       </ThemeProvider>

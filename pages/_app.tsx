@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import type { AppProps } from 'next/app';
 
 import { GoogleAnalytics, Providers } from '@components/common';
@@ -21,26 +20,9 @@ function App({ Component, pageProps, router }: AppProps) {
       </Head>
       <GoogleAnalytics />
       <Providers>
-        <motion.main
-          variants={{
-            initial: { x: 100, opacity: 0 },
-            animate: { x: 0, opacity: 1 },
-            exit: { x: -100, opacity: 0 },
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 500,
-            damping: 30,
-          }}
-          initial='initial'
-          animate='animate'
-          exit='exit'
-          key={router.asPath}
-        >
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </motion.main>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Providers>
     </>
   );

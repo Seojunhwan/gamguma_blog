@@ -40,4 +40,4 @@ export const TAG_COLORS: Record<Tag, string> = {
   Algorithm: '#f34b7d',
   Blog: '#ff9999',
   ETC: '#555555',
-};
+} as const;
