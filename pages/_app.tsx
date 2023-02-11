@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 
 import { GoogleAnalytics, Providers } from '@components/common';
@@ -20,9 +21,11 @@ function App({ Component, pageProps, router }: AppProps) {
       </Head>
       <GoogleAnalytics />
       <Providers>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AnimatePresence mode='wait' initial={false}>
+          <Layout key={router.asPath}>
+            <Component {...pageProps} />
+          </Layout>
+        </AnimatePresence>
       </Providers>
     </>
   );
