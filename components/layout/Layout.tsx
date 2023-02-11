@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 
 import { Header, Footer } from '.';
 import { isDarkAtom } from '@recoil/atoms';
-import { aggro, pretendard, lightTheme } from '@styles';
+import { aggro, pretendard } from '@styles';
 
 interface Props {
   children: ReactNode;
@@ -26,14 +26,11 @@ export function Layout({ children }: Props) {
 
   return (
     <>
-      {/* TODO: ThemeProvider 제거 */}
-      <ThemeProvider theme={lightTheme}>
-        <div className={`${pretendard.variable} ${aggro.variable} flex min-h-screen flex-col`}>
-          <Header />
-          <main className={`mx-auto w-full max-w-5xl grow pt-[128px] font-sans`}>{children}</main>
-          <Footer />
-        </div>
-      </ThemeProvider>
+      <div className={`${pretendard.variable} ${aggro.variable} flex min-h-screen flex-col`}>
+        <Header />
+        <main className={`mx-auto w-full max-w-5xl grow pt-[128px] font-sans`}>{children}</main>
+        <Footer />
+      </div>
     </>
   );
 }

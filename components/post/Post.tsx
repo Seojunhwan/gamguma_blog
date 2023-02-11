@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { Code, ResponsiveImage, Thumbnail, Utterances } from '.';
@@ -39,21 +39,28 @@ export function Post({
 
   return (
     <>
-      <motion.div variants={animateVariants} initial='initial' animate='animate' exit='exit' className='px-8'>
-        <div className='-mx-4 mb-4 overflow-hidden rounded-lg shadow-md lg:-mx-8'>
-          <Thumbnail src={thumbnail} />
-        </div>
-        <header className='mb-4 flex flex-col space-y-4 border-b-2 pb-4'>
-          <h1 className='mt-4 text-3xl font-bold text-gray-700 dark:text-gray-100'>{title}</h1>
-          <div className='flex items-center justify-between'>
-            <Profile imageSize='xsm' />
-            <time className='text-gray-500 dark:text-gray-100' dateTime={createAt}>
-              {relativeDate}
-            </time>
+      <AnimatePresence>
+        <motion.div
+          variants={animateVariants}
+          initial='initial'
+          animate='animate'
+          exit='exit'
+          className='px-8'
+        >
+          <div className='-mx-4 mb-4 overflow-hidden rounded-lg shadow-md lg:-mx-8'>
+            <Thumbnail src={thumbnail} />
           </div>
-        </header>
-        <article
-          className='prose prose-sm max-w-full pt-8 
+          <header className='mb-4 flex flex-col space-y-4 border-b-2 pb-4'>
+            <h1 className='mt-4 text-3xl font-bold text-gray-700 dark:text-gray-100'>{title}</h1>
+            <div className='flex items-center justify-between'>
+              <Profile imageSize='xsm' />
+              <time className='text-gray-500 dark:text-gray-100' dateTime={createAt}>
+                {relativeDate}
+              </time>
+            </div>
+          </header>
+          <article
+            className='prose prose-sm max-w-full pt-8 
                     prose-h2:border-b-2 prose-h2:pb-2
                     prose-blockquote:py-1
                     prose-blockquote:font-normal prose-blockquote:not-italic prose-code:rounded-sm prose-code:bg-gray-200 prose-code:px-2
@@ -63,18 +70,19 @@ export function Post({
                     dark:prose-code:bg-gray-700 md:prose-base
                     md:prose-pre:-mx-8
                     lg:prose-base'
-        >
-          <MDXRemote
-            {...mdxSource}
-            components={{
-              ...mdxComponents,
-              img: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
-              Image: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
-            }}
-          />
-        </article>
-      </motion.div>
-      <Utterances />
+          >
+            <MDXRemote
+              {...mdxSource}
+              components={{
+                ...mdxComponents,
+                img: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
+                Image: (props: any) => ResponsiveImage({ ...props, src: `/${slug}/images${props.src}` }),
+              }}
+            />
+          </article>
+        </motion.div>
+        <Utterances />
+      </AnimatePresence>
     </>
   );
 }
