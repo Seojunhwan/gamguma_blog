@@ -7,7 +7,8 @@ interface Props {
 }
 
 export function ThemeChangeButton({ isScrollingDown, className }: Props) {
-  const { isDark, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <Container onClick={toggleTheme} className={className}>
@@ -65,6 +66,3 @@ const Container = styled.div`
     }
   }
 `;
-function useDarkMode(): { isDark: any; toggleTheme: any } {
-  throw new Error('Function not implemented.');
-}
