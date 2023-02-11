@@ -6,6 +6,7 @@ import { Posts } from '@components/post';
 import { BLOG_THUMBNAIL, TAGS as tags } from '@constants';
 import { getAllPost } from '@utils/mdxUtils';
 
+import { isEmpty } from '@utils';
 import type { Post } from '@interface';
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 }
 
 export default function Categories({ posts = [] }: Props) {
+  const isEmptyCategory = isEmpty(posts);
+
   return (
     <>
       <Seo
@@ -23,7 +26,13 @@ export default function Categories({ posts = [] }: Props) {
       />
       <Head>{/* <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL} /> */}</Head>
       <div className='flex items-start space-x-4'>
-        <Posts posts={posts} />
+        {!isEmptyCategory ? (
+          <Posts posts={posts} />
+        ) : (
+          <div className='mb-2 flex grow flex-col items-center px-4 lg:px-0'>
+            <h1 className='mb-2 text-3xl font-bold'>아직 작성 중인가봐요!</h1>
+          </div>
+        )}
         <div className='hidden lg:block'>
           <CategoryNavigation />
         </div>
