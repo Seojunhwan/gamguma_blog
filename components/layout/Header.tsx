@@ -7,10 +7,10 @@ import { cls } from '@utils';
 import { useScrollTop } from './hooks';
 
 export function Header() {
-  const isScrollTop = useScrollTop();
   const router = useRouter();
 
-  const isPost = useMemo(() => router.asPath.startsWith('/post'), [router.asPath]);
+  const isScrollTop = useScrollTop();
+  const isPost = router.asPath.startsWith('/post');
 
   return (
     <header
