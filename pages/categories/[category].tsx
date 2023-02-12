@@ -35,8 +35,7 @@ export default function Categories({ posts = [] }: Props) {
               variants={animateVariants}
               initial='initial'
               animate='animate'
-              exit='exit'
-              className='mb-2 flex grow flex-col items-center px-4 lg:px-0'
+              className='mb-2 flex grow flex-col items-center justify-center px-4 py-8 lg:px-0'
             >
               <h1 className='mb-4 text-2xl font-semibold'>아직 작성된 글이 없습니다.</h1>
               <Empty className='w-1/2 md:w-2/5' />
