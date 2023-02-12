@@ -29,7 +29,9 @@ export default function Blog({ mdxSource, frontMatter, content }: Props) {
       <Head>
         <link rel='canonical' href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${slug}`} />
       </Head>
-      <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
+      <div className='mx-auto max-w-3xl'>
+        <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
+      </div>
     </>
   );
 }
