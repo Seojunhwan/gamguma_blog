@@ -1,31 +1,34 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
-interface ImageProps {
+interface Props {
   src: string;
   alt: string;
+  width: string;
+  height: string;
+  description?: string;
 }
 
-export default function ResponsiveImage({ src, alt }: ImageProps) {
-  const router = useRouter();
-  const {
-    query: { slug },
-  } = router;
-
-  const relativeSrc = (() => {
-    if (Array.isArray(slug)) {
-      return `/${slug.join('/')}/images${src}`;
-    }
-    return src;
-  })();
-
-  const size = (() => {
-    const sizeInfo = alt.split(' ')[1].split('x');
-    return {
-      width: Number(sizeInfo[0]),
-      height: Number(sizeInfo[1]),
-    };
-  })();
-
-  return <Image objectFit='contain' priority src={relativeSrc} alt={alt} {...size} layout='responsive' />;
+export function ResponsiveImage({ src, alt, width, height, description }: Props) {
+  return (
+    <motion.div
+      initial={{
+        filter: 'blur(10px)',
+      }}
+      whileInView={{
+        filter: 'blur(0px)',
+      }}
+      transition={{ duration: 0.1 }}
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      {description ? (
+        <figure>
+          <Image className='rounded-md' priority src={src} alt={alt} width={+width} height={+height} />
+          <figcaption className='text-center'>{description}</figcaption>
+        </figure>
+      ) : (
+        <Image className='rounded-md' priority src={src} alt={alt} width={+width} height={+height} />
+      )}
+    </motion.div>
+  );
 }

@@ -1,10 +1,8 @@
+import { Button, Seo, TypeWriter } from '@components/common';
+import { media } from '@styles';
 import Head from 'next/head';
 import Image from 'next/image';
 import styled, { keyframes } from 'styled-components';
-import Button from '../components/common/Button';
-import Seo from '../components/common/Seo';
-import TypeWriter from '../components/common/TypeWriter';
-import media from '../styles/media';
 
 export default function About() {
   const content = `안녕하세요!\n프론트엔드 엔지니어 서준환입니다!`;

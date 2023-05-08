@@ -76,7 +76,7 @@ int main(void)
 - 우선 `ps` 명령어를 이용해 각각의 `PID` 를 확인합니다.
 - 그 후 `lsof -p PID` 명령어를 통해 해당 프로세스에서 열린 파일들의 정보, `fd` 를 확인할 수 있습니다.
 
-![fd_test 2284x1670](/file-descriptor-test.png)
+<Image src="/file-descriptor-test.png" alt="fd_test 2284x1670" width="2284" height="1670" description="file descriptor"/>
 
 상기 사진을 통해 `File Descriptor` 는 각각의 프로세스에서 독립적이란 것을 확인할 수 있습니다.
 
@@ -308,7 +308,7 @@ int main(void)
 
 ## 메모리 누수
 
-![memory_leak 1666x866](/memory-leak.png)
+<Image src="/memory-leak.png" alt="memory-leak" width="1666" height="866" description="memory leak"/>
 
 상기 코드 + 필요한 유틸 함수들을 `gcc -Werror -Wextra -Wall -g -BUFFER_SIZE=100` 로 컴파일,
 `leaks -atExit -- ./a.out` 명령어로 메모리 누수를 확인하면 누수 목록에 ROOT LEAK 이 존재한다. <s>물론 test 파일에 내용이 있어야한다.</s>  

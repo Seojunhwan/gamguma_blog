@@ -1,48 +1,48 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import Seo from '../../components/common/Seo';
-import { getAllPost, getPost } from '../../utils/mdxUtils';
-import { IFrontMatter } from '../../interfaces';
-import Post from '../../components/post/Post';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-interface IProps {
+import { Post } from '@components/post';
+import { Seo } from '@components/common';
+import { getAllPost, getPost } from '@utils/mdxUtils';
+
+import type { FrontMatter } from '@interface';
+
+interface Props {
   mdxSource: MDXRemoteSerializeResult;
-  frontMatter: IFrontMatter;
+  frontMatter: FrontMatter;
   content: string;
 }
 
-interface IGetStaticProps {
+interface GetStaticProps {
   params: {
     slug: [];
   };
 }
 
-export default function Blog({ mdxSource, frontMatter, content }: IProps) {
-  const { title, description, hashTags, thumbnail } = frontMatter;
-  const {
-    query: { slug },
-  } = useRouter();
+export default function Blog({ mdxSource, frontMatter, content }: Props) {
+  const { title, description, hashTags, thumbnail, slug } = frontMatter;
+
   return (
     <>
       <Seo title={title} description={description} keywords={hashTags} thumbnail={thumbnail} />
       <Head>
-        <link
-          rel='canonical'
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${typeof slug === 'object' ? slug.join('/') : ''}`}
-        />
+        <link rel='canonical' href={`${process.env.NEXT_PUBLIC_SITE_URL}/post/${slug}`} />
       </Head>
-      <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
+      <div className='mx-auto max-w-3xl'>
+        <Post mdxSource={mdxSource} frontMatter={frontMatter} content={content} />
+      </div>
     </>
   );
 }
 
-export async function getStaticProps({ params }: IGetStaticProps) {
+export async function getStaticProps({ params }: GetStaticProps) {
   const { mdxSource, data, content } = await getPost(params.slug);
+
   return {
     props: {
       mdxSource,
-      frontMatter: data,
+      frontMatter: { ...data, slug: params.slug.join('/') },
       content,
     },
   };

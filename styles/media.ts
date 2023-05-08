@@ -2,7 +2,7 @@ export const mediaQuery = (minWidth: number) => {
   return `@media screen and (min-width: ${minWidth}px)`;
 };
 
-const media = {
+export const media = {
   xsmall: mediaQuery(0),
   small: mediaQuery(768),
   medium: mediaQuery(1024),
@@ -10,5 +10,3 @@ const media = {
   xlarge: mediaQuery(1440),
   xxlarge: mediaQuery(1920),
 };
-
-export default media;

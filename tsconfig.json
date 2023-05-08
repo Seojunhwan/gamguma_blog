@@ -13,7 +13,24 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"],
+      "@styles": ["styles"],
+      "@styles/*": ["styles/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"],
+      "@recoil": ["recoil"],
+      "@recoil/*": ["recoil/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@interface": ["interfaces"],
+      "@interface/*": ["interfaces/*"],
+      "@constants": ["constants"],
+      "@context": ["context"],
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/sitemapGenerator.js"],
   "exclude": ["node_modules"]

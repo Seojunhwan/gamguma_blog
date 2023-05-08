@@ -10,7 +10,7 @@ interface Props {
   styledContent?: JSX.Element;
 }
 
-export default function TypeWriter({ content, speed, repeat, className, waitTime, styledContent }: Props) {
+export function TypeWriter({ content, speed, repeat, className, waitTime, styledContent }: Props) {
   const [displayedContent, setDisplayedContent] = useState('');
   const [index, setIndex] = useState(-1);
   const [isWait, setIsWait] = useState(false);

@@ -1,52 +1,23 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import Footer from './Footer';
-import Header from './Header';
-import { darkTheme, lightTheme } from '../../styles/theme';
-import styled, { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../../styles/global-style';
-import { useRecoilState } from 'recoil';
-import { isDarkAtom } from '../../recoil/atoms';
+import type { ReactNode } from 'react';
 
-interface IProps {
-  children: React.ReactNode;
+import { Header, Footer } from '.';
+import { aggro, firaCode, pretendard } from '@styles';
+import { cls } from '@utils';
+
+interface Props {
+  children: ReactNode;
 }
 
-export default function Layout({ children }: IProps) {
-  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
-  useEffect(() => {
-    const persistTheme = localStorage.getItem('isDark');
-    if (typeof persistTheme === 'string') {
-      setIsDark(JSON.parse(persistTheme));
-    } else {
-      setIsDark(false);
-    }
-  }, []);
+export function Layout({ children }: Props) {
   return (
     <>
-      <Head>
-        <meta name='theme-color' content={isDark ? darkTheme.headerColor : lightTheme.headerColor} />
-      </Head>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <GlobalStyle />
+      <div
+        className={cls(pretendard.variable, aggro.variable, firaCode.variable, 'flex min-h-screen flex-col')}
+      >
         <Header />
-        <Main>
-          <Container>{children}</Container>
-        </Main>
+        <main className={`mx-auto w-full max-w-5xl grow pt-[128px] font-sans`}>{children}</main>
         <Footer />
-      </ThemeProvider>
+      </div>
     </>
   );
 }
-
-const Container = styled.div`
-  max-width: 80rem;
-  margin: 0 auto;
-  min-height: calc(100vh - 7rem - 6.5rem);
-  padding: 1rem 1rem 5rem 1rem;
-`;
-
-const Main = styled.main`
-  margin-top: 7rem;
-  width: 100%;
-`;

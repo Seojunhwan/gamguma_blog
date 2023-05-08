@@ -1,19 +1,27 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
-import openColor from '../../styles/open-color';
+
+import { openColor } from '@styles';
+import type { PropsWithChildren } from 'react';
 
 interface Props {
   type: 'submit' | 'button' | 'reset';
   size: 'small' | 'medium' | 'large';
   color: keyof typeof openColor;
-  children: React.ReactNode;
   outline?: boolean;
   fullWidth?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
-export default function Button({ className, children, size, color, outline, fullWidth, ...rest }: Props) {
+export function Button({
+  className,
+  children,
+  size,
+  color,
+  outline,
+  fullWidth,
+  ...rest
+}: PropsWithChildren<Props>) {
   return (
     <StyledButton
       className={className}
