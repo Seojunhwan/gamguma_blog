@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import type { GetStaticProps } from 'next';
 
 import { CategoryNavigation, Seo } from '@components/common';
-import { SimpleIntroduce } from '@components/profile';
 import { Pagination, Posts } from '@components/post';
 import { animateVariants, BLOG_THUMBNAIL } from '@constants';
 import { getPostPaginationPaths, getPostsByPage } from '@utils/mdxUtils';
@@ -23,7 +22,6 @@ export default function Home({ posts, currentPage, paginationLength }: Props) {
       />
       <Head>{/* <link rel='canonical' href={process.env.NEXT_PUBLIC_SITE_URL} /> */}</Head>
       <motion.div variants={animateVariants} initial='initial' animate='animate' exit='exit'>
-        <SimpleIntroduce />
         <div className='flex items-start space-x-4'>
           <Posts posts={posts} />
           <div className='hidden lg:block'>
