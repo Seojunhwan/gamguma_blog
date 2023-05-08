@@ -1,4 +1,5 @@
 import localFont from '@next/font/local';
+import { Fira_Code } from '@next/font/google';
 
 export const pretendard = localFont({
   src: [
@@ -60,4 +61,8 @@ export const aggro = localFont({
     },
   ],
   variable: '--font-aggro',
+});
+
+export const firaCode = Fira_Code({
+  variable: '--font-fira-code',
 });

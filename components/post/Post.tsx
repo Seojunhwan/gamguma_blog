@@ -56,9 +56,9 @@ export function Post({
           className='prose prose-sm max-w-full pt-8 
                     prose-h2:border-b-2 prose-h2:pb-2
                     prose-blockquote:py-1
-                    prose-blockquote:font-normal prose-blockquote:not-italic prose-code:rounded-sm prose-code:bg-gray-200 prose-code:px-2
-                    prose-code:py-[1.5px] prose-code:font-sans prose-code:before:content-none prose-code:after:content-none prose-pre:-mx-4
-                    prose-pre:px-8 prose-pre:shadow-md
+                    prose-blockquote:font-normal prose-blockquote:not-italic prose-code:w-full prose-code:rounded-sm prose-code:bg-gray-200
+                    prose-code:px-2 prose-code:py-[1.5px] prose-code:font-code prose-code:text-sm prose-code:before:content-none
+                    prose-code:after:content-none prose-pre:-mx-4 prose-pre:shadow-md
                     dark:prose-invert prose-h2:dark:border-gray-400
                     dark:prose-code:bg-gray-700 md:prose-base
                     md:prose-pre:-mx-8

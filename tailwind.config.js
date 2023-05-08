@@ -11,6 +11,7 @@ module.exports = {
     fontFamily: {
       sans: ['var(--font-pretendard)', ...fontFamily.sans],
       aggro: ['var(--font-aggro)', ...fontFamily.sans],
+      code: ['var(--font-fira-code)', ...fontFamily.mono],
     },
     colors: {
       ...restColors,
