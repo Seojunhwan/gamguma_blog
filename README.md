@@ -8,9 +8,12 @@
 ### Post
 - [ ] emotion dynamic css
 - [ ] emotion styling performance
+- [ ] css priority
 - [ ] simple request
 - [ ] tsc, tsup
 - [ ] cjs, mjs
+- [ ] deploy my library
+- [ ] release, tag automation
 - [ ] cloneElement?
 
 ### TODO
