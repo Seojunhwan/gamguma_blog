@@ -50,6 +50,7 @@ export const pretendard = localFont({
     },
   ],
   variable: '--font-pretendard',
+  display: 'swap',
 });
 
 export const aggro = localFont({
@@ -61,8 +62,10 @@ export const aggro = localFont({
     },
   ],
   variable: '--font-aggro',
+  display: 'swap',
 });
 
 export const firaCode = Fira_Code({
   variable: '--font-fira-code',
+  display: 'swap',
 });
