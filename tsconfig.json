@@ -22,8 +22,6 @@
       "@styles/*": ["styles/*"],
       "@utils": ["utils"],
       "@utils/*": ["utils/*"],
-      "@recoil": ["recoil"],
-      "@recoil/*": ["recoil/*"],
       "@hooks": ["hooks"],
       "@hooks/*": ["hooks/*"],
       "@interface": ["interfaces"],
