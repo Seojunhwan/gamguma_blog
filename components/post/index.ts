@@ -5,6 +5,4 @@ export * from './PostCard';
 export * from './Posts';
 export * from './ResponsiveImage';
 export * from './Thumbnail';
-export * from './Toc';
 export * from './Utterances';
-export * from './HashTag';
