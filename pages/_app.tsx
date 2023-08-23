@@ -22,7 +22,7 @@ function App({ Component, pageProps, router }: AppProps) {
       <GoogleAnalytics />
       <Providers>
         <AnimatePresence mode='wait' initial={false}>
-          <Layout key={router.asPath}>
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </AnimatePresence>
