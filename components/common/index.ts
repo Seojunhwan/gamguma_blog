@@ -1,9 +1,4 @@
-export { Button } from './Button';
-export { Modal } from './Modal';
-export { Portal } from './Portal';
 export { Providers } from './Providers';
 export { Seo } from './Seo';
-export { TypeWriter } from './TypeWriter';
 export { CategoryNavigation } from './CategoryNavigation';
-export { ThemeChangeButton } from './ThemeChangeButton';
 export { GoogleAnalytics } from './GoogleAnalytics';
