@@ -26,8 +26,7 @@
     "react-is": "^18.2.0",
     "rehype-slug": "^5.0.1",
     "remark-toc": "^8.0.1",
-    "sharp": "^0.29.3",
-    "styled-components": "^5.3.6"
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
@@ -38,9 +37,7 @@
     "@types/prettier": "^2.4.4",
     "@types/react": "17.0.38",
     "@types/react-dom": "^17.0.14",
-    "@types/styled-components": "^5.1.19",
     "autoprefixer": "^10.4.13",
-    "babel-plugin-styled-components": "^2.0.2",
     "eslint": "8.5.0",
     "eslint-config-next": "^13.0.6",
     "eslint-config-prettier": "^8.5.0",

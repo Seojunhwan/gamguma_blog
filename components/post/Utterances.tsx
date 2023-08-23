@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
 
 export function Utterances() {
   const utterances = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (typeof utterances.current === null) return;
     const scriptElem = document.createElement('script');
@@ -16,12 +16,5 @@ export function Utterances() {
     utterances.current?.appendChild(scriptElem);
   }, []);
 
-  return <Container ref={utterances} />;
+  return <section ref={utterances} className='mt-2 [&>utterances]:w-full' />;
 }
-
-const Container = styled.section`
-  margin-top: 5rem;
-  .utterances {
-    max-width: 100%;
-  }
-`;
