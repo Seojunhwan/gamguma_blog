@@ -1,0 +1,474 @@
+---
+title: Next.js 개인 블로그 개발기
+description: next.js 로 개인 블로그를 만들며 느낀 것들, SSR & SSG, font-flickering 해결
+author: Junhwan Seo
+createAt: 2022-01-19 14:53
+hashTags: [Blog, Next.js]
+isPublished: true
+thumbnail: /2022/01/nextjs-blog-development-review/images/thumbnail.png
+---
+
+## 첫 게시물 두근두근
+
+안녕하세요! `감구마` 입니다.  
+
+이전부터 개인 블로그 하나쯤은 정말 갖고 싶었습니다! 다만 만들어진 velog 를 사용할까,, 아니면 jekyll 를 사용할까,, 라는 고민이 많았습니다.  
+그러던 도중 만들어보면 어떨까? 라는 생각을 하게 되었고 아래와 같은 이유로 직접 개발하기로 결심했습니다!
+
+- 블로그라는 작은 서비스를 직접 만드는 것은 그렇지 않은 것에 비해 배울 수 있는 것이 많다.
+- 특히, 기능 개발을 할 때 많은 에러, 구동 메커니즘을 배울 수 있다. (실제로 개발하며 고민한 시간이 엄청 많았습니다😥)
+- 리액트와 SSR, SSG 를 배울 수 있는 좋은 기회다.
+- 내 입맛대로 커스터마이징을 할 수 있다!
+- <s>간지</s>
+
+이렇듯 직접 만들어보며 배운 것이 많았고, 그것들을 이 포스트에 작성해보려고 합니다.
+
+우선 사용한 기술은 아래와 같습니다
+
+- Next.js
+- Styled-Components
+- next-mdx-remote
+
+## Why
+
+### Why Next.js
+
+저는 Next.js 와 Gatsby.js 중 고민하였습니다. 다른 개발자 분들께서도 개인 기술 블로그를 만드실 때 Gatsby.js 를 많이 사용하더군요.  
+
+Gatsby.js 와 Next.js 의 공통된 장점
+
+- **SSR, SSG 를 통해 SEO 가 가능하다.**  
+물론 기존 React 의 경우 react-helmet 을 사용하여 SEO 를 진행할 수 있습니다. 다만 그래도 첫 페이지는 빈 html 이며 이것을 해결하기 위해선 직접 SSR 을 구성해야합니다.
+
+Gatsby.js 의 장점
+
+- 많은 사람들이 Gatsby.js 를 사용하여 블로그를 만들었기에 자료가 많다. (물론 Next.js 자료도 많습니다)
+- 많은 플러그인, 템플릿이 있기에 빠르게 구축이 가능하다.
+- 정적 사이트 생성이기에 서버가 필요없다.
+
+Next.js 의 장점
+
+- 요청에 따라 HTML 을 동적으로 생성하기에 서버 사이드 렌더링을 하기에 적합하다.
+- SSG 정적 페이지 생성도 지원한다.
+
+그런데도 Next.js 를 고른 이유는 아래와 같습니다.
+
+- Next.js 도 SSG 를 지원하기에 서버가 필요없다! (SSR 사용시엔 조금 달라지겠네요)
+- 나중엔 SSR 을 적용해서 게시글 업데이트마다 빌드하는 것을 피하고 싶다!
+- 추후 프로젝트에서 사용할 생각이라 미리 사용해보면 좋지 않을까?,,
+- 괜찮아 에러는 구글 선생님께서 다 알려주실거야.
+
+라는 이유로 Next.js 를 선택하게 되었으며 개발해보며 재미좀 봤습니다. 😅
+
+### Why Styled-components
+
+우선 저는 CSS-in-JS 를 선호합니다. 저에게 CSS-in-JS 를 사용하며 얻는 이점은 아래와 같습니다.
+
+- 컴포넌트 단위로 생각할 수 있다. - 가장 중요하게 생각한 점
+- ClassName 을 생각하지 않아도 된다. (?)
+- 동적 스타일링, 테마 적용이 용이하다.
+
+이러한 이유로 CSS-in-JS 를 선택하게 되었습니다.
+
+더불어 CSS-in-JS 에도 많은 종류가 있는데 특히 Emotion, Styled-components 중 고민하였습니다.
+이점에선 이전에 사용해본적이 있는 Styled-components 를 고르게 되었습니다만, [css prop](https://emotion.sh/docs/css-prop) 을 보곤 추후 개발엔 Emotion 도 사용해보려고 합니다.
+
+## How
+
+### Next.js
+
+Next.js 가 제공해주는 기능들은 정말 너무나도 편했습니다.  
+Next.js 의 기능은 추후 포스트에서 다뤄보도록 하고 여기선 어떻게 마크다운을 파싱하고 렌더해줬는지 알아보도록 할게요!
+
+우선 Next.js 를 처음 사용할 때 CSR, SSG, SSR  의 개념이 살짝 이해가 안 되어 게시글 작성하는 김에 정리를 해보려고 합니다.
+
+> **CSR = Client Side Rendering**  
+>
+> - 기본적인 동작은 브라우저가 서버로부터 JS 파일을 받고 그 파일을 브라우저가 실행시켜 사용자에게 보여주는 형식입니다.
+> - 초기 로딩이 오래걸릴 수 있지만 완전히 로드되면 추가로 로드가 필요하지 않아 사용자 경험이 좋습니다.
+> - 다만, JS 파일을 다운받고 브라우저가 실행시켜 HTML 에 렌더링하기에 **JS 파일의 크기가 크거나**, **인터넷이 불안정한 상황**에선 사용자가 흰 화면을 바라만 보고 있는 상황이 발생할 수도 있습니다.  
+> - 더불어 빈 HTML 로 인한 초기 컨텐츠 부족으로 SEO 를 유지하기 어렵습니다.
+>
+> **SSG = Static Site Genration**
+>
+> - SSG 의 경우 빌드시 정적 사이트를 미리 만들어두기에 사용자에 따라 변화하지 않는 즉, 개인 블로그나 문서와 같은 서비스에 적합하다고 볼 수 있습니다.
+> - 이 때, 빌드시 미리 만들어 놓는다는 점을 통해 유추할 수 있겠지만 초기 페이지는 빌드할 때 기준으로 컨텐츠가 추가/변경된다면 다시 빌드해야합니다.
+> - 지금 감구마 블로그도 게시글은 SSG 로 생성하여 게시글 업데이트를 하려면 매번 다시 빌드하여야 합니다,,!
+> - 다만 많은 컨텐츠가 미리 렌더링되고 정적인 컨텐츠라는 특징 덕분에 페이지 로드 시간이 빠릅니다.
+> - SEO 에 이점이 있습니다. (빌드시 SEO 작업하면 뚝,,딱)
+>
+> **SSR = Server Side Rendering**
+>
+> - SSR 은 브라우저가 서버에 컨텐츠를 요청하면 서버에선 해당 페이지에 필요한 데이터를 모아서 페이지를 구성한 후 사용자에게 전달합니다.
+> - 이에 대한 장점은 SSG 와 달리 컨텐츠의 수정을 실시간으로 확인할 수 있으며, 유저와 같이 동적인 데이터를 취급하기에 적합합니다.  
+> - SSG 와 마찬가지로 SEO 에 유리합니다.
+> - 다만 서버측에서 데이터 수집이 오래걸린다면 그만큼 페이지 구성이 늦어지기에 CSR, SPA, SSG 보다 늦게 로딩될 수 있습니다.
+
+저는 Next.js 의 정적파일 제공 기능을 이용하여 게시글을 마크다운 형식으로 작성, 저장하였습니다.
+> [참고](https://nextjs.org/docs/basic-features/static-file-serving) **Next.js 의 정적파일 제공이란?**  
+> Next.js 의 `/public` 폴더에 정적인 파일 `ex) 이미지, 마크다운` 을 저장해두면 코드에서 해당 파일을 참조할 수 있습니다.  
+> 해당 폴더는 빌드시 `public` 폴더에 있는 파일만 제공해주기에 런타임시 추가된 파일은 사용할 수 없습니다.  
+> 저같은 경우 해당 폴더에 이미지, 게시글 마크다운, 사이트맵을 두었습니다.
+>> `/sitemap.xml` 으로 요청하면 사이트맵을 응답해줍니다! 한 번 확인해 보세요! [링크](/sitemap.xml)
+
+```ts
+// mdxUtils.js
+export const POSTS_PATH = path.join(process.cwd(), 'data/posts');
+
+export const postFilePaths = fs.readdirSync(POSTS_PATH).filter((path) => /\.mdx?$/.test(path));
+
+export const getAllPost = () => {
+  const posts = postFilePaths.map((filePath) => {
+    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+    const { content, data } = matter(source);
+    return {
+      content,
+      data,
+      filePath,
+    };
+  });
+  return posts;
+};
+
+// index.tsx
+export async function getStaticProps() {
+  const posts = getAllPost();
+  return { props: { posts } };
+}
+```
+
+1. POSTS_PATH 경로 폴더 안 .mdx 파일의 경로를 다 가져온다.
+2. 주어진 경로를 통해 파일을 하나씩 읽는다.
+3. grey-matter 를 통해 해당 포스트의 front-matter(정보) 와 data(컨텐츠) 를 분리한다.
+4. [Ref](https://nextjs.org/docs/api-reference/data-fetching/get-static-props) `getStaticProps` 로 정보를 넘겨준다.
+
+저는 getStaticProps 로 Next.js 의 정적파일 제공에서 가져왔지만, 뭐 다른 폴더에 있어도 괜찮고 Headless CMS 와 같은 서비스에서 api 호출하여 가져와도 괜찮습니다.  
+다만 getStaticProps 는 **빌드시 정적 컨텐츠를 미리 렌더링** 하기에 최신화 하려면 다시 빌드하거나 SSR 을 이용해야 합니다! <s>페이지 렌더링 된 후 CSR 로 이뤄지니,, 그 때 데이터 fetch 하면 될 듯?,, 그러면 SEO 는?!</s>
+
+여기까진 `/` 루트 페이지에다 작성한 포스트들을 정보와 함께 뿌려줬고, 컨텐츠 내용을 파싱하여 렌더해주진 않았습니다.  
+
+이제 포스트 내용을 보기 위해 파싱하여 렌더해 줄 것입니다.  
+그 전에 우선 각 포스트에 접근하기 위해 url 을 정의해주어야 합니다. 저같은 경우 fileName = slug 로 정의하였고 각 포스트 접근을 위해 `/post/[slug]` 처럼 **dynamic routes** 의 url 형식을 갖도록 하였습니다.  
+
+근데 여기서 생각해야 할 것이 있습니다.  
+SSG 의 경우 빌드시 정적 컨텐츠를 생성하는데 `/post/[slug]` 와 같이 게시글은 여러 게시글이 있을 것이며, 그에 따라 slug 도 **dynamic** 하게 바뀔 것입니다.  
+
+그렇기에 Next.js 에게 "빌드하기 전에 지정된 주소를 미리 렌더링 해줘!" 라고 알려줘야 합니다.  
+이 때 사용하는 함수가 Next.js 에서 제공하는 [Ref](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths) `getStaticPaths`  입니다.
+
+해당 함수는 Dynamic 하게 바뀌는 Routes 라면 적용하는 것이고 그게 아니라면 할 필요가 없습니다! (그리고 필요하면 Next.js 가 알려줘요!)
+
+```ts
+export const getPost = async (slug: string) => {
+  const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
+  const { content, data } = matter(source);
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      // @ts-ignore: Unreachable code error
+      remarkPlugins: [[remarkToc, {}]],
+      // @ts-ignore: Unreachable code error
+      rehypePlugins: [[rehypeSlug, {}]],
+    },
+  });
+  return { mdxSource, data, content };
+};
+
+export async function getStaticProps({ params }: IParams) {
+  const { mdxSource, data, content } = await getPost(params.slug);
+  return {
+    props: {
+      mdxSource,
+      frontMatter: data,
+      content,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = postFilePaths
+    .map((path) => path.replace(/\.mdx?$/, ''))
+    .map((slug) => ({ params: { slug } }));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+```
+
+- `getStaticPaths` 를 통해 정적으로 렌더링이 필요한 주소들을 알려줍니다.
+- 주소에 있는 params 중 slug 를 가져와 파일 이름을 얻고, 해당 파일의 `mdxSource`, `frontMatter`, `content` 를 얻습니다.
+- 그 후 `getStaticProps` 를 통해 페이지에 컨텐츠 정보들을 넘겨줍니다.
+여기서 mdxSource 와 content 는 같긴하지만 content 를 플러그인들과 함께 `serialize` 한 것이 mdxSource 입니다.
+
+```tsx
+export default function Blog({
+  mdxSource,
+  frontMatter: { title, description, hashTags, createAt },
+  content,
+}: IMdxProps) {
+  return (
+    <>
+      <Seo title={title} description={description} keywords={hashTags} />
+      <article>
+        <Toc content={content} />
+        <PostHeader>
+          <div>
+            <h1>{title}</h1>
+            <time dateTime={createAt}>{dateFormatter(createAt)}</time>
+            <HashTag isHashTagMenu={false} hashTags={hashTags} />
+          </div>
+        </PostHeader>
+        <PostContainer>
+          <div>
+            <MDXRemote {...mdxSource} />
+          </div>
+        </PostContainer>
+      </article>
+      <Comments />
+    </>
+  );
+}
+```
+
+- `getStaticProps` 를 통해 념겨받은 포스트에 관한 정보 중 `mdxSource` 는 HTML 렌더링, `frontMatter` 는 포스트 정보를 표기하기 위해, `content` 는 Table Of Contents 에 각각 필요한 정보들로 넘겨줍니다.
+- 여기서 `serialize` 된 `mdxSource` 를 [MDXRemote](https://www.npmjs.com/package/next-mdx-remote) 를 통해 HTML 로 변환해줍니다. (상단에서 사용된 serialize 도 next-mdx-remote 입니다!)
+- 추후 `next-mdx-remote` 를 이용하여 커스터마이징 하는 방법도 포스팅 하도록 하겠습니다.
+
+## 개발하며 어려웠던 점
+
+블로그를 개발하며 여러 고민과 문제들이 있었고, 이 점을 기술해보려 합니다.
+
+### Styled-components 의 SSR
+
+Next.js 의 경우 SSR, SSG 상황에서 빌드할 때 CSS 을 넣어줍니다.  
+하지만 styled-components 를 사용하는 경우 문제가 발생합니다. (Emotion 의 경우 v10 이후 버전 사용하면 ✅)  
+SSR, SSG 의 경우 사용자가 접속하면 서버에서 만든 HTML 을 사용자에게 주는데 이 때 style 태그가 빈 상태로 넘어가고, 브라우저가 JS 파일을 받아 실행시켰을 때 비로소 스타일이 적용됩니다.
+
+**즉**, 사용자에게 렌더링 되었을 때 JS 파일이 실행되기 전까진 스타일 적용이 안 됨!
+
+[참고](https://styled-components.com/docs/advanced#nextjs) 이를 해결하기 위해 3가지 작업을 해주었습니다.
+
+1. `_document.tsx` 에 하단 코드를 추가합니다.
+
+```tsx
+// _document.tsx
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
+
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  render() {
+    return (
+      <Html lang='ko'>
+        <Head>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+
+2. `npm install --save-dev babel-plugin-styled-components` 로 플러그인을 설치합니다.
+
+3. `.babelrc` 에 하단 코드를 작성하여 플러그인을 적용해 주세요! (없다면 root 폴더에 생성 후 작성해주세요 )
+
+```js
+// .babelrc
+{
+ "presets": ["next/babel"],
+ "plugins": [["styled-components", { "ssr": true }]]
+} 
+```
+
+이러한 작업 후 빌드시 HTML Style 태그 안에 스타일이 적용되어있으므로 브라우저가 JS 파일을 다운 받기 전에 스타일이 적용되어 있을 것입니다.  
+이를 테스트 하기 위해선  ``개발자 도구`` -> ``환경설정`` -> ``자바스크립트 사용 중지`` 를 체크해보시면 아! 이거구나! 라고 생각할 수 있습니다.
+
+해당 과정을 하면 Next.js v12 에서 추가된 `SWC` 라는 컴파일러가 비활성화 되고 기존의 babel 로 컴파일하게 됩니다. <s>트랜스파일이라 해야하나?,,</s>  
+> **SWC 컴파일러란?** [Ref](https://nextjs.org/docs/advanced-features/compiler)  
+>
+> - Rust 언어를 기반으로 한 TypeScript/JavaScript 컴파일러로 점점 더 많은 기업들이 채택 중입니다!
+> - Babel 컴파일러보다 컴파일이 무려 **17배** 빠르다!  
+> - Babel 컴파일러보다 **3배** 더 빠른 Fast Refresh, **5배** 더 빠른 빌드!  
+> - 한국인이 만들었다!  
+>
+> 여튼 Babel 컴파일러보다 더 빠르다 라는 것만 알고 넘어가도 충분합니다!  
+> 이 좋은 SWC 를 못 쓰기엔 너무 아쉽기 때문에 Next.js 팀은 Babel 플러그인을 SWC 로 이식? 중이며 [문서](https://nextjs.org/docs/advanced-features/compiler#styled-components) 를 통해 실험기능으로 **Styled-components 와 SWC 를 활성화**하여 사용할 수 있습니다.
+
+### 폰트 깜빡임
+
+이 문제가 가장 이해가지 않아 고생좀 했습니다..  
+
+**왜 이런 일이 발생했나요?**  
+
+우선 결론만 알려드리자면 리액트에서 상태 변경으로 인한 렌더링이 발생했을 때 스타일이 변경된다면 브라우저는 폰트를 리로드하고 있었습니다.
+
+해당 문제는 TOC 의 현재 위치를 알려줄 때 상태와 해당 요소의 scale 이 변경되는데, 그 때 폰트가 리로드되어 HTML 전체의 폰트가 깜빡거리는 현상이 생겼습니다.  
+기존에 저는 `createGlobalStyle` 로 전역스타일링을 만들어줬고 이 때, font-face 또한 함께 전역스타일링으로 지정해주었습니다.
+
+```ts
+// global-style.ts
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: "sampleFont";
+    src: url("sampleFontUrl");
+    font-style: normal;
+    font-weight: 400;
+    font-display: fallback;
+  }
+`
+```
+
+**해결 방안**
+
+- 기존 `createGlobalStyle` 에 있던 `@font-face` 를 따로 CSS 파일로 분리한 후 `_app.tsx` 에서 전역스타일링과 함께 적용한다.
+
+```css
+/* font.css */
+@font-face {
+    font-family: "sampleFont";
+    src: url("sampleFontUrl");
+    font-style: normal;
+    font-weight: 400;
+    font-display: fallback;
+}
+```
+
+```tsx
+// _app.tsx
+import type { AppProps } from 'next/app';
+import Layout from '../components/layout/Layout';
+import { GlobalStyle } from '../styles/global-style';
+
+import '../styles/fonts.css'; // font.css 를 import 해주세요!
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <GlobalStyle />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
+  );
+}
+
+export default App;
+```
+
+> Styled-components **kitten** [링크](https://github.com/styled-components/styled-components/issues/2900#issuecomment-560121158)  
+> I’d really recommend you to avoid createGlobalStyles if it’s static CSS and contains fonts and go for a single global CSS file that resets some CSS and includes your fonts 🙂  
+> **결론** : 글꼴 설정은`createGlobalStyle` 에선 피하고 정적 CSS 파일을 생성한 후 적용하는 것을 추천합니다~
+
+- 혹은 `_document.tsx` 파일의 `head` 태그에 폰트를 링크해주는 방법도 있습니다! [참고](https://github.com/mark-up-blocks/mark-up-blocks-client/pull/57/commits/94838d36e782d072ddb6991c4f5597b9aa7dc604)  
+
+참고한 자료
+
+- [issue | Flickering of screen when loading font files inside createGlobalStyles](https://github.com/styled-components/styled-components/issues/2900)
+- [Style-Components-flickering](https://styled-components.com/docs/faqs#how-do-i-fix-flickering-text-after-server-side-rendering)
+- [Next.js-Font-Optimaization](https://nextjs.org/docs/basic-features/font-optimization) - (2번째 방법 사용하신다면 요것도 보시면 좋을 것 같아요)
+
+### 크로스브라우징
+
+크롬을 주로 사용하던 저에게 사파리로 접속했을 때 게시글의 날짜가 제대로 나오지 않는 현상이 발생했습니다.  
+
+크롬의 경우 잘 나오는데 사파리에선 NaN (숫자가 아님) 로 표현되기에 매우 당황하였고, 왜 그런지 확인해본 결과  Safari 에선  `Date-format` 다른 것을 확인할 수 있었습니다.
+
+기존 사용하던 포멧은 'YYYY-MM-DD HH:mm' 이였는데 사파리에선 해당 포멧을 지원하지 않는 것으로 확인이 되었습니다.
+
+**2가지 해결 방안**
+
+- 기존 포멧에서 `replace(/-/g, '/')` 를 이용해 '-' 를 '/' 로 치환한다!
+
+- 혹은 처음부터 사용하는 포멧을 **'YYYY/MM/DD HH:mm'** 으로 바꾼다!
+
+> [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) 를 보면 Date 생성자나 동일한 동작의 Date.parse 를 사용한 날짜 파싱의 경우 일관적이지 않고, 브라우저끼리 차이가 존재하므로 사용하지 않는 것이 좋다! 라고 명시되어 있습니다.  
+> 기존에 저장할 때 Date 의 `toISOString()` 메서드를 사용하여 저장하고 불러오면 일관적인 날짜 파싱이 되지 않을까 싶습니다.
+
+해당 문제를 통해 크롬에서만 잘 작동한다고 다른 브라우저까지 잘 작동할 것이라는 생각을 버리게 됐습니다,,  
+추후 크로스 브라우징에 대해 제대로 공부하여 게시글 작성하도록 하겠습니다.
+
+[참고](https://stackoverflow.com/questions/3085937/safari-js-cannot-parse-yyyy-mm-dd-date-format)
+
+### 그 외 어려웠던 점
+
+1.`SSR`, `SSG` 을 처음 사용해보기에 미숙함이 있었습니다. 그 때마다 공식문서를 잘 보면 해결될 문제인데,, 공식문서의 중요함을 알게됐습니다.
+
+2.댓글 기능 구현을 할 때 Prop Drilling 이란 것을 조금이나마 경험해보며 이에 대한 대책을 조금씩 세웠습니다.
+
+- `Redux` `MobX` `Recoil` 과 같은 전역 상태관리 라이브러리를 사용하거나 [Context](https://ko.reactjs.org/docs/context.html) 을 이용한다!
+
+- [Children](https://ko.reactjs.org/docs/composition-vs-inheritance.html) 을 살펴본다!
+
+## 아쉬웠던 점
+
+아직 SSR 을 적용하지 않았지만 어떠한 방식으로 작동하는지 알 수 있었던 좋은 경험이었습니다.  
+
+다만 직접 리액트로 SSR 을 구현해봤었더라면 Next.js 가 얼마나 유용하고 좋은지 2배로 체감이 가능했을 것 같은데 이 점이 조금 아쉽습니다.
+
+## 개선해야할 점
+
+### SSR - headless CMS
+
+현재 블로그는 빌드시 컨텐츠가 최신화됩니다만 따로 돈도 안 들고 편한 것 같아서 이후 댓글 기능만 추가해볼까 합니다!  
+
+다만 SSR 의 경우 추후 필요하다고 느껴지면 도전할 생각입니다.
+
+### Sitemap - RSS
+
+Sitemap 의 경우 수동으로 만들어주고 있습니다.  
+자동으로 만들어주는 거 있으면 편할 것 같은데 조금 더 정보를 찾아봐야 할 것 같습니다.  
+어느 시간 기준으로 만들어서 저장하면 좋을 것 같네요,,!
+
+### 상태관리
+
+상태관리 할 것이 뭐 없긴 하지만 추후 댓글 기능 구현에 사용해보려고 합니다.  
+최근에 없이 만들어보다 prop 으로 떡칠이 되는 컴포넌트를 보고 마음이 조금 아팠습니다.  
+그리하여 Redux 나 Recoil 을 사용해볼까 생각 중입니다!
+
+### 게시글 안에서 이미지 사용
+
+요건 Next-Mdx-Remote 의 힘을 빌려보고자 합니다!  
+Next.js 가 제공하는 Image-Optimization 기능을 활용해보기 위해,,!  
+가장 기대되고 재밌을 것 같은데 이미지의 경우 S3 에 저장을 하고 주소만 가져와야하나,, Next.js 의 정적파일 제공을 사용해야하나 잘 모르겠습니다.
+
+### 폰트 리소스 문제
+
+현재 주로 사용하는 폰트의 경우 약 **1MB** 로 리소스가 너무 크기에 Lighthouse 에서도 얼른 바꿔달라고 애원하더라구요,,  
+Next.js 의 FontOptimization 을 봐보려고 합니다만 현재는 구글폰트만 지원하는 것으로 알고 있습니다.
+
+### 미완성된 About, Dev, 댓글
+
+사실 댓글 기능의 로직은 다 만들었으나 댓글을 어떻게 백엔드 없이 저장하는지 잘 몰라서 공부하는 중입니다 😅  
+About 과 Dev 도 조만간 구현해나가야 할 것 같습니다.
