@@ -16,6 +16,6 @@ module.exports = {
   insertPragma: false,
   proseWrap: 'preserve',
   vueIndentScriptAndStyle: false,
-  plugins: ['prettier-plugin-tailwindcss'],
+  // plugins: ['prettier-plugin-tailwindcss'],
   tailwindConfig: './tailwind.config.js',
 };
