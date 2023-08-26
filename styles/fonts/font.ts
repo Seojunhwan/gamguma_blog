@@ -53,6 +53,18 @@ export const pretendard = localFont({
   display: 'swap',
 });
 
+export const D2Coding = localFont({
+  src: [
+    {
+      path: './NaverD2/D2Coding.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-d2coding',
+  display: 'swap',
+});
+
 export const firaCode = Fira_Code({
   variable: '--font-fira-code',
   display: 'swap',

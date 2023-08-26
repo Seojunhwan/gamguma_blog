@@ -1,5 +1,6 @@
-import { firaCode, pretendard } from '@/styles/fonts';
+import { D2Coding, firaCode, pretendard } from '@/styles/fonts';
 import type { Metadata } from 'next';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={`${pretendard.variable} ${firaCode.variable}`}>{children}</body>
+      <body className={`${pretendard.variable} ${firaCode.variable} ${D2Coding.variable} font-body`}>
+        {children}
+      </body>
     </html>
   );
 }
