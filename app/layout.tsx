@@ -1,4 +1,4 @@
-import { D2Coding, firaCode, pretendard } from '@/styles/fonts';
+import { D2Coding, firaCode, pretendard } from '@/styles/font';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
