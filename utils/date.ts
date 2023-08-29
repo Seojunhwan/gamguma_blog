@@ -1,19 +1,4 @@
-/**
- * 초
- */
-const SECOND = 1000;
-/**
- * 분
- */
-const MINUTE = 60 * SECOND;
-/**
- * 시간
- */
-const HOUR = 60 * MINUTE;
-/**
- * 일
- */
-const DAY = 24 * HOUR;
+import { DAY, HOUR, MINUTE } from '@/constants/time';
 
 export const getRelativeDate = (date: string | Date) => {
   const relativeFormat = new Intl.RelativeTimeFormat('ko', {
