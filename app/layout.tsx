@@ -9,7 +9,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang='ko'>
       <body className={`${pretendard.variable} ${firaCode.variable} ${D2Coding.variable} font-body`}>
         <Header />
-        <main className='mx-auto w-full max-w-screen-md px-2 pb-10 pt-16 sm:px-5 sm:pb-14 sm:pt-20'>
+        <main className='mx-auto w-full max-w-screen-lg px-2 pb-10 pt-16 sm:px-5 sm:pb-14 sm:pt-20'>
           {children}
         </main>
         <Footer />
