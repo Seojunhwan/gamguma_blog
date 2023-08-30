@@ -12,6 +12,6 @@ const config: Config = {
       body: ['var(--font-pretendard)', 'sans-serif'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
 export default config;
