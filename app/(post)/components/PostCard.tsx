@@ -10,9 +10,9 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
     <article
       key={slug}
       className='mb-8 flex flex-col rounded-lg p-4 transition-all hover:bg-neutral-50 active:bg-neutral-100
-          sm:h-52 sm:flex-row sm:items-stretch sm:justify-between sm:py-8'
+          sm:h-48 sm:flex-row sm:items-stretch sm:justify-between sm:py-8'
     >
-      <div className='relative order-1 aspect-video w-full grow overflow-hidden rounded-lg shadow-sm sm:order-2 sm:w-60 sm:grow-0'>
+      <div className='relative order-1 aspect-video grow overflow-hidden rounded-lg shadow-sm sm:order-2 sm:grow-0'>
         <Image src={metadata.thumbnail} alt={`thumbnail of ${metadata.title}`} fill />
       </div>
 
@@ -21,12 +21,12 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
           <Link href={`/post/${slug}`}>
             <h2 className='break-keep text-lg font-semibold text-gray-700'>{metadata.title}</h2>
           </Link>
-          <p className='mb-1 line-clamp-3 max-h-20 overflow-hidden text-ellipsis break-keep text-sm font-light text-gray-600'>
+          <p className='mb-1 line-clamp-2 overflow-hidden text-ellipsis break-keep text-sm font-light text-gray-600'>
             {metadata.description}
           </p>
         </div>
 
-        <div className='mt-5 flex justify-between'>
+        <div className='mt-2 flex justify-between sm:mt-0'>
           <div>
             <time dateTime={metadata.createAt} className='text-xs font-extralight text-gray-400'>
               {getRelativeDate(metadata.createAt)}
