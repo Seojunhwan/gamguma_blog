@@ -13,13 +13,21 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
           sm:h-48 sm:flex-row sm:items-stretch sm:justify-between sm:py-8'
     >
       <div className='relative order-1 aspect-video grow overflow-hidden rounded-lg shadow-sm sm:order-2 sm:grow-0'>
-        <Image src={metadata.thumbnail} alt={`thumbnail of ${metadata.title}`} fill />
+        <Image
+          src={metadata.thumbnail}
+          alt={`thumbnail of ${metadata.title}`}
+          fill
+          sizes='(min-width: 768px) 384px, 100vw'
+          className='transform transition-all duration-500 hover:scale-110'
+        />
       </div>
 
       <div className='order-2 mt-2 flex h-full grow basis-0 flex-col p-2 sm:order-1 sm:mr-6 sm:mt-0 sm:justify-between'>
         <div className='space-y-2'>
-          <Link href={`/post/${slug}`}>
-            <h2 className='break-keep text-lg font-semibold text-gray-700'>{metadata.title}</h2>
+          <Link href={`/post/${slug}`} className='inline-block w-fit'>
+            <h2 className='w-fit break-keep text-lg font-semibold text-gray-700 hover:text-gray-500'>
+              {metadata.title}
+            </h2>
           </Link>
           <p className='mb-1 line-clamp-2 overflow-hidden text-ellipsis break-keep text-sm font-light text-gray-600'>
             {metadata.description}
