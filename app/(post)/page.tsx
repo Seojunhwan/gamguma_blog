@@ -4,5 +4,11 @@ import { PostCard } from './components/PostCard';
 export default function Home() {
   const posts = getAllPost();
 
-  return posts.map((post) => <PostCard key={post.slug} {...post} />);
+  return (
+    <div className='mt-5'>
+      {posts.map((post) => (
+        <PostCard key={post.slug} {...post} />
+      ))}
+    </div>
+  );
 }
