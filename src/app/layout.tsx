@@ -1,4 +1,4 @@
-import { D2Coding, firaCode, pretendard } from '@/styles/font';
+import { D2Coding, firaCode, pretendard } from '@//styles/font';
 import '@/styles/globals.css';
 import { type PropsWithChildren } from 'react';
 import { Footer } from './layout/Footer';

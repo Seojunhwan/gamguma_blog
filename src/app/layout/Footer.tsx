@@ -1,7 +1,7 @@
-import { IconButton } from '@/components/Common/IconButton';
-import { SwitchCase } from '@/components/Common/SwitchCase';
+import { IconButton } from '@//components/Common/IconButton';
+import { SwitchCase } from '@//components/Common/SwitchCase';
 import config from '@/config.json';
-import { type SocialKeys } from '@/interfaces/Social';
+import { type SocialKeys } from '@//interfaces/Social';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 

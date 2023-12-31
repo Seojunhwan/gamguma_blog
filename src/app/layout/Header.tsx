@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@//utils/cn';
 import Link from 'next/link';
 
 export const Header = () => {

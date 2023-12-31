@@ -1,6 +1,6 @@
-import { MDX } from '@/components/Markdown';
-import { getRelativeDate } from '@/utils/date';
-import { getPost } from '@/utils/mdxUtils';
+import { MDX } from '@//components/Markdown';
+import { getRelativeDate } from '@//utils/date';
+import { getPost } from '@//utils/mdxUtils';
 
 interface PostPageProps {
   params: {

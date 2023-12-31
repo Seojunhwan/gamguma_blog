@@ -1,4 +1,4 @@
-import { getAllPost } from '@/utils/mdxUtils';
+import { getAllPost } from '@//utils/mdxUtils';
 import { PostCard } from './components/PostCard';
 
 export default function Home() {

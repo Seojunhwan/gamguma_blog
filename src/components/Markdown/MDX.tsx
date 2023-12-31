@@ -1,7 +1,7 @@
 'use client';
 
-import { cn } from '@/utils/cn';
-import { applyStylesByDataAttribute } from '@/utils/style';
+import { cn } from '@//utils/cn';
+import { applyStylesByDataAttribute } from '@//utils/style';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote';
 import { Code } from './Code';
 

@@ -1,4 +1,4 @@
-import { type FrontMatter, type Post } from '@/interfaces/Post';
+import { type FrontMatter, type Post } from '@//interfaces/Post';
 import fs from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
@@ -10,7 +10,7 @@ import remarkToc from 'remark-toc';
 
 const DIR_STRING = '/posts';
 
-const POSTS_PATH = path.join(process.cwd(), DIR_STRING);
+const POSTS_PATH = path.join(process.cwd() + '/src', DIR_STRING);
 
 const getPostSlugs = (filePath: string) => {
   return filePath.slice(filePath.indexOf(DIR_STRING) + DIR_STRING.length + 1).replace('.mdx', '');
@@ -40,7 +40,7 @@ export const getAllPost = () => {
     return bDate - aDate;
   });
 
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     return sortedPosts.filter((post) => post.metadata.isPublished === true);
   }
   return sortedPosts;

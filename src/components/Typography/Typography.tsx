@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@//utils/cn';
 import { clsx } from 'clsx';
 import { type AllHTMLAttributes, type CSSProperties } from 'react';
 import { twMerge } from 'tailwind-merge';

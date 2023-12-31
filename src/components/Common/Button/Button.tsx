@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@//utils/cn';
 import { type ButtonHTMLAttributes } from 'react';
 
 // type ButtonVariant = 'solid' | 'outline' | 'ghost';
