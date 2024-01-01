@@ -34,7 +34,7 @@ export const getRelativeDate = (date: string | Date) => {
   });
 };
 
-const getDifferenceDate = (date1: string | Date, date2: string | Date) => {
+export const getDifferenceDate = (date1: string | Date, date2: string | Date) => {
   const targetDate1 = new Date(date1);
   const targetDate2 = new Date(date2);
 
