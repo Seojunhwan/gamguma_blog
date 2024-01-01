@@ -3,12 +3,12 @@ import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 
 import config from '#/config.json';
 import { IconButton, SwitchCase } from '@/components/common';
-import { type SocialKeys } from '@//interfaces/Social';
+import { type SocialKeys } from '@/interfaces/Social';
 
 export const Footer = () => {
   return (
     <footer className='z-10 mt-12 w-full'>
-      <div className='mx-auto flex w-full max-w-5xl flex-col items-center justify-between border-t-[1px] px-10 pb-14 pt-12 sm:flex-row'>
+      <div className='mx-auto flex w-full max-w-5xl flex-col items-center justify-between border-t-[1px] border-gray-1200 px-10 pb-14 pt-12 sm:flex-row dark:border-gray-200'>
         <span className='text-sm text-gray-600'>
           &copy; {new Date().getFullYear()} by {config.title}
         </span>
@@ -19,7 +19,7 @@ export const Footer = () => {
                 <li key={social}>
                   <Link href={(social === 'email' ? 'mailto:' : '') + link} target='_blank'>
                     <IconButton
-                      className='flex items-center justify-center rounded-md p-2 transition-colors hover:bg-gray-50 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-gray-500'
+                      className='flex items-center justify-center rounded-md p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-200 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-gray-500'
                       label={`${social} 버튼`}
                     >
                       <SwitchCase
