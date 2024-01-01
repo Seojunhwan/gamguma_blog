@@ -16,7 +16,7 @@ export const Views = async ({ slug, className, ...restProps }: ViewsProps) => {
 };
 
 const ViewsLoader = () => {
-  return <span className='inline-block h-4 w-8 animate-pulse rounded-sm bg-neutral-100 dark:bg-gray-400' />;
+  return <span className='inline-block h-4 w-12 animate-pulse rounded-sm bg-neutral-100 dark:bg-gray-400' />;
 };
 
 Views.Loader = ViewsLoader;
