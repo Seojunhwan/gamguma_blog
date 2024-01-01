@@ -1,5 +1,11 @@
 import { DAY, HOUR, MINUTE } from '@/constants/time';
 
+export const getNewDate = (date: string | Date, dateFn: (date: Date) => void) => {
+  const newDate = new Date(date);
+  dateFn(newDate);
+  return newDate;
+};
+
 export const getRelativeDate = (date: string | Date) => {
   const relativeFormat = new Intl.RelativeTimeFormat('ko', {
     numeric: 'auto',
@@ -7,7 +13,7 @@ export const getRelativeDate = (date: string | Date) => {
   });
 
   const today = new Date();
-  const targetDate = typeof date === 'string' ? new Date(date) : date;
+  const targetDate = new Date(date);
 
   const { diffDay, diffHour, diffMinute } = getDifferenceDate(today, targetDate);
 
@@ -23,7 +29,7 @@ export const getRelativeDate = (date: string | Date) => {
 
   return targetDate.toLocaleDateString('ko-KR', {
     year: 'numeric',
-    month: 'long',
+    month: 'numeric',
     day: 'numeric',
   });
 };
