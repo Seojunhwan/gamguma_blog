@@ -17,7 +17,7 @@ export const Footer = () => {
             ([social, link]) =>
               link && (
                 <li key={social}>
-                  <Link href={(social === 'email' ? 'mailto:' : '') + link} target='_blank' tabIndex={-1}>
+                  <Link href={(social === 'email' ? 'mailto:' : '') + link} target='_blank'>
                     <IconButton
                       className='flex items-center justify-center rounded-md p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-200 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-gray-500'
                       label={`${social} 버튼`}
