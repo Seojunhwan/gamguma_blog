@@ -1,6 +1,8 @@
-import { type Post } from '@//interfaces/Post';
-import { getRelativeDate } from '@//utils/date';
+import { Views } from '@/app/(post)/components/Views';
+import { type Post } from '@/interfaces/Post';
+import { getRelativeDate } from '@/utils/date';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 type PostCardProps = Post;
 
@@ -8,37 +10,32 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
   return (
     <article
       key={slug}
-      className='mb-8 flex flex-col rounded-lg p-4 transition-all hover:bg-neutral-50 active:bg-neutral-100
-          sm:h-48 sm:flex-row sm:items-stretch sm:justify-between sm:py-8'
+      className='mb-8 flex flex-col rounded-lg transition-all hover:bg-neutral-100 dark:hover:bg-gray-200 dark:active:dark:hover:bg-gray-200'
     >
-      <div className='order-2 mt-2 flex h-full grow basis-0 p-2 sm:order-1 sm:mr-6 sm:mt-0 sm:justify-between'>
-        <div className='space-y-2'>
-          <Link href={`/post/${slug}`} className='inline-block w-fit'>
-            <h2 className='w-fit break-keep text-lg font-semibold text-gray-700 hover:text-gray-500'>
+      <Link href={`/post/${slug}`} className='w-full p-3'>
+        <div className='flex'>
+          <div className='flex grow flex-col gap-1'>
+            <h2 className='break-keep text-base font-medium tracking-tight text-neutral-900 dark:text-gray-1200'>
               {metadata.title}
             </h2>
-          </Link>
-          <p className='mb-1 line-clamp-2 overflow-hidden text-ellipsis break-keep text-sm font-light text-gray-600'>
-            {metadata.description}
-          </p>
-        </div>
+            <p className='line-clamp-1 text-sm text-neutral-700 dark:text-gray-1000'>
+              {metadata.description}
+            </p>
+          </div>
 
-        <div className='mt-2 flex justify-between sm:mt-0'>
-          <div>
-            <time dateTime={metadata.createAt} className='text-xs font-extralight text-gray-400'>
+          <div className='flex flex-col items-end justify-between whitespace-nowrap'>
+            <time
+              dateTime={metadata.createAt}
+              className='text-xs font-light text-neutral-600 dark:text-gray-1100'
+            >
               {getRelativeDate(metadata.createAt)}
             </time>
-          </div>
-
-          <div className='flex items-center space-x-1'>
-            {metadata.hashTags.map((tag) => (
-              <span key={tag} className='text-xs font-extralight text-gray-400'>
-                TEMP-{tag}
-              </span>
-            ))}
+            <Suspense fallback={<Views.Loader />}>
+              <Views slug={slug} />
+            </Suspense>
           </div>
         </div>
-      </div>
+      </Link>
     </article>
   );
 };
