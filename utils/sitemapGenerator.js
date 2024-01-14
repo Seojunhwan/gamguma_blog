@@ -5,7 +5,7 @@ const prettier = require('prettier');
 
 const getDate = new Date().toISOString();
 
-const DOMAIN = 'https://gamguma.dev';
+const DOMAIN = 'https://blog.gamguma.dev';
 
 const formatted = (sitemap) => prettier.format(sitemap, { parser: 'html' });
 
