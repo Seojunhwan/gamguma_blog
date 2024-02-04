@@ -29,22 +29,27 @@ export default async function PostPage({ params }: PostPageProps) {
       <div className='mb-8 flex flex-col gap-2'>
         <div className='flex flex-col gap-1'>
           <div className='flex items-center justify-between'>
-            <h1 className='text-2xl font-semibold dark:text-gray-1200'>{metadata.title}</h1>
+            <h1 className='text-lg font-semibold md:text-2xl dark:text-gray-1200'>{metadata.title}</h1>
             <Link href='/'>
               <Button className='p-0 underline underline-offset-4 dark:text-gray-1200 dark:hover:text-gray-1100'>
                 뒤로가기
               </Button>
             </Link>
           </div>
-          <p className='text-sm dark:text-gray-1100'>{metadata.description}</p>
+          <p className='text-sm font-medium text-neutral-700 md:text-base dark:text-gray-1100'>
+            {metadata.description}
+          </p>
         </div>
 
         <div className='flex items-center justify-between'>
-          <time className='text-sm dark:text-gray-1100' dateTime={metadata.createAt}>
+          <time
+            className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
+            dateTime={metadata.createAt}
+          >
             {getRelativeDate(metadata.createAt)}
           </time>
           <Suspense fallback={<Views.Loader />}>
-            <Views slug={slug} className='font-medium' />
+            <Views slug={slug} className='text-sm font-medium text-neutral-600 dark:text-gray-1100' />
           </Suspense>
         </div>
       </div>

@@ -19,14 +19,20 @@ thumbnail: /2022/02/get_next_line/images/thumbnail.png
 fd 를 매개변수로 입력받고 fd 에서 한 줄씩 읽어 출력하는 함수입니다.
 만약 읽을 것이 없거나, 오류가 발생하면 `NULL` 을 반환합니다.
 
-| **함수 이름**                | get_next_line                                                                     |
-| ---------------------------- | --------------------------------------------------------------------------------- |
-| **프로토타입**               | char \*get_next_line(int fd);                                                     |
-| **제출할 파일**              | get_next_line.c, get_next_line_utils.c, get_next_line.h                           |
-| **매개변수**                 | 읽어들일 파일의 디스크립터 (서술자)                                               |
-| **반환값**                   | 읽혀진 라인 : 한 줄이 제대로 읽힘 <br/> NULL : 읽을 라인이 더이상 없거나 에러 발생 |
-| **사용가능한 외부 함수**          | `read, malloc, free`                                                              |
-| **설명**                     | 파일 디스크립터로부터 한 줄을 읽고, 반환하는 함수를 작성하시오.               |
+<Table
+  headers={[
+    '함수 이름',
+    'get_next_line',
+  ]}
+  rows={[
+    ['프로토타입', 'char *get_next_line(int fd)'],
+    ['제출할 파일', 'get_next_line.c, get_next_line_utils.c, get_next_line.h'],
+    ['매개변수', '읽어들일 파일의 디스크립터 (서술자)'],
+    ['반환값', '읽혀진 라인 : 한 줄이 제대로 읽힘 <br/> NULL : 읽을 라인이 더이상 없거나 에러 발생'],
+    ['사용가능한 외부 함수', '`read, malloc, free`'],
+    ['설명', '파일 디스크립터로부터 한 줄을 읽고, 반환하는 함수를 작성하시오.'],
+  ]}
+/>
 
 ## 사전 지식
 
@@ -76,7 +82,7 @@ int main(void)
 - 우선 `ps` 명령어를 이용해 각각의 `PID` 를 확인합니다.
 - 그 후 `lsof -p PID` 명령어를 통해 해당 프로세스에서 열린 파일들의 정보, `fd` 를 확인할 수 있습니다.
 
-<Image src="/file-descriptor-test.png" alt="fd_test 2284x1670" width="2284" height="1670" description="file descriptor"/>
+<Image src="/2022/02/get_next_line/images/file-descriptor-test.png" alt="fd_test 2284x1670" width="2284" height="1670" description="file descriptor"/>
 
 상기 사진을 통해 `File Descriptor` 는 각각의 프로세스에서 독립적이란 것을 확인할 수 있습니다.
 
@@ -84,11 +90,20 @@ int main(void)
 
 더불어 프로그램을 실행하면 `fd 0, 1, 2` 는 예약이 되어있습니다.
 
-| fd |    Represents   |   POSIX Name  | stdio stream |         Examples         |
-|:--:|:---------------:|:-------------:|:------------:|:------------------------:|
-|  0 |  Standard input |  STDIN_FILENO |    stdin     | Keyboard, file, terminal |
-|  1 | Standard output | STDOUT_FILENO |    stdout    |     Screen, database     |
-|  2 |  Standard error | STDERR_FILENO |    stderr    |      File, terminal      |
+<Table
+  headers={[
+    'fd',
+    'Represents',
+    'POSIX Name',
+    'stdio stream',
+    'Examples',
+  ]}
+  rows={[
+    ['0', 'Standard input', 'STDIN_FILENO', 'stdin', 'Keyboard, file, terminal'],
+    ['1', 'Standard output', 'STDOUT_FILENO', 'stdout', 'Screen, database'],
+    ['2', 'Standard error', 'STDERR_FILENO', 'stderr', 'File, terminal'],
+  ]}
+/>
 
 > **요약**
 >
@@ -308,7 +323,7 @@ int main(void)
 
 ## 메모리 누수
 
-<Image src="/memory-leak.png" alt="memory-leak" width="1666" height="866" description="memory leak"/>
+<Image src="/2022/02/get_next_line/images/memory-leak.png" alt="memory-leak" width="1666" height="866" description="memory leak"/>
 
 상기 코드 + 필요한 유틸 함수들을 `gcc -Werror -Wextra -Wall -g -BUFFER_SIZE=100` 로 컴파일,
 `leaks -atExit -- ./a.out` 명령어로 메모리 누수를 확인하면 누수 목록에 ROOT LEAK 이 존재한다. <s>물론 test 파일에 내용이 있어야한다.</s>  
@@ -328,8 +343,7 @@ main 함수에 있는 line 변수의 메모리를 해제하지 않았기 때문�
 역시 뭐든 사용하기 전은 어렵고 이해가 힘들지만 직접 사용해보면서 깨닫는 것이 많은 것 같습니다.  
 특히 lldb,, 이거 없었으면 보너스 문제 해결도 못 했을 거야,,
 
-> **🚨 주의**
->
-> 제가 과제를 해결했을 당시의 테스터와 다르게 현재 유행하는 테스터를 돌리면 많은 부분에서 fail 받습니다!
->
-> 관련해서 수정할 계획은 아쉽게도 없으며😭 코드보단 문제 해결의 흐름에 집중해 주시기 바랍니다!
+<Callout icon={"🚨"}>
+  제가 과제를 해결했을 당시의 테스터와 다르게, 현재 유행하는 테스터를 돌리면 많은 부분에서 **fail** 받습니다!
+</Callout>
+
