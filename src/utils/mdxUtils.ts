@@ -16,8 +16,8 @@ const getPostSlugs = (filePath: string) => {
   return filePath.slice(filePath.indexOf(DIR_STRING) + DIR_STRING.length + 1).replace('.mdx', '');
 };
 
-export const getAllPost = () => {
-  const files = glob.sync(`${POSTS_PATH}/**/*.mdx`);
+export const getAllPost = async () => {
+  const files = await glob(`${POSTS_PATH}/**/*.mdx`);
 
   const posts: Post[] = files.map((filePath) => {
     const source = fs.readFileSync(filePath);
@@ -40,7 +40,7 @@ export const getAllPost = () => {
     return bDate - aDate;
   });
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV === 'production') {
     return sortedPosts.filter((post) => post.metadata.isPublished === true);
   }
   return sortedPosts;

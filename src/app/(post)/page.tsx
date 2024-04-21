@@ -1,8 +1,8 @@
 import { getAllPost } from '@/utils/mdxUtils';
 import { PostCard } from './components/PostCard';
 
-export default function Home() {
-  const posts = getAllPost();
+export default async function Home() {
+  const posts = await getAllPost();
 
   return (
     <ul className='mt-5'>
