@@ -3,10 +3,11 @@ import { MDX } from '@/components/Markdown';
 import { Button } from '@/components/common';
 import { incrementPostViewCountBySlug } from '@/db/post';
 import { getDifferenceDate, getRelativeDate } from '@/utils/date';
-import { getPost } from '@/utils/mdxUtils';
+import { getAllPost, getPost } from '@/utils/mdxUtils';
 import { Suspense } from 'react';
 import { Callout } from '@/components/Markdown/Callout';
 import Link from 'next/link';
+import { unstable_noStore as noStore } from 'next/cache';
 
 interface PostPageProps {
   params: {
@@ -14,6 +15,23 @@ interface PostPageProps {
     month: string;
     title: string;
   };
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPost();
+
+  return posts.map(({ slug }) => ({
+    params: {
+      year: slug.split('/')[0],
+      month: slug.split('/')[1],
+      title: slug.split('/')[2],
+    },
+  }));
+}
+
+function formatDate(date: Date | string) {
+  noStore();
+  return getRelativeDate(date);
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -46,7 +64,9 @@ export default async function PostPage({ params }: PostPageProps) {
             className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
             dateTime={metadata.createAt}
           >
-            {getRelativeDate(metadata.createAt)}
+            <Suspense fallback={<span className='animate-pulse'></span>}>
+              {formatDate(metadata.createAt)}
+            </Suspense>
           </time>
           <Suspense fallback={<Views.Loader />}>
             <Views slug={slug} className='text-sm font-medium text-neutral-600 dark:text-gray-1100' />

@@ -1,5 +1,6 @@
 import { getPostViewCountBySlug } from '@/db/post';
 import { cn } from '@/utils/cn';
+import { unstable_noStore as noStore } from 'next/cache';
 import type { HTMLAttributes } from 'react';
 
 interface ViewsProps extends HTMLAttributes<HTMLSpanElement> {
@@ -7,6 +8,7 @@ interface ViewsProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 export const Views = async ({ slug, className, ...restProps }: ViewsProps) => {
+  noStore();
   const views = await getPostViewCountBySlug(slug);
   return (
     <span className={cn('text-xs font-light text-neutral-600 dark:text-gray-1100', className)} {...restProps}>
