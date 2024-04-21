@@ -64,7 +64,7 @@ export default async function PostPage({ params }: PostPageProps) {
             className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
             dateTime={metadata.createAt}
           >
-            <Suspense fallback={<span className='animate-pulse'></span>}>
+            <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
               {formatDate(metadata.createAt)}
             </Suspense>
           </time>

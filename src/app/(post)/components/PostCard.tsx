@@ -3,8 +3,14 @@ import { type Post } from '@/interfaces/Post';
 import { getRelativeDate } from '@/utils/date';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import { unstable_noStore as noStore } from 'next/cache';
 
 type PostCardProps = Post;
+
+function formatDate(date: Date | string) {
+  noStore();
+  return getRelativeDate(date);
+}
 
 export const PostCard = ({ slug, metadata }: PostCardProps) => {
   return (
@@ -22,12 +28,14 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
               dateTime={metadata.createAt}
               className='whitespace-nowrap text-xs font-light text-neutral-600 dark:text-gray-1100'
             >
-              {getRelativeDate(metadata.createAt)}
+              <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
+                {formatDate(metadata.createAt)}
+              </Suspense>
             </time>
           </div>
 
           <div className='flex items-center justify-between'>
-            <p className='line-clamp-1 text-sm text-neutral-700 transition-opacity group-hover:opacity-100 md:opacity-0 dark:text-gray-1000'>
+            <p className='line-clamp-1 text-sm text-neutral-700 transition-opacity group-hover:opacity-100 md:opacity-50 dark:text-gray-1000'>
               {metadata.description}
             </p>
             <div className='shrink-0'>
