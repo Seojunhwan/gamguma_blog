@@ -1,6 +1,6 @@
 import { Views } from '@/app/(post)/components/Views';
 import { MDX } from '@/components/Markdown';
-import { Button } from '@/components/common';
+import { Button } from '@/components/Common';
 import { incrementPostViewCountBySlug } from '@/db/post';
 import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';

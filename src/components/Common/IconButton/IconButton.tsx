@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from '@/components/common';
+import { Button, type ButtonProps } from '@/components/Common';
 
 interface IconButtonProps extends ButtonProps {
   label: string;

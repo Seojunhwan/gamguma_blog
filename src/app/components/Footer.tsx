@@ -1,8 +1,7 @@
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'next-view-transitions';
-
 import config from '#/config.json';
-import { IconButton, SwitchCase } from '@/components/common';
+import { IconButton, SwitchCase } from '@/components/Common';
 import { type SocialKeys } from '@/interfaces/Social';
 
 export const Footer = () => {
