@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import { type PropsWithChildren } from 'react';
 import { Footer } from './components';
 import { ViewTransitions } from 'next-view-transitions';
+import { GoogleAnalytics } from '@/components/Common/GoogleAnalytics';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             </main>
             <Footer />
           </div>
+          <GoogleAnalytics />
         </body>
       </html>
     </ViewTransitions>
