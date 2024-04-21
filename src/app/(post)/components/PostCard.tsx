@@ -1,7 +1,7 @@
 import { Views } from '@/app/(post)/components/Views';
 import { type Post } from '@/interfaces/Post';
 import { getRelativeDate } from '@/utils/date';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
 import { unstable_noStore as noStore } from 'next/cache';
 

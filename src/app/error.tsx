@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/common';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 export default function ErrorPage() {
   return (

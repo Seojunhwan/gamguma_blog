@@ -6,7 +6,7 @@ import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
 import { Suspense } from 'react';
 import { Callout } from '@/components/Markdown/Callout';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { unstable_noStore as noStore } from 'next/cache';
 
 interface PostPageProps {

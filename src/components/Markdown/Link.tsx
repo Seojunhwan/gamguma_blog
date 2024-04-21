@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import type { AnchorHTMLAttributes } from 'react';
 
 interface CustomLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
