@@ -27,7 +27,7 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
           </div>
 
           <div className='flex items-center justify-between'>
-            <p className='line-clamp-1 text-sm text-neutral-700 opacity-0 transition-opacity group-hover:opacity-100 dark:text-gray-1000'>
+            <p className='line-clamp-1 text-sm text-neutral-700 transition-opacity group-hover:opacity-100 md:opacity-0 dark:text-gray-1000'>
               {metadata.description}
             </p>
             <div className='shrink-0'>
