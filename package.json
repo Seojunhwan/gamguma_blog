@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma-studio": "dotenv -e .env.development -- prisma studio"
+    "prisma-studio": "dotenv -e .env.development -- prisma studio",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "5.7.1",
