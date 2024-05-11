@@ -1,10 +1,12 @@
 import { D2Coding, firaCode, pretendard } from '@/styles/font';
 import '@/styles/globals.css';
-import { type PropsWithChildren } from 'react';
-import { Footer } from './components';
-import { ViewTransitions } from 'next-view-transitions';
-import { GoogleAnalytics } from '@/components/common/google-analytics';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata, Viewport } from 'next';
+import { ViewTransitions } from 'next-view-transitions';
+import { type PropsWithChildren } from 'react';
+
+import { Footer } from './components';
+
 import { BASE_URL } from '@/constants/url';
 
 export const viewport: Viewport = {
@@ -53,7 +55,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             </main>
             <Footer />
           </div>
-          <GoogleAnalytics />
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID as string} />
         </body>
       </html>
     </ViewTransitions>
