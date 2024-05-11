@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     url: '/',
   },
   openGraph: {
+    type: 'website',
     url: '/',
     locale: 'ko',
     title: '감구마 | 감구마 개발블로그',
     description: '감구마의 개발 블로그',
-    authors: '서준환',
     images: {
       url: 'https://gamguma-blog.s3.ap-northeast-2.amazonaws.com/thumbnail/blog_thumbnail.jpeg',
       width: 1200,

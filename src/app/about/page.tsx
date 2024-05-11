@@ -7,6 +7,11 @@ export const metadata: Metadata = {
     canonical: '/about',
   },
   openGraph: {
+    type: 'profile',
+    firstName: 'junhwan',
+    lastName: 'seo',
+    username: 'seojunhwan',
+    gender: 'male',
     url: '/about',
   },
 };
