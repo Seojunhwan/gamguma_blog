@@ -34,8 +34,8 @@ export const getAllPost = async () => {
   });
 
   const sortedPosts = posts.sort((a, b) => {
-    const aDate = +new Date(a.metadata.createAt);
-    const bDate = +new Date(b.metadata.createAt);
+    const aDate = +new Date(a.metadata.createdAt);
+    const bDate = +new Date(b.metadata.createdAt);
 
     return bDate - aDate;
   });

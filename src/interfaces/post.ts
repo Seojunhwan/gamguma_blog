@@ -3,7 +3,8 @@ export interface FrontMatter {
   author: string;
   hashTags: string[];
   description: string;
-  createAt: string;
+  createdAt: string;
+  updatedAt: string;
   isPublished: boolean;
   thumbnail: string;
 }

@@ -25,11 +25,11 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
               {metadata.title}
             </h2>
             <time
-              dateTime={metadata.createAt}
+              dateTime={metadata.createdAt}
               className='whitespace-nowrap text-xs font-light text-neutral-600 dark:text-gray-1100'
             >
               <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-                {formatDate(metadata.createAt)}
+                {formatDate(metadata.createdAt)}
               </Suspense>
             </time>
           </div>

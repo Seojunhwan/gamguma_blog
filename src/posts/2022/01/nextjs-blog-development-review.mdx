@@ -2,7 +2,7 @@
 title: Next.js 개인 블로그 개발기
 description: next.js 로 개인 블로그를 만들며 느낀 것들, SSR & SSG, font-flickering 해결
 author: Junhwan Seo
-createAt: 2022-01-19 14:53
+createdAt: 2022-01-19 14:53
 hashTags: [Blog, Next.js]
 isPublished: true
 thumbnail: /2022/01/nextjs-blog-development-review/images/thumbnail.png
@@ -204,7 +204,7 @@ export async function getStaticPaths() {
 ```tsx
 export default function Blog({
   mdxSource,
-  frontMatter: { title, description, hashTags, createAt },
+  frontMatter: { title, description, hashTags, createdAt },
   content,
 }: IMdxProps) {
   return (
@@ -215,7 +215,7 @@ export default function Blog({
         <PostHeader>
           <div>
             <h1>{title}</h1>
-            <time dateTime={createAt}>{dateFormatter(createAt)}</time>
+            <time dateTime={createdAt}>{dateFormatter(createdAt)}</time>
             <HashTag isHashTagMenu={false} hashTags={hashTags} />
           </div>
         </PostHeader>
