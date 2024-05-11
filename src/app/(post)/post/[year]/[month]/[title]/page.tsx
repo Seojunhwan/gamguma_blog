@@ -9,6 +9,7 @@ import { Callout } from '@/components/markdown/callout';
 import { Link } from 'next-view-transitions';
 import { unstable_noStore as noStore } from 'next/cache';
 import type { ResolvingMetadata, Metadata } from 'next';
+import { BASE_URL } from '@/constants/url';
 
 interface PostPageProps {
   params: {
@@ -47,6 +48,7 @@ export async function generateMetadata(
       follow: true,
     },
     openGraph: {
+      url: `${BASE_URL}/post/${year}/${month}/${title}`,
       locale: 'ko',
       type: 'article',
       title: metadata.title,

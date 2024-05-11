@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
   },
   openGraph: {
+    url: BASE_URL,
     locale: 'ko',
     title: '감구마 | 감구마 개발블로그',
     description: '감구마의 개발 블로그',
