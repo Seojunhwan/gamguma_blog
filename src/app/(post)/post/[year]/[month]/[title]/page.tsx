@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import { Callout } from '@/components/markdown/callout';
 import { Link } from 'next-view-transitions';
 import { unstable_noStore as noStore } from 'next/cache';
+import type { ResolvingMetadata, Metadata } from 'next';
 
 interface PostPageProps {
   params: {
@@ -29,6 +30,33 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata(
+  { params }: PostPageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { year, month, title } = params;
+
+  const { metadata } = await getPost([year, month, title]);
+
+  return {
+    title: metadata.title + ' | 감구마 개발블로그',
+    description: metadata.description,
+    keywords: [...metadata.hashTags, ...((await parent).keywords ?? [])],
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      locale: 'ko',
+      type: 'article',
+      title: metadata.title,
+      description: metadata.description,
+      images: { url: metadata.thumbnail, width: 1200, height: 630 },
+      authors: metadata.author,
+    },
+  };
+}
+
 function formatDate(date: Date | string) {
   noStore();
   return getRelativeDate(date);
@@ -40,7 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const slug = [year, month, title].join('/');
   await incrementPostViewCountBySlug(slug);
 
-  const { diffDay } = getDifferenceDate(new Date(), metadata.createAt);
+  const { diffDay } = getDifferenceDate(new Date(), metadata.createdAt);
 
   return (
     <article>
@@ -62,10 +90,10 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className='flex items-center justify-between'>
           <time
             className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
-            dateTime={metadata.createAt}
+            dateTime={metadata.createdAt}
           >
             <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-              {formatDate(metadata.createAt)}
+              {formatDate(metadata.createdAt)}
             </Suspense>
           </time>
           <Suspense fallback={<Views.Loader />}>

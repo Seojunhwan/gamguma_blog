@@ -4,6 +4,39 @@ import { type PropsWithChildren } from 'react';
 import { Footer } from './components';
 import { ViewTransitions } from 'next-view-transitions';
 import { GoogleAnalytics } from '@/components/common/google-analytics';
+import { Metadata, Viewport } from 'next';
+import { BASE_URL } from '@/constants/url';
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+  userScalable: false,
+};
+
+export const metadata: Metadata = {
+  title: '감구마 | 감구마 개발블로그',
+  description: '감구마의 개발 블로그',
+  keywords: ['개발', '개발자', '감구마', '프론트엔드'],
+  robots: 'index, follow',
+  publisher: '서준환',
+  authors: {
+    name: '서준환',
+    url: BASE_URL,
+  },
+  openGraph: {
+    locale: 'ko',
+    title: '감구마 | 감구마 개발블로그',
+    description: '감구마의 개발 블로그',
+    authors: '서준환',
+    images: {
+      url: 'https://gamguma-blog.s3.ap-northeast-2.amazonaws.com/thumbnail/blog_thumbnail.jpeg',
+      width: 1200,
+      height: 630,
+    },
+  },
+};
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
