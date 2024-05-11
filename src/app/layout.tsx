@@ -16,6 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: '감구마 | 감구마 개발블로그',
   description: '감구마의 개발 블로그',
   keywords: ['개발', '개발자', '감구마', '프론트엔드'],
@@ -23,10 +24,10 @@ export const metadata: Metadata = {
   publisher: '서준환',
   authors: {
     name: '서준환',
-    url: BASE_URL,
+    url: '/',
   },
   openGraph: {
-    url: BASE_URL,
+    url: '/',
     locale: 'ko',
     title: '감구마 | 감구마 개발블로그',
     description: '감구마의 개발 블로그',

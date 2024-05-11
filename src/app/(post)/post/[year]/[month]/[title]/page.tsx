@@ -1,15 +1,14 @@
 import { Views } from '@/app/(post)/components/views';
-import { MDX } from '@/components/markdown';
 import { Button } from '@/components/common';
+import { MDX } from '@/components/markdown';
+import { Callout } from '@/components/markdown/callout';
 import { incrementPostViewCountBySlug } from '@/db/post';
 import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
-import { Suspense } from 'react';
-import { Callout } from '@/components/markdown/callout';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { Link } from 'next-view-transitions';
 import { unstable_noStore as noStore } from 'next/cache';
-import type { ResolvingMetadata, Metadata } from 'next';
-import { BASE_URL } from '@/constants/url';
+import { Suspense } from 'react';
 
 interface PostPageProps {
   params: {
@@ -43,12 +42,15 @@ export async function generateMetadata(
     title: metadata.title + ' | 감구마 개발블로그',
     description: metadata.description,
     keywords: [...metadata.hashTags, ...((await parent).keywords ?? [])],
+    alternates: {
+      canonical: `/post/${year}/${month}/${title}`,
+    },
     robots: {
       index: true,
       follow: true,
     },
     openGraph: {
-      url: `${BASE_URL}/post/${year}/${month}/${title}`,
+      url: `/post/${year}/${month}/${title}`,
       locale: 'ko',
       type: 'article',
       title: metadata.title,
