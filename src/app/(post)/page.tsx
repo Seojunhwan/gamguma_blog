@@ -1,5 +1,5 @@
 import { getAllPost } from '@/utils/mdxUtils';
-import { PostCard } from './components/PostCard';
+import { PostCard } from './components/post-card';
 
 export default async function Home() {
   const posts = await getAllPost();

@@ -1,11 +1,11 @@
-import { Views } from '@/app/(post)/components/Views';
-import { MDX } from '@/components/Markdown';
-import { Button } from '@/components/Common';
+import { Views } from '@/app/(post)/components/views';
+import { MDX } from '@/components/markdown';
+import { Button } from '@/components/common';
 import { incrementPostViewCountBySlug } from '@/db/post';
 import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
 import { Suspense } from 'react';
-import { Callout } from '@/components/Markdown/Callout';
+import { Callout } from '@/components/markdown/callout';
 import { Link } from 'next-view-transitions';
 import { unstable_noStore as noStore } from 'next/cache';
 

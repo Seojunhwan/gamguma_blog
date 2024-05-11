@@ -1,12 +1,12 @@
 'use client';
 
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote';
-import { Callout } from './Callout';
-import { Code } from './Code';
-import { CustomImage } from './Image';
-import { CustomLink } from './Link';
-import { CustomTable } from './Table';
-import { CustomHeading } from './Heading';
+import { Callout } from './callout';
+import { Code } from './code';
+import { CustomImage } from './image';
+import { CustomLink } from './link';
+import { CustomTable } from './table';
+import { CustomHeading } from './heading';
 
 interface MDXProps {
   mdxSource: MDXRemoteProps;

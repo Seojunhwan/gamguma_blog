@@ -1,4 +1,4 @@
-import { type FrontMatter, type Post } from '@/interfaces/Post';
+import { type FrontMatter, type Post } from '@/interfaces/post';
 import fs from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';

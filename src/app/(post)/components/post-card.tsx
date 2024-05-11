@@ -1,5 +1,5 @@
-import { Views } from '@/app/(post)/components/Views';
-import { type Post } from '@/interfaces/Post';
+import { Views } from '@/app/(post)/components/views';
+import { type Post } from '@/interfaces/post';
 import { getRelativeDate } from '@/utils/date';
 import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
