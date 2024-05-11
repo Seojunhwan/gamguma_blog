@@ -1,5 +1,5 @@
 import { Views } from '@/app/(post)/components/views';
-import { Button } from '@/components/common';
+import { Button, Utterances } from '@/components/common';
 import { MDX } from '@/components/markdown';
 import { Callout } from '@/components/markdown/callout';
 import { incrementPostViewCountBySlug } from '@/db/post';
@@ -75,48 +75,51 @@ export default async function PostPage({ params }: PostPageProps) {
   const { diffDay } = getDifferenceDate(new Date(), metadata.createdAt);
 
   return (
-    <article>
-      <div className='mb-8 flex flex-col gap-2'>
-        <div className='flex flex-col gap-1'>
-          <div className='flex items-center justify-between'>
-            <h1 className='text-lg font-semibold md:text-2xl dark:text-gray-1200'>{metadata.title}</h1>
-            <Link href='/'>
-              <Button className='p-0 underline underline-offset-4 dark:text-gray-1200 dark:hover:text-gray-1100'>
-                뒤로가기
-              </Button>
-            </Link>
+    <>
+      <article>
+        <div className='mb-8 flex flex-col gap-2'>
+          <div className='flex flex-col gap-1'>
+            <div className='flex items-center justify-between'>
+              <h1 className='text-lg font-semibold md:text-2xl dark:text-gray-1200'>{metadata.title}</h1>
+              <Link href='/'>
+                <Button className='p-0 underline underline-offset-4 dark:text-gray-1200 dark:hover:text-gray-1100'>
+                  뒤로가기
+                </Button>
+              </Link>
+            </div>
+            <p className='text-sm font-medium text-neutral-700 md:text-base dark:text-gray-1100'>
+              {metadata.description}
+            </p>
           </div>
-          <p className='text-sm font-medium text-neutral-700 md:text-base dark:text-gray-1100'>
-            {metadata.description}
-          </p>
-        </div>
 
-        <div className='flex items-center justify-between'>
-          <time
-            className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
-            dateTime={metadata.createdAt}
-          >
-            <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-              {formatDate(metadata.createdAt)}
+          <div className='flex items-center justify-between'>
+            <time
+              className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
+              dateTime={metadata.createdAt}
+            >
+              <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
+                {formatDate(metadata.createdAt)}
+              </Suspense>
+            </time>
+            <Suspense fallback={<Views.Loader />}>
+              <Views slug={slug} className='text-sm font-medium text-neutral-600 dark:text-gray-1100' />
             </Suspense>
-          </time>
-          <Suspense fallback={<Views.Loader />}>
-            <Views slug={slug} className='text-sm font-medium text-neutral-600 dark:text-gray-1100' />
-          </Suspense>
+          </div>
         </div>
-      </div>
 
-      {diffDay > 365 && (
-        <Callout icon={'⚠️'} className='-mt-2 mb-8'>
-          <p className='text-sm text-gray-500 dark:text-gray-1200'>
-            이 글은 <strong>{diffDay}일</strong> 전에 작성되었습니다.
-            <br />
-            최신 정보가 아닐 수 있습니다.
-          </p>
-        </Callout>
-      )}
+        {diffDay > 365 && (
+          <Callout icon={'⚠️'} className='-mt-2 mb-8'>
+            <p className='text-sm text-gray-500 dark:text-gray-1200'>
+              이 글은 <strong>{diffDay}일</strong> 전에 작성되었습니다.
+              <br />
+              최신 정보가 아닐 수 있습니다.
+            </p>
+          </Callout>
+        )}
 
-      <MDX mdxSource={mdxSource} />
-    </article>
+        <MDX mdxSource={mdxSource} />
+      </article>
+      <Utterances />
+    </>
   );
 }
