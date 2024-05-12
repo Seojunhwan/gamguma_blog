@@ -66,13 +66,17 @@ function formatDate(date: Date | string) {
   return getRelativeDate(date);
 }
 
+function getDiffDay(date: Date | string) {
+  noStore();
+  return getDifferenceDate(new Date(), date);
+}
+
 export default async function PostPage({ params }: PostPageProps) {
   const { year, month, title } = params;
   const { mdxSource, metadata } = await getPost([year, month, title]);
   const slug = [year, month, title].join('/');
-  await incrementPostViewCountBySlug(slug);
 
-  const { diffDay } = getDifferenceDate(new Date(), metadata.createdAt);
+  const { diffDay } = getDiffDay(metadata.createdAt);
 
   return (
     <>
@@ -102,20 +106,25 @@ export default async function PostPage({ params }: PostPageProps) {
               </Suspense>
             </time>
             <Suspense fallback={<Views.Loader />}>
-              <Views slug={slug} className='text-sm font-medium text-neutral-600 dark:text-gray-1100' />
+              <Views.WithIncrement
+                slug={slug}
+                className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
+              />
             </Suspense>
           </div>
         </div>
 
-        {diffDay > 365 && (
-          <Callout icon={'⚠️'} className='-mt-2 mb-8'>
-            <p className='text-sm text-gray-500 dark:text-gray-1200'>
-              이 글은 <strong>{diffDay}일</strong> 전에 작성되었습니다.
-              <br />
-              최신 정보가 아닐 수 있습니다.
-            </p>
-          </Callout>
-        )}
+        <Suspense fallback={<div className='w-4 animate-pulse'></div>}>
+          {diffDay > 365 && (
+            <Callout icon={'⚠️'} className='-mt-2 mb-8'>
+              <p className='text-sm text-gray-500 dark:text-gray-1200'>
+                이 글은 <strong>{diffDay}일</strong> 전에 작성되었습니다.
+                <br />
+                최신 정보가 아닐 수 있습니다.
+              </p>
+            </Callout>
+          )}
+        </Suspense>
 
         <MDX mdxSource={mdxSource} />
       </article>

@@ -1,4 +1,4 @@
-import { getPostViewCountBySlug } from '@/db/post';
+import { getPostViewCountBySlug, incrementPostViewCountBySlug } from '@/db/post';
 import { cn } from '@/utils/cn';
 import { unstable_noStore as noStore } from 'next/cache';
 import type { HTMLAttributes } from 'react';
@@ -17,8 +17,14 @@ export const Views = async ({ slug, className, ...restProps }: ViewsProps) => {
   );
 };
 
+const WithIncrement = async ({ slug, ...restProps }: ViewsProps) => {
+  await incrementPostViewCountBySlug(slug);
+  return <Views slug={slug} {...restProps} />;
+};
+
 const ViewsLoader = () => {
   return <span className='inline-block h-4 w-12 animate-pulse rounded-sm bg-neutral-100 dark:bg-gray-400' />;
 };
 
+Views.WithIncrement = WithIncrement;
 Views.Loader = ViewsLoader;
