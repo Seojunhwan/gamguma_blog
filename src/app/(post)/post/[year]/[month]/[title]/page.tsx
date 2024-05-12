@@ -2,7 +2,7 @@ import { Views } from '@/app/(post)/components/views';
 import { Button, Utterances } from '@/components/common';
 import { MDX } from '@/components/markdown';
 import { Callout } from '@/components/markdown/callout';
-import { incrementPostViewCountBySlug } from '@/db/post';
+import { BASE_URL } from '@/constants/url';
 import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
 import type { Metadata, ResolvingMetadata } from 'next';
@@ -55,7 +55,7 @@ export async function generateMetadata(
       type: 'article',
       title: metadata.title,
       description: metadata.description,
-      images: { url: metadata.thumbnail, width: 1200, height: 630 },
+      images: { url: `${BASE_URL}/og?title=${metadata.title}`, width: 1200, height: 630 },
       authors: metadata.author,
     },
   };
