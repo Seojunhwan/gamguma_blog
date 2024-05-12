@@ -96,9 +96,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         </div>
 
-        <Suspense fallback={<div className='w-4 animate-pulse'></div>}>
-          <OutdatedWarning createdAt={metadata.createdAt} />
-        </Suspense>
+        <OutdatedWarning createdAt={metadata.createdAt} />
 
         <MDX mdxSource={mdxSource} />
       </article>

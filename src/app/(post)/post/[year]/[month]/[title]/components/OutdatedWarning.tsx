@@ -1,14 +1,10 @@
+'use client';
+
 import { Callout } from '@/components/markdown/callout';
 import { getDifferenceDate } from '@/utils/date';
-import { unstable_noStore as noStore } from 'next/cache';
-
-function getDiffDay(date: Date | string) {
-  noStore();
-  return getDifferenceDate(new Date(), date);
-}
 
 export function OutdatedWarning({ createdAt }: { createdAt: string }) {
-  const { diffDay } = getDiffDay(createdAt);
+  const { diffDay } = getDifferenceDate(new Date(), createdAt);
 
   if (diffDay < 365) {
     return null;
