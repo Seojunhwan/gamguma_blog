@@ -14,25 +14,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: `${BASE_URL}`,
-      lastModified: new Date().toISOString(),
+      lastModified: new Date().toISOString().split('T')[0],
       changeFrequency: 'yearly',
       priority: 1,
     },
     // {
     //   url: `${BASE_URL}/about`,
-    //   lastModified: new Date().toISOString(),
+    //   lastModified: new Date().toISOString().split('T')[0],
     //   changeFrequency: 'monthly',
     //   priority: 0.8,
     // },
     // {
     //   url: `${BASE_URL}/craft`,
-    //   lastModified: new Date().toISOString(),
+    //   lastModified: new Date().toISOString().split('T')[0],
     //   changeFrequency: 'weekly',
     //   priority: 0.8,
     // },
     // {
     //   url: `${BASE_URL}/photo`,
-    //   lastModified: new Date().toISOString(),
+    //   lastModified: new Date().toISOString().split('T')[0],
     //   changeFrequency: 'monthly',
     //   priority: 0.5,
     // },
