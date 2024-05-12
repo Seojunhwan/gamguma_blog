@@ -84,9 +84,8 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           <div className='flex items-center justify-between'>
-            <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-              <CreatedAt createdAt={metadata.createdAt} />
-            </Suspense>
+            <CreatedAt createdAt={metadata.createdAt} />
+
             <Suspense fallback={<Views.Loader />}>
               <Views.WithIncrement
                 slug={slug}
