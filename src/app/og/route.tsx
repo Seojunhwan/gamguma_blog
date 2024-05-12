@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 
 export async function GET(req: NextRequest) {
   const title = req.nextUrl.searchParams.get('title');
-  const font = await fs.readFile(process.cwd() + '/public/fonts/gangwon_bold.woff');
+  const font = await fs.readFile(process.cwd() + '/fonts/gangwon_bold.woff');
 
   return new ImageResponse(
     (
