@@ -1,14 +1,13 @@
 import { Views } from '@/app/(post)/components/views';
 import { Button, Utterances } from '@/components/common';
 import { MDX } from '@/components/markdown';
-import { Callout } from '@/components/markdown/callout';
 import { BASE_URL } from '@/constants/url';
-import { getDifferenceDate, getRelativeDate } from '@/utils/date';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Link } from 'next-view-transitions';
-import { unstable_noStore as noStore } from 'next/cache';
 import { Suspense } from 'react';
+import { CreatedAt } from './components/CreatedAt';
+import { OutdatedWarning } from './components/OutdatedWarning';
 
 interface PostPageProps {
   params: {
@@ -61,22 +60,10 @@ export async function generateMetadata(
   };
 }
 
-function formatDate(date: Date | string) {
-  noStore();
-  return getRelativeDate(date);
-}
-
-function getDiffDay(date: Date | string) {
-  noStore();
-  return getDifferenceDate(new Date(), date);
-}
-
 export default async function PostPage({ params }: PostPageProps) {
   const { year, month, title } = params;
   const { mdxSource, metadata } = await getPost([year, month, title]);
   const slug = [year, month, title].join('/');
-
-  const { diffDay } = getDiffDay(metadata.createdAt);
 
   return (
     <>
@@ -97,14 +84,9 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           <div className='flex items-center justify-between'>
-            <time
-              className='text-sm font-medium text-neutral-600 dark:text-gray-1100'
-              dateTime={metadata.createdAt}
-            >
-              <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-                {formatDate(metadata.createdAt)}
-              </Suspense>
-            </time>
+            <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
+              <CreatedAt createdAt={metadata.createdAt} />
+            </Suspense>
             <Suspense fallback={<Views.Loader />}>
               <Views.WithIncrement
                 slug={slug}
@@ -115,15 +97,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         <Suspense fallback={<div className='w-4 animate-pulse'></div>}>
-          {diffDay > 365 && (
-            <Callout icon={'⚠️'} className='-mt-2 mb-8'>
-              <p className='text-sm text-gray-500 dark:text-gray-1200'>
-                이 글은 <strong>{diffDay}일</strong> 전에 작성되었습니다.
-                <br />
-                최신 정보가 아닐 수 있습니다.
-              </p>
-            </Callout>
-          )}
+          <OutdatedWarning createdAt={metadata.createdAt} />
         </Suspense>
 
         <MDX mdxSource={mdxSource} />
