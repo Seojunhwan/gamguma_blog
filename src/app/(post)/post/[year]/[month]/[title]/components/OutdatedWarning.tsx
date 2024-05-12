@@ -10,7 +10,7 @@ function getDiffDay(date: Date | string) {
 export function OutdatedWarning({ createdAt }: { createdAt: string }) {
   const { diffDay } = getDiffDay(createdAt);
 
-  if (diffDay > 365) {
+  if (diffDay < 365) {
     return null;
   }
 
