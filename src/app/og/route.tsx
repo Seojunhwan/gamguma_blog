@@ -2,12 +2,13 @@ import { BASE_URL } from '@/constants/url';
 import { ImageResponse } from 'next/og';
 import { type NextRequest } from 'next/server';
 import fs from 'fs/promises';
+import path from 'path';
 
 export const runtime = 'nodejs';
 
 export async function GET(req: NextRequest) {
   const title = req.nextUrl.searchParams.get('title');
-  const font = await fs.readFile(process.cwd() + '/fonts/gangwon_bold.woff');
+  const font = await fs.readFile(path.join(process.cwd(), 'public', 'fonts', 'gangwon_bold.woff'));
 
   return new ImageResponse(
     (
