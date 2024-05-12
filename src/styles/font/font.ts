@@ -1,5 +1,4 @@
 import localFont from 'next/font/local';
-import { Fira_Code } from 'next/font/google';
 
 export const pretendard = localFont({
   src: [
@@ -63,10 +62,4 @@ export const D2Coding = localFont({
   ],
   variable: '--font-d2coding',
   display: 'swap',
-});
-
-export const firaCode = Fira_Code({
-  variable: '--font-fira-code',
-  display: 'swap',
-  subsets: ['latin-ext'],
 });
