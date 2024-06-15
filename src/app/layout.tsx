@@ -7,7 +7,8 @@ import { type PropsWithChildren } from 'react';
 
 import { Footer } from './components';
 
-import { BASE_URL } from '@/constants/url';
+import { BASE_URL, CDN_URL } from '@/constants/url';
+import { createCDNUrl } from '@/utils/url';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     title: '감구마 | 감구마 개발블로그',
     description: '감구마의 개발 블로그',
     images: {
-      url: 'https://gamguma-blog.s3.ap-northeast-2.amazonaws.com/thumbnail/blog_thumbnail.jpeg',
+      url: createCDNUrl('thumbnail/blog_thumbnail.jpeg'),
       width: 1200,
       height: 630,
     },
