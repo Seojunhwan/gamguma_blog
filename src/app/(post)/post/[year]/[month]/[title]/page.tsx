@@ -1,8 +1,8 @@
 import { Views } from '@/app/(post)/components/views';
 import { Button, Utterances } from '@/components/common';
 import { MDX } from '@/components/markdown';
-import { BASE_URL } from '@/constants/url';
 import { getAllPost, getPost } from '@/utils/mdxUtils';
+import { createBaseUrl } from '@/utils/url';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
@@ -54,7 +54,7 @@ export async function generateMetadata(
       type: 'article',
       title: metadata.title,
       description: metadata.description,
-      images: { url: `${BASE_URL}/og?title=${metadata.title}`, width: 1200, height: 630 },
+      images: { url: createBaseUrl(`/og?title=${metadata.title}`), width: 1200, height: 630 },
       authors: metadata.author,
     },
   };

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { WorkExperience } from './_components/work-experience';
 import { Section } from './_components/shared';
+import { createBaseUrl } from '@/utils/url';
 
 export const metadata: Metadata = {
   title: 'About | 감구마 개발블로그',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     username: 'seojunhwan',
     gender: 'male',
     url: '/about',
+    images: { url: createBaseUrl(`/og?title=About`), width: 1200, height: 630 },
   },
 };
 

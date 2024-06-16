@@ -1,7 +1,7 @@
-import { BASE_URL } from '@/constants/url';
+import { createBaseUrl } from '@/utils/url';
+import fs from 'fs/promises';
 import { ImageResponse } from 'next/og';
 import { type NextRequest } from 'next/server';
-import fs from 'fs/promises';
 import path from 'path';
 
 export const runtime = 'nodejs';
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundSize: '1200px 630px',
-          backgroundImage: `url(${BASE_URL}/images/og_background.png)`,
+          backgroundImage: `url(${createBaseUrl('/images/og_background.png')})`,
         }}
       >
         <div

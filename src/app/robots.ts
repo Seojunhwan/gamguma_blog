@@ -1,5 +1,5 @@
+import { createBaseUrl } from '@/utils/url';
 import { MetadataRoute } from 'next';
-import { BASE_URL } from '../constants/url';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/tags',
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: createBaseUrl('/sitemap.xml'),
   };
 }
