@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section className='px-3 dark:text-neutral-300'>
-      <h2 className='text-lg'>
+      <h2>
         안녕하세요,
         <br />
         소프트웨어 엔지니어 서준환입니다.
