@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn';
 import { type ButtonHTMLAttributes } from 'react';
 
 type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 type ButtonRadius = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,6 +23,7 @@ const sizeClasses: Record<ButtonSize, string> = {
   sm: 'px-2 py-1 text-sm',
   md: 'px-4 py-2 text-base',
   lg: 'px-4 py-2 text-lg',
+  icon: 'p-2',
 };
 
 const radiusClasses: Record<ButtonRadius, string> = {
@@ -37,6 +38,7 @@ const defaultClasses = [
   'focus:outline-none',
   'disabled:opacity-50 disabled:cursor-not-allowed',
   'font-normal',
+  'disabled:cursor-not-allowed disabled:bg-neutral-2000 disabled:text-neutral-500 disabled:dark:bg-neutral-800 disabled:dark:text-neutral-400 ',
 ];
 
 export const Button = ({
