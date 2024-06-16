@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: '감구마 | 감구마 개발블로그',
     description: '감구마의 개발 블로그',
     images: {
-      url: createCDNUrl('thumbnail/blog_thumbnail.jpeg'),
+      url: createCDNUrl('/thumbnail/blog_thumbnail.jpeg'),
       width: 1200,
       height: 630,
     },
