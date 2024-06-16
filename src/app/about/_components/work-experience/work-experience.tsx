@@ -18,7 +18,7 @@ interface WorkExperienceItem {
 
 const WORK_EXPERIENCE: WorkExperienceItem[] = [
   {
-    logo: createCDNUrl('images/work-experience/team-sparta.png'),
+    logo: createCDNUrl('/images/work-experience/team-sparta.png'),
     company: 'Team Sparta',
     position: 'Software Engineer',
     period: '2023.09 - Present',
@@ -31,7 +31,7 @@ const WORK_EXPERIENCE: WorkExperienceItem[] = [
     ],
   },
   {
-    logo: createCDNUrl('images/work-experience/toss.png'),
+    logo: createCDNUrl('/images/work-experience/toss.png'),
     company: 'Toss',
     position: 'UX Engineer Assistant',
     period: '2023.01 - 2023.07',
