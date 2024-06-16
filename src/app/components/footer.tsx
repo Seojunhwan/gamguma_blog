@@ -18,6 +18,7 @@ export const Footer = () => {
                 <IconButton
                   className='flex items-center justify-center rounded-md p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-200 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-neutral-800 dark:[&_svg]:stroke-gray-1100'
                   label={`${social} 버튼`}
+                  variant='ghost'
                 >
                   <SwitchCase
                     case={social as SocialKeys}

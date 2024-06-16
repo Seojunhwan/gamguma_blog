@@ -73,9 +73,7 @@ export default async function PostPage({ params }: PostPageProps) {
             <div className='flex items-center justify-between'>
               <h1 className='text-lg font-semibold md:text-2xl dark:text-gray-1200'>{metadata.title}</h1>
               <Link href='/'>
-                <Button className='p-0 underline underline-offset-4 dark:text-gray-1200 dark:hover:text-gray-1100'>
-                  뒤로가기
-                </Button>
+                <Button variant='link'>뒤로가기</Button>
               </Link>
             </div>
             <p className='text-sm font-medium text-neutral-700 md:text-base dark:text-gray-1100'>
