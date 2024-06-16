@@ -7,7 +7,7 @@ import { type PropsWithChildren } from 'react';
 
 import { Footer } from './components';
 
-import { BASE_URL, CDN_URL } from '@/constants/url';
+import { BASE_URL } from '@/constants/url';
 import { createCDNUrl } from '@/utils/url';
 
 export const viewport: Viewport = {
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     url: '/',
   },
   openGraph: {
+    siteName: '감구마 | 감구마 개발블로그',
     type: 'website',
     url: '/',
     locale: 'ko',

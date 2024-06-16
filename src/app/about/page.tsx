@@ -17,5 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <div className='dark:text-neutral-300'>뚝딱뚝딱</div>;
+  return (
+    <div className='dark:text-neutral-300'>
+      <div>
+        <h1>About</h1>
+      </div>
+    </div>
+  );
 }
