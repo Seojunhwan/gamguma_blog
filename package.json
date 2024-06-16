@@ -13,6 +13,7 @@
   "dependencies": {
     "@next/third-parties": "^14.2.3",
     "@prisma/client": "5.7.1",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "20.5.4",
     "@types/react": "18.2.21",
