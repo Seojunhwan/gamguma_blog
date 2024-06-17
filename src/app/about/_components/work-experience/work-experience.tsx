@@ -1,8 +1,11 @@
-import { X } from 'lucide-react';
+'use client';
+
 import { Button, IconButton } from '@/components/common';
+import { useToggle } from '@/hooks/useToggle';
 import { createCDNUrl } from '@/utils/url';
+import { X } from 'lucide-react';
 import Image from 'next/image';
-import { Modal, ModalClose, ModalContent, ModalTrigger } from '../shared';
+import { Modal, ModalClose, ModalContent, OverlayMenu } from '../shared';
 
 interface WorkExperienceItem {
   logo: string;
@@ -64,6 +67,8 @@ export function WorkExperience() {
 }
 
 function WorkExperienceItem({ logo, company, position, period }: WorkExperienceItem) {
+  const [isOpen, toggleOpen, setIsOpen] = useToggle(false);
+
   return (
     <li className='flex items-center justify-between'>
       <div className='flex flex-col gap-2'>
@@ -82,13 +87,13 @@ function WorkExperienceItem({ logo, company, position, period }: WorkExperienceI
         </div>
       </div>
 
-      <Modal mode='full'>
-        <ModalTrigger>
-          <Button variant='ghost' size='sm'>
-            자세히 보기
-          </Button>
-        </ModalTrigger>
+      <Modal mode='full' open={isOpen} onOpenChange={setIsOpen}>
+        <Button variant='ghost' size='sm' onClick={toggleOpen}>
+          자세히 보기
+        </Button>
+
         <ModalContent>
+          <OverlayMenu />
           <ModalClose>
             {/* TODO: 바텀 오버레이로 닫기 버튼 띄우기 */}
             <IconButton label='닫기' variant='ghost' className='absolute right-2 top-2'>

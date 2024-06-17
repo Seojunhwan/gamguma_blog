@@ -104,7 +104,7 @@ export const ModalContent = ({ asChild = true, overlay, children, ...props }: Mo
               animate='open'
               exit='closed'
               className={cn(
-                'fixed left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 shadow-lg',
+                'fixed left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 shadow-lg dark:bg-neutral-900',
                 {
                   'max-h-[100vh] max-w-[100vw]': mode === 'full',
                   'lg:max-h-[90vh] lg:max-w-[50vw]': mode === 'overlay',
