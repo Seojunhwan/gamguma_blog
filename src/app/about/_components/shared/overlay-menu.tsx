@@ -1,7 +1,6 @@
 'use client';
 
 import { useToggle } from '@/hooks/useToggle';
-import { cn } from '@/utils/cn';
 import { Variants, motion } from 'framer-motion';
 import { useCallback, useRef, useState } from 'react';
 
@@ -89,7 +88,7 @@ function Magnetic({ children, disabled }: { children: React.ReactNode; disabled?
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      animate={{ x, y }}
+      animate={{ transform: `translate(${x}px, ${y}px)` }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className='text-white'
     >
