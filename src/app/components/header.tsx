@@ -9,7 +9,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   return (
-    <header className='mb-8 flex items-center gap-4 p-3'>
+    <header className='mb-8 flex items-center gap-4 p-3' role='navigation'>
       <h1 className='text-lg font-semibold text-neutral-900 dark:text-gray-1200'>
         <Link href='/'>gamguma</Link>
       </h1>

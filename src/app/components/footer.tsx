@@ -6,7 +6,7 @@ import { type SocialKeys } from '@/interfaces/social';
 
 export const Footer = () => {
   return (
-    <footer className='mt-12 w-full'>
+    <footer className='mt-12 w-full' role='contentinfo'>
       <div className='mx-auto flex w-full max-w-5xl flex-col items-center justify-between border-t-[1px] border-gray-1200 px-2 pb-14 pt-12 sm:flex-row dark:border-gray-200'>
         <span className='text-sm text-neutral-900 dark:text-gray-1100'>
           &copy; {new Date().getFullYear()} by {config.title}
