@@ -2,7 +2,7 @@
 
 import { useToggle } from '@/hooks/useToggle';
 import { Variants, motion } from 'framer-motion';
-import { useCallback, useRef, useState } from 'react';
+import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 
 const variants: Variants = {
   initial: {
@@ -60,8 +60,8 @@ function Magnetic({ children, disabled }: { children: React.ReactNode; disabled?
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleMouse = useCallback(
-    (e: MouseEvent) => {
+  const handleMouse: MouseEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
       const { clientX, clientY } = e;
 
       if (disabled) return;
