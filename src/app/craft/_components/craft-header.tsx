@@ -1,7 +1,7 @@
 import { Motion } from '@/components/motion';
-import { HTMLAttributes } from 'react';
+import { HTMLMotionProps } from 'framer-motion';
 
-interface CraftHeaderProps extends HTMLAttributes<HTMLDivElement> {
+interface CraftHeaderProps extends HTMLMotionProps<'div'> {
   expanded: boolean;
 }
 
