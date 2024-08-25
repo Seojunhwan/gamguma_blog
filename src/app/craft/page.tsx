@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function CraftPage() {
-  return <div className='dark:text-neutral-300'>뚝딱뚝딱</div>;
+  return <div className=''></div>;
 }
