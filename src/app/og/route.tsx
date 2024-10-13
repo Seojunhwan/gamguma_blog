@@ -21,6 +21,9 @@ export async function GET(req: NextRequest) {
           alignItems: 'center',
           backgroundSize: '1200px 630px',
           backgroundImage: `url(${createBaseUrl('/images/og_background.png')})`,
+          padding: 80,
+          textAlign: 'center',
+          wordBreak: 'keep-all',
         }}
       >
         <div
