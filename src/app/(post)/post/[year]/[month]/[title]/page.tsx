@@ -70,9 +70,9 @@ export default async function PostPage({ params }: PostPageProps) {
       <article>
         <div className='mb-8 flex flex-col gap-2'>
           <div className='flex flex-col gap-1'>
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between gap-2'>
               <h1 className='text-lg font-semibold md:text-2xl dark:text-gray-1200'>{metadata.title}</h1>
-              <Link href='/'>
+              <Link href='/' className='flex-shrink-0'>
                 <Button variant='link'>뒤로가기</Button>
               </Link>
             </div>
