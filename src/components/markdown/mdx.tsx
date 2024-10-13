@@ -28,7 +28,7 @@ const MDXRemoteComponents: MDXRemoteProps['components'] = {
 
 export const MDX = ({ mdxSource }: MDXProps) => {
   return (
-    <div className='prose prose-sm prose-neutral w-full max-w-full sm:prose-base dark:prose-invert'>
+    <div className='prose prose-sm prose-neutral w-full max-w-full break-all sm:prose-base dark:prose-invert prose-code:before:content-none prose-code:after:content-none'>
       <MDXRemote {...mdxSource} components={MDXRemoteComponents} />
     </div>
   );
