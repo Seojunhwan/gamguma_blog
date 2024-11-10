@@ -1,16 +1,10 @@
 import { Views } from '@/app/(post)/components/views';
 import { type Post } from '@/interfaces/post';
-import { getRelativeDate } from '@/utils/date';
 import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
-import { unstable_noStore as noStore } from 'next/cache';
+import { CreatedAt } from './create-at';
 
 type PostCardProps = Post;
-
-function formatDate(date: Date | string) {
-  noStore();
-  return getRelativeDate(date);
-}
 
 export const PostCard = ({ slug, metadata }: PostCardProps) => {
   return (
@@ -24,14 +18,7 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
             <h2 className='break-keep text-base font-medium tracking-tight text-neutral-900 dark:text-gray-1200'>
               {metadata.title}
             </h2>
-            <time
-              dateTime={metadata.createdAt}
-              className='whitespace-nowrap text-xs font-light text-neutral-600 dark:text-gray-1100'
-            >
-              <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
-                {formatDate(metadata.createdAt)}
-              </Suspense>
-            </time>
+            <CreatedAt createdAt={metadata.createdAt} />
           </div>
 
           <div className='flex items-center justify-between'>
