@@ -6,7 +6,7 @@ import { createBaseUrl } from '@/utils/url';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
-import { CreatedAt } from './components/CreatedAt';
+import { CreatedAt, CreatedAtLoader } from './components/CreatedAt';
 import { OutdatedWarning } from './components/OutdatedWarning';
 
 interface PostPageProps {
@@ -82,7 +82,9 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           <div className='flex items-center justify-between'>
-            <CreatedAt createdAt={metadata.createdAt} />
+            <Suspense fallback={<CreatedAtLoader createdAt={metadata.createdAt} />}>
+              <CreatedAt createdAt={metadata.createdAt} />
+            </Suspense>
 
             <Suspense fallback={<Views.Loader />}>
               <Views.WithIncrement
