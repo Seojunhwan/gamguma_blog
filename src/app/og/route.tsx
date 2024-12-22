@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   const title = req.nextUrl.searchParams.get('title');
   const font = await fs.readFile(path.join(process.cwd(), 'public', 'fonts', 'gangwon_bold.woff'));
 
-  return new ImageResponse(
+  const response = new ImageResponse(
     (
       <div
         style={{
@@ -50,4 +50,8 @@ export async function GET(req: NextRequest) {
       ],
     },
   );
+
+  response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+
+  return response;
 }
