@@ -1,0 +1,295 @@
+---
+title: 주니어 개발자의 2024년도 회고
+description: 올해는 어떤 경험들을 했을까요? 내년엔 어떤 부분들이 더 나아질 수 있을까요?
+author: Junhwan Seo
+createdAt: 2024-12-22 23:55
+hashTags: [회고]
+isPublished: true
+---
+
+벌써 2024년도가 끝나가고 있네요.
+
+## 2024년도 했던 것들
+
+### 사이드 프로젝트
+
+같이 살던 룸메이트 형 + 형 회사 동료 + 형 지인 + 저의 회사 동료들과 함께 사이드 프로젝트를 진행했어요.\
+착한 가게라는 주제를 갖고 했던 프로젝트인데 되게 좋은 취지였던 것 같아요.
+
+다만 아쉽게도 프로젝트 진행 중 데이터가 되게 부족하고 모두가 지쳐 결국 프로젝트는 중단되었지만,\
+리액트 네이티브라는 생소한 것을 빠르게 학습하여 사용해보고 실제 스토어에 배포하는 파이프라인을 직접 만들어보는 경험은 되게 좋았어요.
+
+다음에 기회가 된다면 리액트 네이티브를 통한 프로젝트를 다시 진행해보고 싶어요.
+
+### 팀원들의 개발 생산성 향상시키기
+
+회사에서 팀원들의 개발 생산성을 향상시키기 위해 여러 시도를 해보았어요.
+
+<Callout icon="📝">
+  여기엔 2가지만 나열하지만 추후 포스팅에선 더 자세히, 더 많은 것들을 다룰 예정이에요.
+</Callout>
+
+#### 디자인 시스템 개선
+
+특히 디자인 시스템을 개선하여 팀원들이 더 쉽게 디자인 시스템을 사용할 수 있도록 도와주었어요.\
+회사에 처음 들어왔을 땐 디자이너가 미리 정의한 폰트 스타일을 `emotion`에 매번 추가하며 사용했었어요.
+
+```tsx
+// style.ts
+import { styled } from "@emotion/react";
+import { someFont } from "@/styles/font";
+import { colors } from "@/styles/colors";
+
+const SomeTitle = styled.h1`
+  ${someFont};
+  color: ${colors.red};
+`;
+
+// SomePage.tsx
+function SomePage() {
+  return <SomeTitle>안녕하세요</SomeTitle>;
+}
+```
+
+매번 이렇게 사용한다면 생산성이 매우 저하된다는 것을 느꼈어요.
+
+이를 해결하기 위해선 1차적으로 `Text`라는 컴포넌트를 미리 정의해 사용하는 것이 좋아보였어요.
+
+그렇게되면 상기 코드는 아래처럼 변경돼요.
+
+```tsx
+// SomePage.tsx
+import { Text } from "@/components/Text";
+import { colors } from "@/styles/colors";
+
+function SomePage() {
+  return <Text as="h1" font="someFont" color={colors.red}>안녕하세요</Text>;
+}
+```
+
+이렇게되니 모바일, 데스크탑 등 여러 화면에서도 사용할 수 있게끔 개선이 필요했어요.
+
+그 후 다시 한번 코드가 아래처럼 변경돼요.
+
+```tsx
+// SomePage.tsx
+import { Text } from "@/components/Text";
+import { colors } from "@/styles/colors";
+
+function SomePage() {
+  return <Text as="h1" font={{ mobile: "someFont", desktop: "elseFont" }} color={colors.red}>안녕하세요</Text>;
+}
+```
+
+이젠 모바일, 데스크탑 화면에서 각기 다른 폰트를 사용할 수 있게 되었어요.
+
+인터페이스는 어느정도 확정된 것 같아 파트가 아닌 팀 전체의 생산성 향상을 위해 디자인 시스템에 추가하려고 했어요.
+
+다만 회사 내부엔 여러 프로덕트가 있고 각 프로덕트마다 여러 특징이 있어요.\
+그 특징 중 하나가 브레이크포인트가 유연하게 동작해야 한다는 것이었어요.
+
+더불어 같은 프로덕트라도 각기 다른 페이지의 경우 브레이크포인트가 다르게 동작해야 하는 경우가 있었어요.
+
+여러 프로덕트가 존재하다보니 고정해서 사용하면 디자이너분들의 자유도가 제한되고, 마냥 풀어두게되면 개발자의 생산성이 떨어지는 것이 문제였어요.
+
+이를 해결하기위해 브레이크포인트를 사용처에서 주입받아 사용할 수 있게끔 개선해보았어요.
+
+```tsx
+// _app.tsx
+import { BreakpointProvider } from "@/contexts/BreakpointContext";
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <BreakpointProvider breakpoint={{
+      mobile: 768,
+      tablet: 1024,
+      desktop: 1280,
+    }}>
+      <Component {...pageProps} />
+    </BreakpointProvider>
+  );
+}
+
+// Text.tsx
+import { useBreakpoint } from "@/contexts/BreakpointContext";
+import { Responsive } from "@/types/responsive";
+import { Font } from "@/types/font";
+
+interface TextProps {
+  children: React.ReactNode;
+  font?: Responsive<Font>;
+}
+
+function Text({ children, font, ...props }: TextProps) {
+  const breakpoint = useBreakpoint();
+  // font + breakpoint mapping
+  return ...
+}
+```
+
+이렇게 `Text` 컴포넌트는 외부로부터 브레이크포인트를 주입받아 사용할 수 있게되었고, 여러 프로덕트에서 사용할 수 있게끔 유연하게 개선되었어요.
+
+```ts
+export interface BreakpointOverride {}
+
+interface BaseBreakpoint {
+  mobile: true;
+  tablet: true;
+  desktop: true;
+}
+
+export type Breakpoint = keyof BaseBreakpoint | keyof BreakpointOverride;
+
+/**
+ * 특정 브레이크포인트에 매핑된 값을 나타냅니다.
+ * 이 타입은 반응형 디자인에서 뷰포트 크기에 따라 변경되는 값을 다룰 때 사용합니다.
+ * @template T - 브레이크포인트에 따라 변경되는 값의 타입
+ *
+ * @example
+ * type ButtonSize = "small" | "medium" | "large";
+ * type BreakpointValueMap = BreakpointValueMap<ButtonSize>;
+ *
+ * const value: BreakpointValueMap = { breakpoint: 768, value: "medium" };
+ */
+export type BreakpointValueMap<T> = {
+  breakpoint: number;
+  value: T;
+};
+
+/**
+ * 여러 브레이크포인트에 대응하는 값을 정의합니다.
+ * @template T - 값의 타입
+ *
+ * @example
+ * type Size = "small" | "medium" | "large";
+ * type ResponsiveValue = Responsive<Size>;
+ *
+ * const value: ResponsiveValue = { mobile: "small", tablet: "medium", desktop: "large" };
+ * const value2: ResponsiveValue = "small";
+ */
+export type Responsive<T> = T | Partial<Record<Breakpoint, T>>;
+```
+
+이런 타입을 선언하여 각 프로덕트마다, 각 페이지마다 브레이크포인트를 유연하게 주입받아 사용할 수 있게 도와주었어요.
+
+더불어 `BreakpointOverride` 타입을 추가하여 사용처에서 재선언을 통한 새롭게 생겨난 브레이크포인트 타입의 안정성까지 챙겨주었어요.
+
+```tsx
+import { BreakpointOverride } from "@design-system/types";
+
+declare module "@design-system/types" {
+  interface BreakpointOverride {
+    mo:true;
+    semi:true;
+    full:true;
+  }
+}
+
+// example
+<Text font={{ mo: "someFont", semi: "elseFont", full: "otherFont" }}>안녕하세요</Text>
+```
+
+해당 구조를 통해 흔히들 사용하시는 `Layout` 컴포넌트 (`Flex`) 와 같은 부분, `Button` 컴포넌트에서도 화면 크기에 따라 유연하게 동작할 수 있도록 만들었어요.
+
+추후 포스팅에선 더 자세하게 다뤄볼게요.
+
+#### PR 알리미
+
+회사 내부에서 사용하던 [**axolo**](https://axolo.co/)라는 서비스가 있어요.\
+PR을 올리게되면 슬랙에 채널 생성을 통해 알림을 받을 수 있어요.
+
+이 서비스 되게 좋은 것 같은데 단점이 2가지 있었어요.
+
+- 무료 버전을 사용하고 있어서 월에 50개의 PR만 허용되었어요.\
+월초에 초과하기 때문에 그 후론 알림이 안 와요,,
+- PR이 올라올 때 채널이 새롭게 생성돼요.\
+이것도 마찬가지로 맥락 파악이 조금 어렵고, 제거할 때 되게 귀찮아요.
+
+<Image src="/2024/12/2024-retrospect/images/axolo-channel.png" alt="axolo-channel" width="722" height="1624" description="axolo가 만든 채널들,,"/>
+
+이를 개선하기 위해 **알리미**라는 서비스를 만들어보았어요.
+
+우선 기능은 아래와 같아요.
+
+- PR 생성 시 특정 채널에 스레드 생성
+- 관련 정보 나열
+- 리뷰어 지정 시 해당 스레드에 알림 발송
+- 리뷰 시 스레드 업데이트
+- merge 되었을 경우 해당 스레드에 이모지 추가 / 알림 발송
+
+<Image src="/2024/12/2024-retrospect/images/pr-alimi.png" alt="pr-alimi" width="1116" height="1718" description="알리미를 사용해주고 계시는 팀원분들"/>
+
+알리미를 만들 때 고려했던 부분은 3가지에요.
+
+1. 팀원들이 쉽게 사용할 수 있도록 하기\
+팀원 분들의 설치 편의를 위해 설치 가이드 문서를 작성했고, 최대한 설정할 것이 없도록 했어요.
+2. 자율성 주기\
+해당 서비스는 Github Webhook, Supabase(DB, Edge Function)를 통해 만들어졌는데요, 제한된 채널에 스레드를 작성하는 것이 아닌 Edge Function URL Query Parameter를 통해 채널을 지정할 수 있도록 했어요.
+3. 외부에서 사용할 수 없도록 하기\
+알리미는 회사 내부에서만 사용할 수 있도록 만들었어요. ([validating webhook](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries)을 통해 외부에서 사용할 수 없도록 만들었어요.)
+
+해당 서비스는 팀원분들이 사용해주시고 여러 개선 사항을 제안해주셨어요.
+
+- stage에 pr 올리면 무시
+- 특정 이벤트의 경우 알림 발송 무시
+- 특정 리뷰 알림 제외 ex) bot
+- 미해결 PR 재알림
+
+아직 할 거 많아서 신나고 사용자(팀원분들)의 피드백이 빠르다보니 재미있어요.
+
+### 훈련소 다녀오기
+
+산업기능요원 신분이라 언젠간 한 번 다녀와야 했는데 올해 3월에 다녀왔어요.
+
+이야,, 다신 안 가고 싶어요.
+
+그래도 가서 좋은 경험(?)도 하고 큐베라는 롤 프로게이머도 만나뵈어서 좋았어요.
+
+### 오픈소스 생태계에 아주 작은 영향 끼쳐보기
+
+`esbuild`라는 번들러를 아시나요?\
+저는 주로 `esbuild`를 의존성으로 갖고 있는 `tsup`을 주로 사용해요.
+
+리액트 개발 생태계엔 언제부턴가 추가된 `use client` | `use server`라는 directive가 있어요.\
+이를 통해 클라이언트와 서버 컴포넌트를 구분할 수 있게 되었어요.
+
+이러한 패턴을 라이브러리 제작할 때 사용하게 된다면 번들링 시 해당 directive들은 모두 제거돼요.
+
+이를 해결하기 위해 [esbuild-plugin-preserve-directives](https://github.com/Seojunhwan/esbuild-plugin-preserve-directives)라는 플러그인을 만들었어요.
+
+<Callout icon="🔗">
+  [여기서](https://github.com/egoist/tsup/issues/835) 관련 이슈가 있었고, 저도 겪게 되었어요.
+</Callout>
+
+그냥,, 단순하게도 번들링 시 특정 `directive`가 있는 파일들을 모두 기록하고, 마지막에 다시 추가해주는 플러그인이에요.
+
+이를 통해 번들링 시 해당 directive들이 제거되는 것을 막을 수 있었어요.
+
+나름 잘 만든 것 같았는데 상기 이슈에 작성한 코멘트들을 통해 버그가 있다는 것을 알게 되었어요.\
+또한 다른 개발자들을 통해 여러가지 새로운 정보들을 얻게 되었어요.
+
+#### `esbuild` 를 사용하고 `cjs` 에 `minify` 옵션을 켰을 때 `directive` 순서가 이상해진다.
+
+`esbuild` 가 제공하는 플러그인 API 중 `onEnd` 의 경우 제일 마지막에 처리되는 것이 아닌 `ESM Flag` 가 주입되기 전 처리된다.\
+[여기에](https://github.com/egoist/tsup/issues/835#issuecomment-2439427250) 자세히 작성했지만 요약하면 아래와 같아요.
+
+<Callout icon="🔗">
+  `tsup`은 `esbuild`가 제공하는 플러그인 API 이외로 추가적인 `renderChunk`를 제공한다.<br/>이는 `esbuild`의 번들링이 모두 끝난 후 ESM Flag가 주입된 후 동작한다.
+</Callout>
+
+사실 해당 결론을 통해 `esbuild` 플러그인에서 `onEnd` 만으로는 해당 문제를 해결할 수 없다는 것을 알게 되었어요.
+
+언젠간 해당 문제를 해결해보고 싶어요.\
+혹시 해결 방법 아시는 분들이 계신다면 알려주십쇼,,!
+
+이 오픈소스 생태계에 매우매우매우 작은 영향을 끼치며 느낀점이 있어요.
+
+- 다양한 개발자들과 소통하며 새로운 정보를 얻을 수 있다.
+- 유연한 인터페이스를 고민한다.
+- **재미있다**
+
+되게 재미있고 좋은 경험이었던 것 같아요.
+
+<Callout icon="⏱️">
+  12월 31일까지 내용은 계속 추가될 예정이고, 문장도 더 가다듬을 예정이에요.
+</Callout>
