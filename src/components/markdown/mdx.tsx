@@ -7,6 +7,7 @@ import { CustomImage } from './image';
 import { CustomLink } from './link';
 import { CustomTable } from './table';
 import { CustomHeading } from './heading';
+import { CustomVideo } from './video';
 
 interface MDXProps {
   mdxSource: MDXRemoteProps;
@@ -18,6 +19,7 @@ const MDXRemoteComponents: MDXRemoteProps['components'] = {
   Image: CustomImage,
   link: CustomLink as any,
   Table: CustomTable,
+  Video: CustomVideo,
   h1: (props) => <CustomHeading level={1} className='text-[1.125rem]' {...props} />,
   h2: (props) => <CustomHeading level={2} className='text-[1.0625rem]' {...props} />,
   h3: (props) => <CustomHeading level={3} className='text-[1rem]' {...props} />,
