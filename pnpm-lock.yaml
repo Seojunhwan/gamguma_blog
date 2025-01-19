@@ -60,8 +60,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-view-transitions:
-        specifier: ^0.1.1
-        version: 0.1.1(next@14.3.0-canary.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.3.4
+        version: 0.3.4(next@14.3.0-canary.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       postcss:
         specifier: 8.5.1
         version: 8.5.1
@@ -1606,10 +1606,10 @@ packages:
       react: '>=16.x <=18.x'
       react-dom: '>=16.x <=18.x'
 
-  next-view-transitions@0.1.1:
-    resolution: {integrity: sha512-1rpXhWF8j0VJwJG52c8WeeAYpr1K7o3ub82lahbSoUwAry54TEm1d3mqBbSLLIMl85c3OewkZjxncTHwYFk+IA==}
+  next-view-transitions@0.3.4:
+    resolution: {integrity: sha512-SSiskenQ8JkEFGzPjvFwC5LGGoqgTxM5dxexkeugxvcXFLpWI2ZUh4IsCURD3ovW+8Ue7xXlrtrpy8b7XR7IwQ==}
     peerDependencies:
-      next: ^14.0.0
+      next: '>=14.0.0'
       react: ^18.2.0
       react-dom: ^18.2.0
 
@@ -4186,7 +4186,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-view-transitions@0.1.1(next@14.3.0-canary.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-view-transitions@0.3.4(next@14.3.0-canary.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       next: 14.3.0-canary.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
