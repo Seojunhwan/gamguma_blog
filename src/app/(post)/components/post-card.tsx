@@ -18,7 +18,9 @@ export const PostCard = ({ slug, metadata }: PostCardProps) => {
             <h2 className='break-keep text-base font-medium tracking-tight text-neutral-900 dark:text-gray-1200'>
               {metadata.title}
             </h2>
-            <CreatedAt createdAt={metadata.createdAt} />
+            <Suspense fallback={<span className='w-4 animate-pulse'></span>}>
+              <CreatedAt createdAt={metadata.createdAt} />
+            </Suspense>
           </div>
 
           <div className='flex items-center justify-between'>
