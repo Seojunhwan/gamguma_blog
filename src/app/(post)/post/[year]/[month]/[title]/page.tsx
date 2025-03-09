@@ -8,6 +8,8 @@ import { Link } from 'next-view-transitions';
 import { Suspense } from 'react';
 import { CreatedAt, CreatedAtLoader } from './components/CreatedAt';
 import { OutdatedWarning } from './components/OutdatedWarning';
+import { Toc } from './components/Toc';
+import { Fog } from './components/Fog';
 
 interface PostPageProps {
   params: {
@@ -94,7 +96,12 @@ export default async function PostPage({ params }: PostPageProps) {
 
         <OutdatedWarning createdAt={metadata.createdAt} />
 
-        <MDX mdxSource={mdxSource} />
+        <Toc />
+
+        <Fog />
+        <section id='content'>
+          <MDX mdxSource={mdxSource} />
+        </section>
       </article>
       <Utterances />
     </>
