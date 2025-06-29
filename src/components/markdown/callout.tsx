@@ -16,8 +16,8 @@ export const Callout = ({ children, icon, className, outline, ...restProps }: Ca
       )}
       {...restProps}
     >
-      {icon && <span className='mr-3 flex items-center'>{icon}</span>}
-      <div className='flex items-center text-sm *:m-0'>{children}</div>
+      {icon && <span className='mr-3 flex justify-center'>{icon}</span>}
+      <div className='flex flex-col text-sm *:m-0'>{children}</div>
     </div>
   );
 };
