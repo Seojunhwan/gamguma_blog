@@ -7,14 +7,23 @@ import { usePathname } from 'next/navigation';
 interface HeaderItemProps {
   title: string;
   href: string;
+  disabled?: boolean;
 }
 
-export const HeaderItem = ({ title, href }: HeaderItemProps) => {
+export const HeaderItem = ({ title, href, disabled }: HeaderItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
+  if (disabled) {
+    return (
+      <li className='cursor-not-allowed'>
+        <span className='text-neutral-400 line-through dark:text-gray-1200'>{title}</span>
+      </li>
+    );
+  }
+
   return (
-    <li key={title}>
+    <li>
       <Link
         href={href}
         className={cn(

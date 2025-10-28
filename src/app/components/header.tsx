@@ -3,8 +3,8 @@ import { HeaderItem } from './_components/header-item';
 
 const NAV_ITEMS = [
   { title: 'about', href: '/about' },
-  { title: 'photo', href: '/photo' },
-  { title: 'craft', href: '/craft' },
+  { title: 'photo', href: '/photo', disabled: true },
+  { title: 'craft', href: '/craft', disabled: true },
 ];
 
 export const Header = () => {
@@ -16,7 +16,7 @@ export const Header = () => {
       <nav className='font-medium dark:text-neutral-400'>
         <ul className='flex items-center gap-3'>
           {NAV_ITEMS.map((item) => (
-            <HeaderItem key={item.title} title={item.title} href={item.href} />
+            <HeaderItem key={item.title} title={item.title} href={item.href} disabled={item.disabled} />
           ))}
         </ul>
       </nav>
