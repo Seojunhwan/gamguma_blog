@@ -24,7 +24,7 @@ const WORK_EXPERIENCE: WorkExperienceItem[] = [
     logo: createCDNUrl('/images/work-experience/team-sparta.png'),
     company: 'Team Sparta',
     position: 'Software Engineer',
-    period: '2023.09 - Present',
+    period: '2023.09 - 2025.10',
     description: '대충 설명',
     details: [
       {
@@ -35,7 +35,7 @@ const WORK_EXPERIENCE: WorkExperienceItem[] = [
   },
   {
     logo: createCDNUrl('/images/work-experience/toss.png'),
-    company: 'Toss',
+    company: 'Viva Republica (Toss)',
     position: 'UX Engineer Assistant',
     period: '2023.01 - 2023.07',
     description: '대충 설명',
